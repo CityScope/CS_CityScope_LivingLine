@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class CityParser : MonoBehaviour, IObservable<JsonCityMatrixMlai>, IObserver<string>
 {
 
@@ -90,3 +91,4 @@ public class CityParser : MonoBehaviour, IObservable<JsonCityMatrixMlai>, IObser
         }
     }
 }
+*/

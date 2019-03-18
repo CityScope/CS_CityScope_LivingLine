@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
+/*
 public class CityObserver : MonoBehaviour, IObserver<JsonCityMatrixMlai>
 {
     private JsonCityMatrixMlai _lastPacket;
@@ -56,3 +57,4 @@ public class CityObserver : MonoBehaviour, IObserver<JsonCityMatrixMlai>
         this._fresh = true;
     }
 }
+*/

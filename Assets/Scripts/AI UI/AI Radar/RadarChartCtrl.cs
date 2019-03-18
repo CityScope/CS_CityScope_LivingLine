@@ -8,7 +8,7 @@ public class RadarChartCtrl : MonoBehaviour {
 	[Range(0, 1f)]
 	public float[] values;
 	float[] prev = new float[0];
-
+    /*
     void Update ()
     {
         if (!values.SequenceEqual(prev)) {
@@ -31,10 +31,13 @@ public class RadarChartCtrl : MonoBehaviour {
 			}
 		}
 	}
+	*/
 
+    /*
 	void UpdateChild(UnityEngine.UI.Extensions.RadarPolygon child)
     {
 		child.value = (float[]) values.Clone();
 		child.segment = values.Length;
 	}
+	*/
 }

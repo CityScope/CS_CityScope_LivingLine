@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/*
 public class BuildingCountScript : MonoBehaviour
 {
 
@@ -36,3 +36,4 @@ public class BuildingCountScript : MonoBehaviour
         }
     }
 }
+*/

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
+/*
 [Serializable]
 public class JsonCityMatrixMlai
 {
@@ -127,3 +128,4 @@ public class JsonmSolar
     public float metric;
     public float weight;
 }
+*/

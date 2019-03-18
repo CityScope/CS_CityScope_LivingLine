@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
 public class CityRadarChartCtrl : MonoBehaviour
 {
     public CityObserver CityObserver;
@@ -53,3 +54,4 @@ public class CityRadarChartCtrl : MonoBehaviour
         }
     }
 }
+*/

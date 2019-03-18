@@ -4,6 +4,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 
+/*
 public class HighLevelScoreCtrl : MonoBehaviour
 {
     //public GameObject orange;
@@ -96,3 +97,4 @@ public class HighLevelScoreCtrl : MonoBehaviour
         totalScoreSuggested.text = TDeltaStr;
     }
 }
+*/

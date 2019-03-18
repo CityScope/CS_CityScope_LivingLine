@@ -1,4 +1,5 @@
-﻿namespace UnityEngine.UI.Extensions
+﻿/*
+namespace UnityEngine.UI.Extensions
 {
     [AddComponentMenu("UI/Extensions/Radar Chart")]
 	public class RadarPolygon : MaskableGraphic
@@ -125,3 +126,4 @@
         }
     }
 }
+*/

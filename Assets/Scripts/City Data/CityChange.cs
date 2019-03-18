@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+/*
 public abstract class CityChange
 {
     public static CityChange GetChange(JsonCityMatrix oldCity, JsonCityMatrix newCity)
@@ -107,3 +108,4 @@ public class BuildingChange : CityChange
         }
     }
 }
+*/

@@ -91,6 +91,16 @@ ModelImporter:
     4300014: Mesh8
     4300016: Mesh9
     4300018: Mesh10
+    6400000: Mesh1
+    6400002: Mesh10
+    6400004: Mesh2
+    6400006: Mesh3
+    6400008: Mesh4
+    6400010: Mesh5
+    6400012: Mesh6
+    6400014: Mesh7
+    6400016: Mesh8
+    6400018: Mesh9
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -124,7 +134,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

@@ -309,6 +309,49 @@ ModelImporter:
     4300080: Mesh41
     4300082: Mesh42
     4300084: Mesh43
+    6400000: Mesh1
+    6400002: Mesh10
+    6400004: Mesh11
+    6400006: Mesh12
+    6400008: Mesh13
+    6400010: Mesh14
+    6400012: Mesh15
+    6400014: Mesh16
+    6400016: Mesh17
+    6400018: Mesh18
+    6400020: Mesh19
+    6400022: Mesh2
+    6400024: Mesh20
+    6400026: Mesh21
+    6400028: Mesh22
+    6400030: Mesh23
+    6400032: Mesh24
+    6400034: Mesh25
+    6400036: Mesh26
+    6400038: Mesh27
+    6400040: Mesh28
+    6400042: Mesh29
+    6400044: Mesh3
+    6400046: Mesh30
+    6400048: Mesh31
+    6400050: Mesh32
+    6400052: Mesh33
+    6400054: Mesh34
+    6400056: Mesh35
+    6400058: Mesh36
+    6400060: Mesh37
+    6400062: Mesh38
+    6400064: Mesh39
+    6400066: Mesh4
+    6400068: Mesh40
+    6400070: Mesh41
+    6400072: Mesh42
+    6400074: Mesh43
+    6400076: Mesh5
+    6400078: Mesh6
+    6400080: Mesh7
+    6400082: Mesh8
+    6400084: Mesh9
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -342,7 +385,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

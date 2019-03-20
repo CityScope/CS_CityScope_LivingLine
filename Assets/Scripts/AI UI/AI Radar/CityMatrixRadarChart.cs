@@ -60,7 +60,6 @@ public class CityMatrixRadarChart : MonoBehaviour {
         currentLineAll.GetComponent<LineRenderer>().SetPosition(6, movingPts[6]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(7, movingPts[7]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(8, movingPts[8]);
-        currentLineAll.GetComponent<LineRenderer>().SetPosition(9, movingPts[0]);
     }
             
 

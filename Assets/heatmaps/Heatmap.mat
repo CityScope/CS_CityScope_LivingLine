@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _HeatTex:
-        m_Texture: {fileID: 2800000, guid: c41aec77444d1d74991b1e3c7611a0fe, type: 3}
+        m_Texture: {fileID: 2800000, guid: 6b2ef22bf7e4a874db5ce745f9fd3ea5, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:

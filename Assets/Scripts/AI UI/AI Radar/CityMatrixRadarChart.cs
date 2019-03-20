@@ -16,13 +16,15 @@ public class CityMatrixRadarChart : MonoBehaviour {
     public GameObject currentLineDensityDiversity;
     public GameObject currentLineEnergyTrafficSolar;
     public GameObject currentLineAll;
-    public GameObject currentDashLineDiversityEnergy;
-    public GameObject currentDashLineSolarDensity;
-    public GameObject currentFillDensityDiversity;
-    public GameObject currentFillEnergyTraffic;
-    public GameObject currentFillTrafficSolar;
-    public GameObject currentFillDiversityEnergy;
-    public GameObject currentFillSolarDensity;
+    public GameObject currentFillOuIn;
+    public GameObject currentFillInSo;
+    public GameObject currentFillSoAg;
+    public GameObject currentFillAgPu;
+    public GameObject currentFillPuEd;
+    public GameObject currentFillEdIn;
+    public GameObject currentFillInRe;
+    public GameObject currentFillReOn;
+    public GameObject currentFillOnOu;
 
     //private float[] prev = new float[9];
     private Vector3[] movingPts = new Vector3[9];
@@ -54,7 +56,11 @@ public class CityMatrixRadarChart : MonoBehaviour {
         currentLineAll.GetComponent<LineRenderer>().SetPosition(2, movingPts[2]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(3, movingPts[3]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(4, movingPts[4]);
-        currentLineAll.GetComponent<LineRenderer>().SetPosition(5, movingPts[0]);
+        currentLineAll.GetComponent<LineRenderer>().SetPosition(5, movingPts[5]);
+        currentLineAll.GetComponent<LineRenderer>().SetPosition(6, movingPts[6]);
+        currentLineAll.GetComponent<LineRenderer>().SetPosition(7, movingPts[7]);
+        currentLineAll.GetComponent<LineRenderer>().SetPosition(8, movingPts[8]);
+        currentLineAll.GetComponent<LineRenderer>().SetPosition(9, movingPts[0]);
     }
             
 

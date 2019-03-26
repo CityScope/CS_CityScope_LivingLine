@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Rotator : MonoBehaviour
+public class RotateController : MonoBehaviour
 {
     // Update is called once per frame
     private void Update()

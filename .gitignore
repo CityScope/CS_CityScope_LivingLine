@@ -44,3 +44,9 @@ sysinfo.txt
 
 # Mac OS
 *.DS_Store*
+
+
+# ryanz
+[Uu]nity[Pp]ackages/
+
+

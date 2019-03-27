@@ -50,3 +50,6 @@ sysinfo.txt
 [Uu]nity[Pp]ackages/
 
 
+# will
+Assets/Plugins/ThirdPlugins*
+

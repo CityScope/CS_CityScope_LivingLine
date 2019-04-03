@@ -7,7 +7,7 @@
          "outdoor":3
       },
       "free_unit":{
-         "public":4,
+         "publicBuilding":4,
          "facilities":5
       }
    },

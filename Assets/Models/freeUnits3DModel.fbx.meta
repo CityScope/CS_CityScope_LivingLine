@@ -1,0 +1,255 @@
+fileFormatVersion: 2
+guid: 1f66e79f24afa4702aa08b108d43cd3d
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: art installation
+    100002: Default
+    100004: facilities
+    100006: //RootNode
+    100008: Group30
+    100010: Group32
+    100012: Group33
+    100014: Group34
+    100016: Group35
+    100018: Group36
+    100020: Group37
+    100022: Group38
+    100024: Group39
+    100026: Group40
+    100028: Group41
+    100030: Group42
+    100032: Group43
+    100034: Group44
+    100036: Group46
+    100038: Group47
+    100040: Group48
+    100042: Group49
+    100044: Group50
+    100046: Group51
+    100048: Group52
+    100050: Group53
+    100052: Group54
+    100054: Group55
+    100056: Group59
+    100058: Layer 04
+    100060: Layer 05
+    100062: public space
+    400000: art installation
+    400002: Default
+    400004: facilities
+    400006: //RootNode
+    400008: Group30
+    400010: Group32
+    400012: Group33
+    400014: Group34
+    400016: Group35
+    400018: Group36
+    400020: Group37
+    400022: Group38
+    400024: Group39
+    400026: Group40
+    400028: Group41
+    400030: Group42
+    400032: Group43
+    400034: Group44
+    400036: Group46
+    400038: Group47
+    400040: Group48
+    400042: Group49
+    400044: Group50
+    400046: Group51
+    400048: Group52
+    400050: Group53
+    400052: Group54
+    400054: Group55
+    400056: Group59
+    400058: Layer 04
+    400060: Layer 05
+    400062: public space
+    2100000: FrontCol
+    2100002: Lisanne_
+    2100004: Lisanne__2
+    2100006: FrontCol_3
+    2100008: Lisanne__3
+    2100010: FrontCol_4
+    2100012: Lisanne__4
+    2100014: Lisanne__5
+    2100016: Lisanne__6
+    2100018: Lisanne__7
+    2100020: FrontCol_2
+    2100022: FrontCol_5
+    2100024: FrontCol_6
+    2100026: FrontCol_7
+    2100028: FrontCol_8
+    2100030: FrontCol_9
+    2100032: FrontCol_10
+    2100034: FrontCol_11
+    2100036: FrontCol_12
+    2100038: FrontCol_13
+    2100040: FrontCol_14
+    2100042: FrontCol_15
+    2100044: FrontCol_16
+    2100046: FrontCol_17
+    2100048: FrontCol_18
+    2300000: Group30
+    2300002: Group32
+    2300004: Group33
+    2300006: Group34
+    2300008: Group35
+    2300010: Group36
+    2300012: Group37
+    2300014: Group38
+    2300016: Group39
+    2300018: Group40
+    2300020: Group41
+    2300022: Group42
+    2300024: Group43
+    2300026: Group44
+    2300028: Group46
+    2300030: Group47
+    2300032: Group48
+    2300034: Group49
+    2300036: Group50
+    2300038: Group51
+    2300040: Group52
+    2300042: Group53
+    2300044: Group54
+    2300046: Group55
+    2300048: Group59
+    3300000: Group30
+    3300002: Group32
+    3300004: Group33
+    3300006: Group34
+    3300008: Group35
+    3300010: Group36
+    3300012: Group37
+    3300014: Group38
+    3300016: Group39
+    3300018: Group40
+    3300020: Group41
+    3300022: Group42
+    3300024: Group43
+    3300026: Group44
+    3300028: Group46
+    3300030: Group47
+    3300032: Group48
+    3300034: Group49
+    3300036: Group50
+    3300038: Group51
+    3300040: Group52
+    3300042: Group53
+    3300044: Group54
+    3300046: Group55
+    3300048: Group59
+    4300000: Group59
+    4300002: Group54
+    4300004: Group53
+    4300006: Group52
+    4300008: Group51
+    4300010: Group50
+    4300012: Group49
+    4300014: Group48
+    4300016: Group47
+    4300018: Group46
+    4300020: Group55
+    4300022: Group44
+    4300024: Group43
+    4300026: Group42
+    4300028: Group41
+    4300030: Group40
+    4300032: Group39
+    4300034: Group38
+    4300036: Group37
+    4300038: Group36
+    4300040: Group35
+    4300042: Group34
+    4300044: Group33
+    4300046: Group32
+    4300048: Group30
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

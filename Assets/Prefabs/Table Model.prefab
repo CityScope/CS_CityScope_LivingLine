@@ -1,5 +1,47 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7879960232457029441
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3173091927215535193}
+  m_Layer: 0
+  m_Name: scale200
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3173091927215535193
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7879960232457029441}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 200, y: 200, z: 200}
+  m_Children:
+  - {fileID: 3540292516207089450}
+  - {fileID: 5887548292980694554}
+  - {fileID: 2712206120100566127}
+  - {fileID: 6725727287546413137}
+  - {fileID: 6795452962345842209}
+  - {fileID: 5578879402981135166}
+  - {fileID: 8027904270610798442}
+  - {fileID: 2888216944232460609}
+  - {fileID: 772697363364158024}
+  - {fileID: 8552504046742379498}
+  - {fileID: 5563692573984933061}
+  - {fileID: 7337997431169559628}
+  m_Father: {fileID: 6469477467410229757}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8898210978848055137
 GameObject:
   m_ObjectHideFlags: 0
@@ -27,18 +69,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 3540292516207089450}
-  - {fileID: 5887548292980694554}
-  - {fileID: 2712206120100566127}
-  - {fileID: 6725727287546413137}
-  - {fileID: 6795452962345842209}
-  - {fileID: 5578879402981135166}
-  - {fileID: 8027904270610798442}
-  - {fileID: 2888216944232460609}
-  - {fileID: 772697363364158024}
-  - {fileID: 8552504046742379498}
-  - {fileID: 5563692573984933061}
-  - {fileID: 7337997431169559628}
+  - {fileID: 3173091927215535193}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -47,7 +78,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
       propertyPath: m_Name
@@ -122,7 +153,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100018, guid: f441812fbe7b20f4a95621c9843f6973, type: 3}
       propertyPath: m_Name
@@ -197,7 +228,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100000, guid: 8619662d327e43a4d99615e83f58ab69, type: 3}
       propertyPath: m_Name
@@ -272,7 +303,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100086, guid: 51ecfb1c4aa3cf546bc55a1729b67f08, type: 3}
       propertyPath: m_Name
@@ -347,7 +378,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100000, guid: b93a9227ce2e2f045950c4adb0ba2253, type: 3}
       propertyPath: m_Name
@@ -422,7 +453,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100054, guid: bb1db8ff80f065640a167f421e034170, type: 3}
       propertyPath: m_Name
@@ -497,7 +528,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100004, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
       propertyPath: m_Name
@@ -572,7 +603,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100004, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
       propertyPath: m_Name
@@ -647,7 +678,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100004, guid: 2842180bffb1d534f852c231b2fcff27, type: 3}
       propertyPath: m_Name
@@ -722,7 +753,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100004, guid: bd075263ee8a1a740bda706748b16edc, type: 3}
       propertyPath: m_Name
@@ -797,7 +828,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
       propertyPath: m_Name
@@ -872,7 +903,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 6469477467410229757}
+    m_TransformParent: {fileID: 3173091927215535193}
     m_Modifications:
     - target: {fileID: 100000, guid: 08f55fff30837ef48a49255edaf2b742, type: 3}
       propertyPath: m_Name

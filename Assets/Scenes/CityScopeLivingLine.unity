@@ -1832,6 +1832,7 @@ GameObject:
   - component: {fileID: 837084327}
   - component: {fileID: 837084326}
   - component: {fileID: 837084325}
+  - component: {fileID: 837084328}
   m_Layer: 0
   m_Name: Perspective Transform Display 01
   m_TagString: Untagged
@@ -1912,6 +1913,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837084323}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &837084328
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 837084323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a3dd4e3ae2570246b373ec6973fc8fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRenderTexture: {fileID: 8400000, guid: 33dd2ee6356e2ef42b955acba2981f5c, type: 2}
+  inputTexture: {fileID: 0}
+  corners: []
 --- !u!1 &861289410
 GameObject:
   m_ObjectHideFlags: 0
@@ -1956,6 +1972,7 @@ GameObject:
   - component: {fileID: 903169272}
   - component: {fileID: 903169271}
   - component: {fileID: 903169270}
+  - component: {fileID: 903169273}
   m_Layer: 0
   m_Name: Perspective Transform Display 02
   m_TagString: Untagged
@@ -2036,6 +2053,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 903169268}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &903169273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 903169268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a3dd4e3ae2570246b373ec6973fc8fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myRenderTexture: {fileID: 8400000, guid: b2dd017401d00b346b3b9dfa5c042b24, type: 2}
+  inputTexture: {fileID: 0}
+  corners: []
 --- !u!1 &928923632
 GameObject:
   m_ObjectHideFlags: 0

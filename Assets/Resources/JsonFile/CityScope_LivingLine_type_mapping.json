@@ -1,0 +1,44 @@
+{
+    "type_name_type_id_mapping": {
+        "fixed_units": {
+            "Future Education Lab": 0,
+            "Future Food Lab": 1,
+            "Future Art Lab": 2,
+            "Incubator": 3,
+            "Co-working Space": 4,
+            "Market": 5,
+            "Community Center": 6
+        },
+        "free units": {
+            "Public Space": 7,
+            "Facility": 8,
+            "Art Installation": 9
+        },
+        "knobs": {
+            "Time Knob": 10,
+            "Unit Property Knob": 11,
+            "Viz Type Knob": 12
+        }
+    },
+    "type name tag id mapping": {
+        "fixed units": {
+            "Future Education Lab": 2,
+            "Future Food Lab": 16,
+            "Future Art Lab": 21,
+            "Incubator": 32,
+            "Co-working Space": 43,
+            "Market": 51,
+            "Community Center": 63
+        },
+        "free units": {
+            "Public Space": 72,
+            "Facility": 83,
+            "Art Installation": 91
+        },
+        "knobs": {
+            "Time Knob": 13,
+            "Unit Property Knob": 31,
+            "Viz Type Knob": 42
+        }
+    }
+}

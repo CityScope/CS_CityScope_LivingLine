@@ -45,17 +45,17 @@ public class CityMatrixRadarChart : MonoBehaviour {
             movingRefPts[i].transform.position = p;
         }
 
+        if(currentLineAll==null|| movingPts==null|| currentLineAll.GetComponent<LineRenderer>())
+        {
+            return;
+        }
+
         // update lines
         //currentLineDensityDiversity.GetComponent<LineRenderer>().SetPosition(0, movingRefPts[0].transform.position);
         //currentLineDensityDiversity.GetComponent<LineRenderer>().SetPosition(1, movingPts[1]);
         //currentLineEnergyTrafficSolar.GetComponent<LineRenderer>().SetPosition(0, movingPts[2]);
         //currentLineEnergyTrafficSolar.GetComponent<LineRenderer>().SetPosition(1, movingPts[3]);
         //currentLineEnergyTrafficSolar.GetComponent<LineRenderer>().SetPosition(2, movingPts[4]);
-        if(currentLineAll==null)
-        {
-            return;
-        }
-
         currentLineAll.GetComponent<LineRenderer>().SetPosition(0, movingPts[0]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(1, movingPts[1]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(2, movingPts[2]);

@@ -4,18 +4,9 @@ using UnityEngine;
 
 public class JsonData
 {
-    public TypeMappingData type_Mapping;
     public List<UnitInfoData> fixed_unit;
     public List<UnitInfoData> free_unit;
-
-    public UnitInfoData knob_time;
-    public UnitInfoData knob_fixed_unit;
-}
-
-public class TypeMappingData
-{
-    public Fixed_UnitData fixed_unit;
-    public Free_UnitData free_unit;
+    public List<UnitInfoData> knobs;
 }
 
 public class Fixed_UnitData
@@ -35,11 +26,14 @@ public class Free_UnitData
 public class UnitInfoData
 {
     public int type;
-    public float capacity;
     public float x;
     public float y;
     public float rot;
-    public int fixed_unit_type;
-    
+}
+
+public class CoordinatesData
+{
+    public float[] x;
+    public float[] y;
 }
 

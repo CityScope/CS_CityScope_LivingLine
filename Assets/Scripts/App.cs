@@ -9,17 +9,19 @@ public class App : MonoBehaviour
     public Vector3 offset;
     public FixedUnit[] fixedUnits;
     public GameObject gridUnitListRoot;
+    private CoordinatesData data;
 
     void Awake()
     {
+        TextAsset textAsset = Resources.Load<TextAsset>("JsonFile/CityScope_LivingLine_grid_cell_coordinates");
+        data = JsonConvert.DeserializeObject<CoordinatesData>(textAsset.text);
 
-        Debug.Log("!!!!!!!!!!!!!");
     }
 
 
     void Start()
     {
-        fixedUnits = gridUnitListRoot.GetComponentsInChildren<FixedUnit>(true);
+        //fixedUnits = gridUnitListRoot.GetComponentsInChildren<FixedUnit>(true);
     }
 
     void OnGUI()

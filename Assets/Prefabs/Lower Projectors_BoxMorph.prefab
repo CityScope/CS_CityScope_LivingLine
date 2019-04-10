@@ -769,7 +769,7 @@ GameObject:
   - component: {fileID: 2970321690491542367}
   - component: {fileID: 2970321690491542366}
   m_Layer: 0
-  m_Name: Box Morph
+  m_Name: Box Morph Lower Projector 02
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2441,7 +2441,7 @@ GameObject:
   - component: {fileID: 2970321690994503723}
   - component: {fileID: 2970321690994503722}
   m_Layer: 0
-  m_Name: Box Morph
+  m_Name: Box Morph Lower Projector 01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

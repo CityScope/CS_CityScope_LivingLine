@@ -49287,6 +49287,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Community Center
       objectReference: {fileID: 0}
+    - target: {fileID: 3276715547891904011, guid: 001d5b2c5b4e347b29070d76592f2e93,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4460115481520573536, guid: 001d5b2c5b4e347b29070d76592f2e93,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -49903,7 +49908,7 @@ PrefabInstance:
     - target: {fileID: 3382302194520314827, guid: a41dba2a5995449c79d52ded7253df95,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4283314817408862909, guid: a41dba2a5995449c79d52ded7253df95,
         type: 3}
@@ -50059,6 +50064,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Co-working Space
+      objectReference: {fileID: 0}
+    - target: {fileID: 3581883656453456190, guid: 1ccd35ffd6967413491214fe6d833f68,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6435106877744856844, guid: 1ccd35ffd6967413491214fe6d833f68,
         type: 3}
@@ -50448,6 +50458,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Incubator
       objectReference: {fileID: 0}
+    - target: {fileID: 5121334491487010295, guid: c7eab2ad9a151485797d1319784680a2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8195232975841340429, guid: c7eab2ad9a151485797d1319784680a2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -50628,7 +50643,7 @@ PrefabInstance:
     - target: {fileID: 6937801014638720621, guid: b545c23687ae444809b9b1ca80bed6e9,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7058841023565273627, guid: b545c23687ae444809b9b1ca80bed6e9,
         type: 3}
@@ -50708,7 +50723,7 @@ PrefabInstance:
     - target: {fileID: 4364545689624318674, guid: b0778d9be31634f0a9a3a28e0953d1d7,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4409011868030975652, guid: b0778d9be31634f0a9a3a28e0953d1d7,
         type: 3}
@@ -50904,6 +50919,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Future Art Lab
       objectReference: {fileID: 0}
+    - target: {fileID: 7401678722719264026, guid: e060f4c8f8edd4ef58534028b7c48b55,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3883410171655929654, guid: e060f4c8f8edd4ef58534028b7c48b55,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51054,6 +51074,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Art Installation
       objectReference: {fileID: 0}
+    - target: {fileID: 507304280176731892, guid: cdbd38fa7a1bf4611b890d7f11f848e1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 483082868206766722, guid: cdbd38fa7a1bf4611b890d7f11f848e1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -51122,6 +51147,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Future Food Lab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8898696257801724435, guid: 114c45f2dff73487aaa0bb7ee8f7de56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6091828720234684518, guid: 114c45f2dff73487aaa0bb7ee8f7de56,
         type: 3}

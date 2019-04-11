@@ -37,16 +37,20 @@ void GridImage::setupCam(int id, int fps) {
   mCamId = id;
   mFps = fps;
 
-  ofSetLogLevel(OF_LOG_VERBOSE);
-  mCam.initGrabber(mDim.x, mDim.y);
-  mCam.setDeviceID(mCamId);
+  ofLog(OF_LOG_NOTICE) << "Loading Cam: " << mCamId << " " << mId << " "
+                       << mDim.x << ", " << mDim.y << "  can: " << mCam.getWidth()
+                       << ", " << mCam.getHeight()<<" fps: "<<mFps<<std::endl;
+
   mCam.setVerbose(true);
+  //mCam.listDevices();
+
+  mCam.setup(mDim.x, mDim.y);
+  mCam.setDeviceID(mCamId);
   mCam.setDesiredFrameRate(mFps);
   mCam.setUseTexture(true);
 
-  ofLog(OF_LOG_NOTICE) << "loaded Cam: " << mCamId << " " << mId << " "
-                       << mDim.x << " " << mDim.y << "  " << mCam.getWidth()
-                       << " " << mCam.getHeight()<<" fps: "<<mFps<<std::endl;
+  ofLog(OF_LOG_NOTICE) << "loaded Cam: " << mCamId <<
+  " Cam: "<< mCam.getWidth()<< ", " << mCam.getHeight()<<std::endl;
 }
 
 //-----------------------------------------------------------------------------
@@ -152,6 +156,7 @@ void GridImage::resetCrop() {
 //-----------------------------------------------------------------------------
 void GridImage::cropImg(cv::Mat &inputVideo) {
 
+  //update sizes
   mLength.x = mCornerDown.x - mCornerUp.x;
   mLength.y = mCornerDown.y - mCornerUp.y;
   mRoi.x = mCornerUp.x;
@@ -166,11 +171,11 @@ void GridImage::cropImg(cv::Mat &inputVideo) {
       cv::Mat cutMat(inputVideo, mRoi);
       cutMat.copyTo(mCropMat);
     } else {
-      ofLog(OF_LOG_NOTICE) << "erro crop";
+      ofLog(OF_LOG_NOTICE) << "error crop width";
     }
   } else {
     inputVideo.copyTo(mCropMat);
-    ofLog(OF_LOG_NOTICE) << "erro crop";
+    ofLog(OF_LOG_NOTICE) << "error roi dimentions crop";
   }
 
 }

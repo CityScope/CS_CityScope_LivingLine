@@ -4,6 +4,7 @@ using namespace cv;
 using namespace ofxCv;
 
 void ofApp::setup() {
+	cam.setVerbose(true);
 	cam.setup(1280, 720);
 	cam.setDeviceID(0);
 	thresh.allocate(1280, 720, OF_IMAGE_GRAYSCALE);

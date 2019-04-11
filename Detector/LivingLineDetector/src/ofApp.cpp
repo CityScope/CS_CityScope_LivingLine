@@ -11,14 +11,18 @@ void ofApp::setup() {
   mDebug = true;
   ofLog(OF_LOG_NOTICE) << "Debuging: " << mDebug << std::endl;
 
+  if(mDebug){
+    ofSetLogLevel(OF_LOG_VERBOSE);
+  }
+
   ofSetBackgroundAuto(false);
   ofBackground(0);
 
+  //setup values
   setupValues();
   setupGridDetector();
   setupDetection();
   setupCalibration();
-  setupVideo();
   setupCam();
   setupConnection();
   setupGUI();

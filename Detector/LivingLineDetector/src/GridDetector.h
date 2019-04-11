@@ -30,7 +30,9 @@ Living Line
 
 #define RAD_DETECTION 38
 #define MOUSE_RADIUS  17
-#define MAX_MARKERS 1000
+
+//based on the numbers of Markers
+#define MAX_MARKERS   50
 
 class GridDetector;
 typedef std::shared_ptr<GridDetector> GridDetectorRef;

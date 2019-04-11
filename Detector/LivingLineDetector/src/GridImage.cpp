@@ -37,10 +37,11 @@ void GridImage::setupCam(int id, int fps) {
   mCamId = id;
   mFps = fps;
 
+  ofSetLogLevel(OF_LOG_VERBOSE);
+  mCam.initGrabber(mDim.x, mDim.y);
   mCam.setDeviceID(mCamId);
   mCam.setVerbose(true);
   mCam.setDesiredFrameRate(mFps);
-  mCam.initGrabber(mDim.x, mDim.y);
   mCam.setUseTexture(true);
 
   ofLog(OF_LOG_NOTICE) << "loaded Cam: " << mCamId << " " << mId << " "
@@ -68,37 +69,24 @@ void GridImage::setupGUISwap(float x, float y) {
   });
 }
 
-//-----------------------------------------------------------------------------
-void GridImage::setupVideo(std::string name) {
-  // mVideoName = name;
-  // mVideoInput.load(mVideoName);
-  // mVideoInput.play();
-
-  ofLog(OF_LOG_NOTICE) << "loaded Video: " << mVideoName << " " << mId;
-}
 
 //-----------------------------------------------------------------------------
 bool GridImage::updateImage() {
   bool newFrame = false;
-  if (mActivateCam) {
-    mCam.update();
-    newFrame = mCam.isFrameNew();
-    if (newFrame) {
+
+  mCam.update();
+  newFrame = mCam.isFrameNew();
+  if (newFrame) {
       // mFboResolution.begin();
       // mCam.draw(0, 0, mDim.x, mDim.y);
       // mFboResolution.end();
       // ofLog(OF_LOG_NOTICE) << " " << newFrame << " ";
-    }
-  } else {
-    // mVideoInput.update();
-    // newFrame = mVideoInput.isFrameNew();
   }
   return newFrame;
 }
 
 //-----------------------------------------------------------------------------
 ofPixels &GridImage::getImgPixels() {
-  // return (mActivateCam) ? mCam.getPixels() : mVideoInput.getPixels();
   return mCam.getPixels();
 }
 
@@ -114,20 +102,12 @@ void GridImage::setCropDown(glm::vec2 down) {
 
 //-----------------------------------------------------------------------------
 void GridImage::drawImage(int x, int y, int w, int h) {
-  if (mActivateCam) {
-    mCam.draw(x, y, w, h);
-  } else {
-    mVideoInput.draw(x, y, w, h);
-  }
+  mCam.draw(x, y, w, h);
 }
 
 //-----------------------------------------------------------------------------
 void GridImage::drawImage(int x, int y) {
-  if (mActivateCam) {
-    mCam.draw(x, y, mDim.x, mDim.y);
-  } else {
-    mVideoInput.draw(x, y, mDim.x, mDim.y);
-  }
+  mCam.draw(x, y, mDim.x, mDim.y);
 }
 
 //-----------------------------------------------------------------------------

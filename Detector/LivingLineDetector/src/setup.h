@@ -303,8 +303,6 @@ void ofApp::setupCam() {
 
   // Print available devices
   ofLog(OF_LOG_NOTICE) << "Cam devices:";
-  ofVideoGrabber mVideoGrabber;
-  mVideoGrabber.listDevices();
 
   if(mNumInputs >= 1){
     ofLog(OF_LOG_NOTICE) << "Loading cam and crop positions "<<mGridImg.size();
@@ -353,23 +351,6 @@ void ofApp::setupCam() {
   ofLog(OF_LOG_NOTICE) << "done setup video";
 }
 
-//-----------------------------------------------------------------------------
-void ofApp::setupVideo(){
-
-  ofLog(OF_LOG_NOTICE) << "Loading Videos:";
-
-  std::string movies[] = {"grid_01.mov", "grid_02.mov", "grid_03.mov",
-                          "grid_04.mov"};
-
-  // load video
-  int i = 0;
-  for (auto &gridImage : mGridImg) {
-    gridImage->setupVideo(movies[i]);
-    i++;
-  }
-  ofLog(OF_LOG_NOTICE) << "Done loading video";
-
-}
 
 //-----------------------------------------------------------------------------
 void ofApp::setupGridDetector() {

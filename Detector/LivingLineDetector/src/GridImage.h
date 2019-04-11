@@ -38,11 +38,9 @@ public:
 
     //setup video
     void setupCam(int id, int ftps = 30);
-    void setupVideo(std::string name);
 
     //cam
     ofVideoGrabber    & getCam(){return mCam;}
-    ofVideoPlayer     & getVideo(){return mVideoInput;}
 
     int getCamId(){return mCamId;}
 
@@ -118,10 +116,6 @@ private:
 
     //swap camId
     ofxDatMatrixRef     mSwapCamId;
-
-    //video player
-    ofVideoPlayer       mVideoInput;
-    std::string         mVideoName;
 
     //input image
     ofImage             mVidImg;

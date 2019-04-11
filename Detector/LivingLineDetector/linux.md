@@ -1,0 +1,1 @@
+Try lsusb and look for "Lenovo Integrated Camera" or some such thing. Also, post the output of dmesg | grep uvc. If that gives nothing, try: sudo modprobe uvcvideo and try the dmesg | grep uvc command again

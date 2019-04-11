@@ -1,0 +1,15 @@
+{
+  "window":{
+    "width" : 1920,
+    "height" : 1080
+  },
+
+  "deploy":{
+    "location": "livingLine"
+  },
+
+  "version":{
+    "v": 0.1
+  }
+
+}

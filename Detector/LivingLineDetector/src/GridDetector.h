@@ -111,6 +111,7 @@ private:
     //tags
     std::vector< std::string > mUDPStrIds;
 
+    //UDP Vec
     std::vector< std::vector<int> > mUDPVecIds;
 
     //tags num tags

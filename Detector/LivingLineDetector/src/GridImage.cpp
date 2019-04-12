@@ -41,13 +41,12 @@ void GridImage::setupCam(int id, int fps) {
                        << mDim.x << ", " << mDim.y << "  can: " << mCam.getWidth()
                        << ", " << mCam.getHeight()<<" fps: "<<mFps<<std::endl;
 
-  mCam.setVerbose(true);
-  //mCam.listDevices();
-
-  mCam.setup(mDim.x, mDim.y);
+  //mCam.setVerbose(true);
+  mCam.listDevices();
   mCam.setDeviceID(mCamId);
   mCam.setDesiredFrameRate(mFps);
   mCam.setUseTexture(true);
+  mCam.setup(mDim.x, mDim.y);
 
   ofLog(OF_LOG_NOTICE) << "loaded Cam: " << mCamId <<
   " Cam: "<< mCam.getWidth()<< ", " << mCam.getHeight()<<std::endl;
@@ -145,6 +144,7 @@ void GridImage::adjustGamma(cv::Mat &img) {
 
 
 }
+
 //-----------------------------------------------------------------------------
 void GridImage::resetCrop() {
 
@@ -153,6 +153,7 @@ void GridImage::resetCrop() {
   mDisp = glm::vec2(5, 5);
 
 }
+
 //-----------------------------------------------------------------------------
 void GridImage::cropImg(cv::Mat &inputVideo) {
 
@@ -179,6 +180,7 @@ void GridImage::cropImg(cv::Mat &inputVideo) {
   }
 
 }
+
 //-----------------------------------------------------------------------------
 void GridImage::drawCropRoi() {
   if (mActivateCrop) {
@@ -198,6 +200,7 @@ void GridImage::drawCropRoi() {
   ofDrawCircle(mCornerDown.x, mCornerDown.y, 5, 5);
   ofDrawCircle(mCornerUp.x, mCornerUp.y, 5, 5);
 }
+
 //-----------------------------------------------------------------------------
 void GridImage::drawCropImg() {
   ofImage imgCut;
@@ -221,7 +224,7 @@ void GridImage::updateCorners(){
   //mInputQuad[3]
 }
 
-//
+//-----------------------------------------------------------------------------
 void GridImage::calculatePerspective(){
 
   //mCropMat

@@ -248,24 +248,6 @@ void ofApp::setupGUI() {
     mFboSingle.end();
   });
 
-  mBCloseCams = ofxDatButton::create();
-  mBCloseCams->button = new ofxDatGuiToggle("Close Cams");
-  mBCloseCams->button->setOpacity(0.8);
-  mBCloseCams->button->setWidth(390, .4);
-  mBCloseCams->button->setPosition(sliderStartX, 360);
-  mBCloseCams->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
-    for (auto &gridImage : mGridImg) {
-      gridImage->getCam().close();
-    }
-
-  });
-
-  int i = 0;
-  for (auto &gridImage : mGridImg) {
-    gridImage->setupGUISwap(sliderStartX, 390 + 30 * i);
-    i++;
-  }
-
   // initial comands for setup
   mBFullGrid->setActivation(false);
   mBDebugVideoGrid->setActivation(false);

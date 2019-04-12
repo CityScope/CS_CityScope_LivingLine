@@ -460,11 +460,6 @@ void ofApp::updateGUI() {
   mBDebugMarkers->update();
 
   mBGridSelect->update();
-  mBCloseCams->update();
-
-  for (auto &gridImage : mGridImg) {
-    gridImage->updateGUISwap();
-  }
 }
 
 //--------------------------------------------------------------
@@ -487,11 +482,6 @@ void ofApp::drawGUI() {
   mBDebugVideoGrid->draw();
 
   mBGridSelect->draw();
-  mBCloseCams->draw();
-
-  for (auto &gridImage : mGridImg) {
-    gridImage->drawGUISwap();
-  }
 }
 
 //--------------------------------------------------------------
@@ -519,7 +509,7 @@ void ofApp::keyPressed(int key) {
   }
 
   if (key == '1') {
-    std::cout << "record grid positions" << std::endl;
+
   }
 
   if (key == '5') {
@@ -536,12 +526,11 @@ void ofApp::keyPressed(int key) {
   }
 
   if (key == '3') {
-
         ofJson writer;
         int i = 0;
         for (auto &gridImage : mGridImg) {
           ofJson pt;
-          std::string inputImg("cam" + to_string(i));
+          std::string inputImg("cam_" + to_string(i));
           pt[inputImg]["x1"] = gridImage->getCropUp().x;
           pt[inputImg]["y1"] = gridImage->getCropUp().y;
           pt[inputImg]["x2"] = gridImage->getCropDown().x;
@@ -563,31 +552,38 @@ void ofApp::keyPressed(int key) {
     mSortMarkers = !mSortMarkers;
     ofLog(OF_LOG_NOTICE) << "Soft " << mSortMarkers;
   }
+
   if (key == 's') {
   }
+
   if (key == 'd') {
     mDebug = !mDebug;
     ofLog(OF_LOG_NOTICE) << "Debug " << mDebug;
   }
+
   if (key == 'r') {
     mRefimentDetector = !mRefimentDetector;
     ofLog(OF_LOG_NOTICE) << "Refiment " << mRefimentDetector;
   }
+
   if (key == 'c') {
   }
 
   if (key == 'n') {
     mGridDetector.at(mCurrentInputIdx)->toogleDebugGrid();
   }
+
   if (key == '8') {
     mGridImg.at(mCurrentInputIdx)->resetCrop();
     ofLog(OF_LOG_NOTICE) << "Reset Crop " << mCurrentInputIdx;
   }
+
   if (key == 'u') {
     std::string msgInfo(mUDPRadarIp+" "+to_string(mUDPRadarPort));
     mUDPConnectionTable.Send(msgInfo.c_str(), msgInfo.length());
     ofLog(OF_LOG_NOTICE) << "Set UDP Table Test";
   }
+
   if (key == '0') {
     mGridDetector.at(mCurrentInputIdx)->generateGridPos();
     ofLog(OF_LOG_NOTICE) << "Reset gris pos " << mCurrentInputIdx;

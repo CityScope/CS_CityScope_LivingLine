@@ -15,6 +15,7 @@ public class AxisScoreCtrl : MonoBehaviour {
     public GameObject arrows;
     public bool showAISuggestion;
 
+    /*
     void Update () {
 
         // current
@@ -23,6 +24,6 @@ public class AxisScoreCtrl : MonoBehaviour {
             currentAxises[i].text = string.Format("{0:0}", CMRadarChart.metrics[i] * 100f);
         }
 
-
     }
+    */
 }

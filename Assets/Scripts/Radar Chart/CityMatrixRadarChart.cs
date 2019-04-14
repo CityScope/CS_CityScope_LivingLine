@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CityMatrixRadarChart : MonoBehaviour {
+public class CityMatrixRadarChart : MonoBehaviour
+{
 
     // shared
     public GameObject centerRefPt;
@@ -21,7 +22,7 @@ public class CityMatrixRadarChart : MonoBehaviour {
 
     private void Update()
     {
-    
+
         // CURRENT
         // update moving ref pts' locations
         for (int i = 0; i < metrics.Length; i++)
@@ -33,11 +34,6 @@ public class CityMatrixRadarChart : MonoBehaviour {
             movingPts[i] = p;
             // moving ref pt gameobjects for fill mesh
             movingRefPts[i].transform.position = p;
-        }
-
-        if(currentLineAll==null|| movingPts==null|| currentLineAll.GetComponent<LineRenderer>())
-        {
-            return;
         }
 
         // update lines
@@ -57,6 +53,6 @@ public class CityMatrixRadarChart : MonoBehaviour {
         dimensionMetrics[2] = (metrics[7] + metrics[8]) / 2.0f;
 
     }
-            
+
 
 }

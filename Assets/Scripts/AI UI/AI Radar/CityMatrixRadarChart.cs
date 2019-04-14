@@ -13,8 +13,6 @@ public class CityMatrixRadarChart : MonoBehaviour {
     public GameObject[] movingRefPts;
     [Range(0, 1f)]
     public float[] metrics;
-    public GameObject currentLineDensityDiversity;
-    public GameObject currentLineEnergyTrafficSolar;
     public GameObject currentLineAll;
     public GameObject currentFillOuIn;
     public GameObject currentFillInSo;

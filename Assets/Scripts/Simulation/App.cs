@@ -12,20 +12,26 @@ public class App : MonoBehaviour
     private CoordinatesData data;
     public AstarPath astarPath;
     public Transform aiRoot;
+    public GameObject pathPointRoot;
+
+    public int initNum;
 
 
     private List<GameObject> pointList = new List<GameObject>();
 
     public List<GameObject> pathTargetPointList = new List<GameObject>();
 
+    public List<PathPoint> workPathPointList = new List<PathPoint>();
+    public List<PathPoint> residencePathPointList = new List<PathPoint>();
+
     void Awake()
     {
         TextAsset textAsset = Resources.Load<TextAsset>("JsonFile/CityScope_LivingLine_grid_cell_coordinates");
         data = JsonConvert.DeserializeObject<CoordinatesData>(textAsset.text);
-        GameObject pointRoot = GameObject.Find("PointRoot");
+        GameObject pointRoot = GameObject.Find("UnitPointRoot");
         if(pointRoot==null)
         {
-            pointRoot = new GameObject("PointRoot");
+            pointRoot = new GameObject("UnitPointRoot");
 
         }
         for(int i=0;i< data.x.Length;i++)
@@ -39,24 +45,35 @@ public class App : MonoBehaviour
             pointList.Add(go);
             fixedUnits.Add(go.AddComponent<FixedUnit>());
         }
+
+        List<PathPoint>  pathPointList = new List<PathPoint>(this.pathPointRoot.GetComponentsInChildren<PathPoint>());
+        workPathPointList = pathPointList.FindAll(point => point.pathPointType == PathPoint.PathPointType.Work);
+        residencePathPointList = pathPointList.FindAll(point => point.pathPointType == PathPoint.PathPointType.Residence);
     }
 
 
     void Start()
     {
-        //fixedUnits = gridUnitListRoot.GetComponentsInChildren<FixedUnit>(true);
-        for(int i=0;i<10;i++)
-        {
-            CreateAI();
-        }
+        Invoke("CreateAllAI", 2);
+       
        
     }
 
+
+    void CreateAllAI()
+    {
+        //fixedUnits = gridUnitListRoot.GetComponentsInChildren<FixedUnit>(true);
+        for (int i = 0; i < initNum; i++)
+        {
+            CreateAI();
+        }
+    }
     public void CreateAI()
     {
         GameObject aiGo = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Characters/AI"));
         GameObject bornPoint = Tool.GetChildInDepth("BornPoint1", this.aiRoot.gameObject);
         aiGo.transform.position =  astarPath.GetNearest(bornPoint.transform.position).position;
+
     }
 
     void OnGUI()
@@ -90,6 +107,21 @@ public class App : MonoBehaviour
             }
 
         }
+    }
+
+    public PathPoint GetRandomPoint(bool isWorkPoint)
+    {
+        List<PathPoint> pointList = this.workPathPointList;
+
+
+        if(!isWorkPoint)
+        {
+            pointList = this.residencePathPointList;
+        }
+
+        PathPoint point = pointList[Random.Range(0, pointList.Count)];
+        //Debug.Log("GetRandomPoint...."+point.gameObject.name);
+        return point;
     }
 
 

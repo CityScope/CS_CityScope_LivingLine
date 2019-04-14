@@ -5,13 +5,18 @@ using Newtonsoft.Json;
 
 public class App : MonoBehaviour
 {
+    
     public UdpListener udpListener;
     public Vector3 offset;
     public List<FixedUnit> fixedUnits;
-    public GameObject gridUnitListRoot;
     private CoordinatesData data;
+    public AstarPath astarPath;
+    public Transform aiRoot;
+
 
     private List<GameObject> pointList = new List<GameObject>();
+
+    public List<GameObject> pathTargetPointList = new List<GameObject>();
 
     void Awake()
     {
@@ -33,11 +38,6 @@ public class App : MonoBehaviour
             go.transform.localScale = Vector3.one;
             pointList.Add(go);
             fixedUnits.Add(go.AddComponent<FixedUnit>());
-            //GameObject grid = GameObject.Instantiate<GameObject>( Resources.Load<GameObject>("Community Center"));
-            //grid.transform.parent = go.transform;
-            //grid.transform.localPosition = Vector3.zero;
-            //grid.transform.localEulerAngles = Vector3.zero;
-            //grid.transform.localScale = Vector3.one;
         }
     }
 
@@ -45,6 +45,18 @@ public class App : MonoBehaviour
     void Start()
     {
         //fixedUnits = gridUnitListRoot.GetComponentsInChildren<FixedUnit>(true);
+        for(int i=0;i<10;i++)
+        {
+            CreateAI();
+        }
+       
+    }
+
+    public void CreateAI()
+    {
+        GameObject aiGo = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Characters/AI"));
+        GameObject bornPoint = Tool.GetChildInDepth("BornPoint1", this.aiRoot.gameObject);
+        aiGo.transform.position =  astarPath.GetNearest(bornPoint.transform.position).position;
     }
 
     void OnGUI()
@@ -80,10 +92,6 @@ public class App : MonoBehaviour
         }
     }
 
-    public void CreateAI()
-    {
-
-    }
 
 }
 

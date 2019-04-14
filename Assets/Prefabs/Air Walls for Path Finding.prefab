@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5047480004994728838}
   m_Layer: 0
-  m_Name: Air Wall for Agent Path Finding
+  m_Name: Air Walls for Path Finding
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,6 +84,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7b1691832e711f642b0d391190d78d9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 7b1691832e711f642b0d391190d78d9d, type: 3}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2300000, guid: 7b1691832e711f642b0d391190d78d9d, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

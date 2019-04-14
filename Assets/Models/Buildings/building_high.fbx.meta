@@ -57,6 +57,13 @@ ModelImporter:
     4300008: Mesh5
     4300010: Mesh6
     4300012: Mesh7
+    6400000: Mesh1
+    6400002: Mesh2
+    6400004: Mesh3
+    6400006: Mesh4
+    6400008: Mesh5
+    6400010: Mesh6
+    6400012: Mesh7
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -90,7 +97,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

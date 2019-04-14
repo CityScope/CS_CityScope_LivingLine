@@ -35,6 +35,11 @@ public class CityMatrixRadarChart : MonoBehaviour {
             movingRefPts[i].transform.position = p;
         }
 
+        if(currentLineAll==null|| movingPts==null|| currentLineAll.GetComponent<LineRenderer>())
+        {
+            return;
+        }
+
         // update lines
         currentLineAll.GetComponent<LineRenderer>().SetPosition(0, movingPts[0]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(1, movingPts[1]);

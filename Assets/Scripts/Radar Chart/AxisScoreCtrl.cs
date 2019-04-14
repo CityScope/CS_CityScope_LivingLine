@@ -20,7 +20,11 @@ public class AxisScoreCtrl : MonoBehaviour {
         // current
         for (int i = 0; i < currentAxises.Length; i ++)
         {
-            currentAxises[i].text = string.Format("{0:0}", CMRadarChart.metrics[i] * 100f);
+            if(CMRadarChart!=null&&CMRadarChart.metrics!=null)
+            {
+                currentAxises[i].text = string.Format("{0:0}", CMRadarChart.metrics[i] * 100f);
+            }
+            
         }
 
     }

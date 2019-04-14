@@ -13,6 +13,7 @@ public class CityMatrixRadarChart : MonoBehaviour {
     public GameObject[] movingRefPts;
     [Range(0, 1f)]
     public float[] metrics;
+    public float[] dimensionMetrics;
     public GameObject currentLineAll;
 
     //private float[] prev = new float[9];
@@ -44,6 +45,12 @@ public class CityMatrixRadarChart : MonoBehaviour {
         currentLineAll.GetComponent<LineRenderer>().SetPosition(6, movingPts[6]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(7, movingPts[7]);
         currentLineAll.GetComponent<LineRenderer>().SetPosition(8, movingPts[8]);
+
+        // update dimension metrics
+        dimensionMetrics[0] = (metrics[0] + metrics[1] + metrics[2]) / 3.0f;
+        dimensionMetrics[1] = (metrics[3] + metrics[4] + metrics[5] + metrics[6]) / 4.0f;
+        dimensionMetrics[2] = (metrics[7] + metrics[8]) / 2.0f;
+
     }
             
 

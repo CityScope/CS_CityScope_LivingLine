@@ -444,8 +444,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1890074612883608965}
+  - component: {fileID: 2978569856276580357}
   m_Layer: 0
-  m_Name: Outer Circles
+  m_Name: Dimension Outer Circles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -469,8 +470,75 @@ Transform:
   - {fileID: 1890074612883609057}
   - {fileID: 1890074612883609059}
   m_Father: {fileID: 7533033665489947142}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
+--- !u!114 &2978569856276580357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890074612883966053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f0fa87fef53dee4facd41aa550d5c9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CMRadarChart: {fileID: 7297946105957388062}
+  density:
+  - {fileID: 1890074612883966373}
+  - {fileID: 1890074612883966423}
+  - {fileID: 1890074612883966371}
+  - {fileID: 1890074612883966377}
+  - {fileID: 1890074612883966369}
+  - {fileID: 1890074612883966379}
+  - {fileID: 1890074612883966383}
+  - {fileID: 1890074612883966381}
+  densityProfile:
+  - {fileID: 1890074612883966345}
+  - {fileID: 1890074612883966347}
+  - {fileID: 1890074612883966349}
+  - {fileID: 1890074612883966351}
+  - {fileID: 1890074612883966337}
+  - {fileID: 1890074612883966339}
+  - {fileID: 1890074612883966343}
+  - {fileID: 1890074612883966361}
+  diversity:
+  - {fileID: 1890074612883966405}
+  - {fileID: 1890074612883966051}
+  - {fileID: 1890074612883966399}
+  - {fileID: 1890074612883966049}
+  - {fileID: 1890074612883966341}
+  - {fileID: 1890074612883966063}
+  - {fileID: 1890074612883966059}
+  - {fileID: 1890074612883966061}
+  diversityProfile:
+  - {fileID: 1890074612883966057}
+  - {fileID: 1890074612883966359}
+  - {fileID: 1890074612883966357}
+  - {fileID: 1890074612883966355}
+  - {fileID: 1890074612883966353}
+  - {fileID: 1890074612883966367}
+  - {fileID: 1890074612883966365}
+  - {fileID: 1890074612883966363}
+  interaction:
+  - {fileID: 1890074612883966407}
+  - {fileID: 1890074612883966421}
+  - {fileID: 1890074612883966425}
+  - {fileID: 1890074612883966419}
+  - {fileID: 1890074612883966427}
+  - {fileID: 1890074612883966417}
+  - {fileID: 1890074612883966429}
+  - {fileID: 1890074612883966431}
+  interactionProfile:
+  - {fileID: 1890074612883966375}
+  - {fileID: 1890074612883966393}
+  - {fileID: 1890074612883966395}
+  - {fileID: 1890074612883966397}
+  - {fileID: 1890074612883966385}
+  - {fileID: 1890074612883966387}
+  - {fileID: 1890074612883966389}
+  - {fileID: 1890074612883966391}
 --- !u!1 &1890074612883966057
 GameObject:
   m_ObjectHideFlags: 0
@@ -4611,7 +4679,7 @@ RectTransform:
   m_Children:
   - {fileID: 7296778758258567942}
   m_Father: {fileID: 7533033665489947142}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5032,7 +5100,7 @@ RectTransform:
   m_Children:
   - {fileID: 7429431348723546639}
   m_Father: {fileID: 7533033665489947142}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -5070,12 +5138,12 @@ RectTransform:
   m_Children:
   - {fileID: 7533033667603578081}
   - {fileID: 7533033667438267275}
+  - {fileID: 1890074612883608965}
   - {fileID: 4163318138566720954}
   - {fileID: 7533033666504512279}
   - {fileID: 7533033666068592379}
   - {fileID: 8831053867781476274}
   - {fileID: 3848035649698435216}
-  - {fileID: 1890074612883608965}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5130,7 +5198,7 @@ MonoBehaviour:
   - {fileID: 7533033667113199358}
   - {fileID: 7533033666985752699}
   metrics:
-  - 0.65
+  - 0.757
   - 0.42
   - 0.26
   - 0.69
@@ -5139,6 +5207,10 @@ MonoBehaviour:
   - 0.5
   - 0.69
   - 0.27
+  dimensionMetrics:
+  - 0
+  - 0
+  - 0
   currentLineAll: {fileID: 7767420184328985766}
 --- !u!1 &7533033665507787022
 GameObject:
@@ -6104,7 +6176,7 @@ RectTransform:
   - {fileID: 7533033667601563193}
   - {fileID: 7533033666297911831}
   m_Father: {fileID: 7533033665489947142}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6610,7 +6682,7 @@ RectTransform:
   m_Children:
   - {fileID: 7533033666272923454}
   m_Father: {fileID: 7533033665489947142}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -6629,13 +6701,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c827ecefc11229448aa77a0e58c9b842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CMRadarChart: {fileID: 0}
-  currentAxises: []
-  suggestedAxises: []
-  currentScores: {fileID: 0}
-  suggestedScores: {fileID: 0}
-  arrows: {fileID: 0}
-  showAISuggestion: 0
+  CMRadarChart: {fileID: 7297946105957388062}
+  currentAxises:
+  - {fileID: 7533033665962414136}
+  - {fileID: 7533033666336063564}
+  - {fileID: 7533033665833254920}
+  - {fileID: 7533033665927526726}
+  - {fileID: 7533033666991229696}
+  - {fileID: 7533033666493204984}
+  - {fileID: 7533033667281994396}
+  - {fileID: 7533033666493578664}
+  - {fileID: 7533033665596547437}
 --- !u!1 &7533033666581110641
 GameObject:
   m_ObjectHideFlags: 0
@@ -7499,7 +7575,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7533033667438267275}
-  - component: {fileID: 7533033667438267274}
+  - component: {fileID: 1662769638}
   m_Layer: 5
   m_Name: Dimension Scores
   m_TagString: Untagged
@@ -7527,7 +7603,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7533033667438267274
+--- !u!114 &1662769638
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7536,16 +7612,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7533033667438267276}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c827ecefc11229448aa77a0e58c9b842, type: 3}
+  m_Script: {fileID: 11500000, guid: f033e9e20bbc09f46a8f041a53fab6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CMRadarChart: {fileID: 0}
-  currentAxises: []
-  suggestedAxises: []
-  currentScores: {fileID: 0}
-  suggestedScores: {fileID: 0}
-  arrows: {fileID: 0}
-  showAISuggestion: 0
+  CMRadarChart: {fileID: 7297946105957388062}
+  currentDimensions:
+  - {fileID: 7533033667009726037}
+  - {fileID: 7533033666710730025}
+  - {fileID: 7533033665681105117}
 --- !u!1 &7533033667485779060
 GameObject:
   m_ObjectHideFlags: 0
@@ -7861,7 +7935,7 @@ RectTransform:
   m_Children:
   - {fileID: 3763960067787593490}
   m_Father: {fileID: 7533033665489947142}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

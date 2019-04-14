@@ -24432,7 +24432,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8793229230620715434}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c827ecefc11229448aa77a0e58c9b842, type: 3}
   m_Name: 
@@ -24445,11 +24445,6 @@ MonoBehaviour:
   - {fileID: 8793229230950084790}
   - {fileID: 8793229230856890860}
   - {fileID: 8793229230856890860}
-  suggestedAxises: []
-  currentScores: {fileID: 0}
-  suggestedScores: {fileID: 0}
-  arrows: {fileID: 0}
-  showAISuggestion: 0
 --- !u!1 &8793229230623079533
 GameObject:
   m_ObjectHideFlags: 0
@@ -25958,7 +25953,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8793229231475885373}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c827ecefc11229448aa77a0e58c9b842, type: 3}
   m_Name: 
@@ -25971,11 +25966,6 @@ MonoBehaviour:
   - {fileID: 8793229231134560817}
   - {fileID: 8793229231584678584}
   - {fileID: 8793229231584678584}
-  suggestedAxises: []
-  currentScores: {fileID: 0}
-  suggestedScores: {fileID: 0}
-  arrows: {fileID: 0}
-  showAISuggestion: 0
 --- !u!1 &8793229231584678586
 GameObject:
   m_ObjectHideFlags: 0
@@ -26877,7 +26867,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8793229232387743382}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c827ecefc11229448aa77a0e58c9b842, type: 3}
   m_Name: 
@@ -26890,11 +26880,6 @@ MonoBehaviour:
   - {fileID: 8793229232386943635}
   - {fileID: 8793229230662008639}
   - {fileID: 8793229230662008639}
-  suggestedAxises: []
-  currentScores: {fileID: 0}
-  suggestedScores: {fileID: 0}
-  arrows: {fileID: 0}
-  showAISuggestion: 0
 --- !u!1 &8793229232433246336
 GameObject:
   m_ObjectHideFlags: 0

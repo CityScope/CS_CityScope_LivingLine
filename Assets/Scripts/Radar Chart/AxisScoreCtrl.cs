@@ -9,13 +9,12 @@ public class AxisScoreCtrl : MonoBehaviour {
     //public GameObject orange;
     public CityMatrixRadarChart CMRadarChart;
     public Text[] currentAxises;
-    public Text[] suggestedAxises;
-    public GameObject currentScores;
-    public GameObject suggestedScores;
-    public GameObject arrows;
-    public bool showAISuggestion;
-
-    /*
+    //public Text[] suggestedAxises;
+    //public GameObject currentScores;
+    //public GameObject suggestedScores;
+    //public GameObject arrows;
+    //public bool showAISuggestion;
+    
     void Update () {
 
         // current
@@ -25,5 +24,4 @@ public class AxisScoreCtrl : MonoBehaviour {
         }
 
     }
-    */
 }

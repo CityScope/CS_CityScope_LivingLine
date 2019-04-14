@@ -21529,11 +21529,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Side Panel Canvas
       objectReference: {fileID: 0}
-    - target: {fileID: 7184104032480065712, guid: 0fac8e9b68612f04c8d77effcda6a989,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7184104032480065722, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
       propertyPath: m_LocalPosition.x

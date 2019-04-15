@@ -39,8 +39,8 @@ void QRDetector::setupCalibration(int markersX, int markersY) {
 
   //pedfine marker
   dictionary = cv::aruco::getPredefinedDictionary(
-      cv::aruco::PREDEFINED_DICTIONARY_NAME(dictionaryId));
-
+      cv::aruco::PREDEFINED_DICTIONARY_NAME(dictionaryId)
+    );
 
   // create board object
   cv::Ptr<cv::aruco::GridBoard> gridboard = cv::aruco::GridBoard::create(

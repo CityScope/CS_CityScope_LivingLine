@@ -36,13 +36,12 @@ Living Line
 #include "GridDetector.h"
 #include "QRBlock.h"
 
-#define NUM_CAM_INPUTS 3
+#define NUM_CAM_INPUTS 1
 
 #define CAM_WIDTH  1920  //1920
 #define CAM_HEIGHT 1080 //1080
 
 #define CAM_FRAMERATE 30 //10
-
 
 class ofApp : public ofBaseApp {
 
@@ -126,7 +125,6 @@ public:
   ofxDatSliderRef mBetaValue;
 
   ofxDatMatrixRef mBGridSelect;
-  ofxDatButtonRef mBCloseCams;
 
   // 4 camera render
   ofFbo mFboSingle;

@@ -5,9 +5,10 @@ using namespace ofxCv;
 
 void ofApp::setup() {
 	cam.setVerbose(true);
-	cam.setup(1280, 720);
-	cam.setDeviceID(0);
-	thresh.allocate(1280, 720, OF_IMAGE_GRAYSCALE);
+
+	cam.setDeviceID(1);
+	cam.setup(1920, 1080);
+	thresh.allocate(1920, 1080, OF_IMAGE_GRAYSCALE);
 
 	int beta =0;
 	alpha =1.0;

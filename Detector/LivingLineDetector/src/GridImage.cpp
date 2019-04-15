@@ -42,7 +42,7 @@ void GridImage::setupCam(int id, int fps) {
                        << ", " << mCam.getHeight()<<" fps: "<<mFps<<std::endl;
 
   //mCam.setVerbose(true);
-  mCam.listDevices();
+  //mCam.listDevices();
   mCam.setDeviceID(mCamId);
   mCam.setDesiredFrameRate(mFps);
   mCam.setUseTexture(true);

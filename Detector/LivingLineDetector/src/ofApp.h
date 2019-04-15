@@ -36,6 +36,8 @@ Living Line
 #include "GridDetector.h"
 #include "QRBlock.h"
 
+#include "jsonclass.h"
+
 #define NUM_CAM_INPUTS 1
 
 #define CAM_WIDTH  1920  //1920

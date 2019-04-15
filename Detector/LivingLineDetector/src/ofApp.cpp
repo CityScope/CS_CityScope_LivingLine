@@ -348,18 +348,14 @@ void ofApp::draw() {
     }
   }
 
-  //draw full input view
+  // draw full input view
+  // 3 cam 3 views
   if (mBFullCamView->isActive()) {
     int i = 0;
-    int j = 0;
     ofSetColor(255, 255);
     for (auto &gridImage : mGridImg) {
-      gridImage->drawImage(640 * i + 200, 360 * j + 200, 640, 360);
+      gridImage->drawImage(640 * i + 100, 360 + 200, 640, 360);
       i++;
-      if (i >= 2) {
-        j++;
-        i = 0;
-      }
     }
   }
 
@@ -551,6 +547,66 @@ void ofApp::keyPressed(int key) {
   if (key == 'v') {
     mSortMarkers = !mSortMarkers;
     ofLog(OF_LOG_NOTICE) << "Soft " << mSortMarkers;
+  }
+
+  //send test json file
+  if(key == 'j'){
+    ofJson writer;
+    {
+      ofJson jsonFixed;
+      std::string inputStr("fixed");
+      std::vector<ofJson> fixed;
+      for(int i = 0; i < 10; i++){
+          ofJson json;
+          json["x"] = 20 + i *30;
+          json["y"] = 10 + i*20;
+          json["rot"] = 10.0;
+          json["type"] = 2;
+          fixed.push_back(json);
+        }
+        jsonFixed[inputStr] = fixed;
+        writer.push_back(jsonFixed);
+    }
+
+    {
+      ofJson jsonFree;
+      std::string inputStr("free");
+      std::vector<ofJson> free;
+      for(int i = 0; i< 5; i++){
+          ofJson json;
+          json["x"] = i;
+          json["y"] = i*2;
+          json["rot"] = 10.0;
+          json["type"] = 2;
+          free.push_back(json);
+        }
+        jsonFree[inputStr] = free;
+        writer.push_back(jsonFree);
+    }
+
+    {
+      ofJson jsonKnob;
+      std::string inputStr("Knob");
+      std::vector<ofJson> knob;
+      for(int i = 0; i < 3; i++){
+          ofJson json;
+          json["x"] = i;
+          json["y"] = i*2;
+          json["rot"] = 10.0;
+          json["type"] = 2;
+          knob.push_back(json);
+        }
+        jsonKnob[inputStr] = knob;
+        writer.push_back(jsonKnob);
+    }
+
+    ofLog(OF_LOG_NOTICE) << "Image json UDP writing";
+    ofSaveJson("sendUDP.json", writer);
+    std::string udpjson = writer.dump();
+
+    ofLog(OF_LOG_NOTICE) << "Set UDP Test";
+    mUDPConnectionTable.Send(udpjson.c_str(), udpjson.length());
+    ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
   }
 
   if (key == 's') {

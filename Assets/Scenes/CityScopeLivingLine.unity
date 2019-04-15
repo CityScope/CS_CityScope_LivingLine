@@ -18971,6 +18971,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 7884737900875790319, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7884737900875790318, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22656,7 +22661,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &7904315673809308437
 MonoBehaviour:
   m_ObjectHideFlags: 0

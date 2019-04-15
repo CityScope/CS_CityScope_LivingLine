@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7669430593582116386
+--- !u!1 &8527544482366109
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7476948914331575035}
+  - component: {fileID: 986979706898075204}
   m_Layer: 0
   m_Name: Time Knob Model
   m_TagString: Untagged
@@ -16,27 +16,27 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7476948914331575035
+--- !u!4 &986979706898075204
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7669430593582116386}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_GameObject: {fileID: 8527544482366109}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 8562416191832202865}
+  - {fileID: 2063442017326871246}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &8562416191831803123
+--- !u!1001 &2063442017326999628
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 7476948914331575035}
+    m_TransformParent: {fileID: 986979706898075204}
     m_Modifications:
     - target: {fileID: 100002, guid: 2f3bd2c5581bc304ca23f0d6b99ceea9, type: 3}
       propertyPath: m_Name
@@ -88,9 +88,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2f3bd2c5581bc304ca23f0d6b99ceea9, type: 3}
---- !u!4 &8562416191832202865 stripped
+--- !u!4 &2063442017326871246 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: 2f3bd2c5581bc304ca23f0d6b99ceea9,
     type: 3}
-  m_PrefabInstance: {fileID: 8562416191831803123}
+  m_PrefabInstance: {fileID: 2063442017326999628}
   m_PrefabAsset: {fileID: 0}

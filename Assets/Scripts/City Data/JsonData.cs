@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class JsonData
 {
-    public List<UnitInfoData> fixed_unit;
-    public List<UnitInfoData> free_unit;
+    public List<UnitInfoData> fixed_units;
+    public List<UnitInfoData> free_units;
     public List<UnitInfoData> knobs;
 }
 

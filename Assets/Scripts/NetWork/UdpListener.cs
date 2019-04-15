@@ -1,4 +1,9 @@
-﻿using UnityEngine;
+﻿// Done by Ariel Noyman
+// ref github commit: 
+// https://github.com/CityScope/CS_Cooper-Hewitt/commit/8da9b2f6b1bdf2f4f297d61b293264d86159127e
+
+
+using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -9,7 +14,9 @@ using System;
 using System.Text;
 using System.Text.RegularExpressions;
 
-public class UdpListener
+
+public class UdpListener : MonoBehaviour
+
 {
     // UdpClient listen port 
     public int port = 5005;
@@ -19,8 +26,8 @@ public class UdpListener
     private IPEndPoint _IpEndPoint;
     private Thread _UdpThread;
     public string _encodedUDP;
-   
-    void Init(int port)
+
+    void Start()
     {
         _UdpClient = new UdpClient(port);
         _IpEndPoint = new IPEndPoint(IPAddress.Any, 0);
@@ -31,19 +38,21 @@ public class UdpListener
 
     public void UDPRead()
     {
-        try
+        while (true)
         {
-            byte[] _udpBytes = _UdpClient.Receive(ref _IpEndPoint);
-            _encodedUDP = Encoding.ASCII.GetString(_udpBytes);
-            //Debug.Log(" UDP packet: " + _encodedUDP + '\n');
+            try
+            {
+                byte[] _udpBytes = _UdpClient.Receive(ref _IpEndPoint);
+                _encodedUDP = Encoding.ASCII.GetString(_udpBytes);
+                //Debug.Log(" UDP packet: " + _encodedUDP + '\n');
+            }
+            catch (Exception e)
+            {
+                Debug.Log("Issue: " + e.ToString());
+            }
+            Thread.Sleep(sleepTime);
         }
-        catch (Exception e)
-        {
-            Debug.Log("Issue: " + e.ToString());
-        }
-        Thread.Sleep(sleepTime);
     }
-
     void OnDisable()
     {
         if (_UdpThread != null) _UdpThread.Abort();

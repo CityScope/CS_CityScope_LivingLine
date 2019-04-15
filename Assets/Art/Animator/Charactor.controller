@@ -14,7 +14,7 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -162,7 +162,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: mixamo_com
+  m_Name: Walking
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -224,7 +224,7 @@ AnimatorStateMachine:
     m_Position: {x: 792, y: -288, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102728873421656644}
-    m_Position: {x: 804, y: -48, z: 0}
+    m_Position: {x: 744, y: -72, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1102607977892452242}
     m_Position: {x: 864, y: -180, z: 0}

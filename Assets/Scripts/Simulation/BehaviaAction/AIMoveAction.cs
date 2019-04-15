@@ -5,7 +5,7 @@ using BehaviorDesigner.Runtime;
 using BehaviorDesigner.Runtime.Tasks;
 using Pathfinding;
 
-[TaskCategory("AIAnimation/Animation")]
+[TaskCategory("Game")]
 public class AIMoveAction : Action
 {
     IAstarAI ai;

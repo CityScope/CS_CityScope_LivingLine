@@ -13,6 +13,8 @@ public class App : MonoBehaviour
 
     public bool useUDP = false;
     public string jsonData;
+    public List<GameObject> freeUnits;
+    public GameObject freeUnitListRoot;
 
     private List<GameObject> pointList = new List<GameObject>();
 
@@ -103,17 +105,21 @@ public class App : MonoBehaviour
         if (useUDP)
         {
             JsonData data = JsonConvert.DeserializeObject<JsonData>(jsonData);
-            UpdateFixedUnit(data);
+            UpdateFixedUnits(data);
+            UpdateFreeUnits(data);
+            UpdateKnobs(data);
         }
         else
         {
             TextAsset textAsset = Resources.Load<TextAsset>("JsonFile/Data_example");
             JsonData data = JsonConvert.DeserializeObject<JsonData>(textAsset.text);
-            UpdateFixedUnit(data);
+            UpdateFixedUnits(data);
+            UpdateFreeUnits(data);
+            UpdateKnobs(data);
         }
     }
 
-    void UpdateFixedUnit(JsonData jsonData)
+    void UpdateFixedUnits(JsonData jsonData)
     {
         foreach (FixedUnit fixedUnit in this.fixedUnits)
         {
@@ -129,6 +135,47 @@ public class App : MonoBehaviour
             }
 
         }
+    }
+
+    void UpdateFreeUnits(JsonData jsonData)
+    {
+        // clean up last frame GOs
+        if (freeUnits.Count > 0)
+        {
+            foreach (GameObject go in freeUnits)
+            {
+                Destroy(go);
+            }
+        }
+
+        // add new GOs according to json via udp
+        foreach (UnitInfoData infoData in jsonData.free_units)
+        {
+            string sourceName = null;
+            switch (infoData.type)
+            {
+                case 7:
+                    sourceName = "Public Space";
+                    break;
+                case 8:
+                    sourceName = "Facility";
+                    break;
+                case 9:
+                    sourceName = "Art Installation";
+                    break;
+            }
+            GameObject go = Instantiate(Resources.Load<GameObject>(sourceName));
+            go.transform.parent = freeUnitListRoot.transform;
+            go.transform.localPosition = new Vector3(infoData.x, 0.0f, infoData.y);
+            go.transform.localEulerAngles = new Vector3(0.0f, -infoData.rot, 0.0f);
+            go.transform.localScale = Vector3.one;
+            freeUnits.Add(go);
+        }
+    }
+
+    void UpdateKnobs(JsonData jsonData)
+    {
+
     }
 
     public void CreateAI()

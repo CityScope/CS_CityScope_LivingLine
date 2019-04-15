@@ -236,7 +236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &50184866
 Transform:
   m_ObjectHideFlags: 0
@@ -5006,6 +5006,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1349867198}
   m_CullTransparentMesh: 0
+--- !u!1 &1357756755
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1357756756}
+  m_Layer: 0
+  m_Name: KnobListRoot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1357756756
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1357756755}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 152, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 6469477467464184041}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1390359278
 GameObject:
   m_ObjectHideFlags: 0
@@ -19147,6 +19177,11 @@ PrefabInstance:
       propertyPath: freeUnitListRoot
       value: 
       objectReference: {fileID: 467262337}
+    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: knobListRoot
+      value: 
+      objectReference: {fileID: 1357756755}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cb84842869a384a9d30669f645964b, type: 3}
 --- !u!222 &4996149695343741003
@@ -20912,6 +20947,7 @@ Transform:
   - {fileID: 1865618863}
   - {fileID: 781887447}
   - {fileID: 467262338}
+  - {fileID: 1357756756}
   m_Father: {fileID: 1505847203}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

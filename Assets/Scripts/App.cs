@@ -15,6 +15,8 @@ public class App : MonoBehaviour
     public string jsonData;
     public List<GameObject> freeUnits;
     public GameObject freeUnitListRoot;
+    public List<GameObject> knobs;
+    public GameObject knobListRoot;
 
     private List<GameObject> pointList = new List<GameObject>();
 
@@ -175,7 +177,38 @@ public class App : MonoBehaviour
 
     void UpdateKnobs(JsonData jsonData)
     {
+        // clean up last frame GOs
+        if (knobs.Count > 0)
+        {
+            foreach (GameObject go in knobs)
+            {
+                Destroy(go);
+            }
+        }
 
+        // add new GOs according to json via udp
+        foreach (UnitInfoData infoData in jsonData.knobs)
+        {
+            string sourceName = null;
+            switch (infoData.type)
+            {
+                case 10:
+                    sourceName = "Public Space";
+                    break;
+                case 11:
+                    sourceName = "Facility";
+                    break;
+                case 12:
+                    sourceName = "Art Installation";
+                    break;
+            }
+            GameObject go = Instantiate(Resources.Load<GameObject>(sourceName));
+            go.transform.parent = freeUnitListRoot.transform;
+            go.transform.localPosition = new Vector3(infoData.x, 0.0f, infoData.y);
+            go.transform.localEulerAngles = new Vector3(0.0f, -infoData.rot, 0.0f);
+            go.transform.localScale = Vector3.one;
+            freeUnits.Add(go);
+        }
     }
 
     public void CreateAI()

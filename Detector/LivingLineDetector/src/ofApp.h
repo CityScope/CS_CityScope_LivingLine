@@ -17,6 +17,7 @@ Living Line
 #include <iostream>
 #include <map>
 #include <vector>
+#include <limits>
 
 #include <opencv2/aruco.hpp>
 #include <opencv2/calib3d.hpp>

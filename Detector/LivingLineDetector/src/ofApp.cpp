@@ -551,15 +551,16 @@ void ofApp::keyPressed(int key) {
 
   //send test json file
   if(key == 'j'){
+    std::setprecision(3);
     ofJson writer;
     {
       ofJson jsonFixed;
-      std::string inputStr("fixed");
+      std::string inputStr("fixed units");
       std::vector<ofJson> fixed;
       for(int i = 0; i < 10; i++){
           ofJson json;
-          json["x"] = 20 + i *30;
-          json["y"] = 10 + i*20;
+          json["x"] = 20.0 + i *30;
+          json["y"] = 10.0 + i*20;
           json["rot"] = 10.0;
           json["type"] = 2;
           fixed.push_back(json);
@@ -570,13 +571,13 @@ void ofApp::keyPressed(int key) {
 
     {
       ofJson jsonFree;
-      std::string inputStr("free");
+      std::string inputStr("free units");
       std::vector<ofJson> free;
       for(int i = 0; i< 5; i++){
           ofJson json;
-          json["x"] = i;
-          json["y"] = i*2;
-          json["rot"] = 10.0;
+          json["x"] = i + 0.00;
+          json["y"] = i*2 + 1.00;
+          json["rot"] = 10.00;
           json["type"] = 2;
           free.push_back(json);
         }
@@ -586,13 +587,13 @@ void ofApp::keyPressed(int key) {
 
     {
       ofJson jsonKnob;
-      std::string inputStr("Knob");
+      std::string inputStr("knobs");
       std::vector<ofJson> knob;
       for(int i = 0; i < 3; i++){
           ofJson json;
-          json["x"] = i;
+          json["x"] = i + 1.00;
           json["y"] = i*2;
-          json["rot"] = 10.0;
+          json["rot"] = 10.00;
           json["type"] = 2;
           knob.push_back(json);
         }

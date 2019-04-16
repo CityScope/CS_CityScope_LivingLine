@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
 public class JsonData
 {
-    public List<UnitInfoData> fixed_unit;
-    public List<UnitInfoData> free_unit;
+    public List<UnitInfoData> fixed_units;
+    public List<UnitInfoData> free_units;
     public List<UnitInfoData> knobs;
 }
 
@@ -35,5 +37,25 @@ public class CoordinatesData
 {
     public float[] x;
     public float[] y;
+}
+
+public class ID_type_capacity
+{
+    public float[] fixed_units;
+    public float[] free_units;
+}
+
+public class AgentUnitIncrease
+{
+    public AgentUnitIncrease_Inner fixed_units;
+    public AgentUnitIncrease_Inner free_units;
+}
+
+public class AgentUnitIncrease_Inner
+{
+    public float P1;
+    public float P2;
+    public float P3;
+    public float P4;
 }
 

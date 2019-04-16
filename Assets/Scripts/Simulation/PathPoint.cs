@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class PathPoint : Point
 {
-    
     public enum PathPointType
     {
        Work,
-       Residence
+       Residence,
+       Exit,
+       Enter,
     }
 
     public PathPointType pathPointType;

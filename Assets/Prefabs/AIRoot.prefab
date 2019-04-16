@@ -21671,6 +21671,9 @@ MonoBehaviour:
   gridUnitListRoot: {fileID: 0}
   useUDP: 1
   jsonData: 
+  freeUnits: []
+  freeUnitListRoot: {fileID: 0}
+  timeKnob: {fileID: 0}
 --- !u!1 &7884737902395820634
 GameObject:
   m_ObjectHideFlags: 0

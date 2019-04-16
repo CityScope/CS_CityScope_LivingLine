@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.57482487, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -112,6 +112,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &6370203 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3404634821802974764, guid: 8cce71dd33e0fb44995010bcc2e3a8a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 445295394}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &33992444
 GameObject:
   m_ObjectHideFlags: 0
@@ -245,7 +251,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 50184865}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 152.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 896005633}
@@ -1255,15 +1261,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Time Knob
       objectReference: {fileID: 0}
-    - target: {fileID: 3404634821802974764, guid: 8cce71dd33e0fb44995010bcc2e3a8a9,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3404634821802974767, guid: 8cce71dd33e0fb44995010bcc2e3a8a9,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.5
+      value: 303.3
       objectReference: {fileID: 0}
     - target: {fileID: 3404634821802974767, guid: 8cce71dd33e0fb44995010bcc2e3a8a9,
         type: 3}
@@ -1273,7 +1274,7 @@ PrefabInstance:
     - target: {fileID: 3404634821802974767, guid: 8cce71dd33e0fb44995010bcc2e3a8a9,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -32.5
+      value: 36.9
       objectReference: {fileID: 0}
     - target: {fileID: 3404634821802974767, guid: 8cce71dd33e0fb44995010bcc2e3a8a9,
         type: 3}
@@ -5883,6 +5884,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 2970321692388829656}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1668340829 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
+    type: 3}
+  m_PrefabInstance: {fileID: 4981639335312504100}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0be0217f0343fe6438cdb34b6e1086e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1671683850
 GameObject:
   m_ObjectHideFlags: 0
@@ -13342,6 +13355,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173091927137365325}
     m_Modifications:
+    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
+      propertyPath: m_Name
+      value: cameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -13397,14 +13418,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
       propertyPath: m_LocalScale.z
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
-      propertyPath: m_Name
-      value: cameras
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
@@ -18015,29 +18028,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_MethodName: ToggleUseUDP
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_MethodName: ToggleUseUDP
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1668340829}
         m_MethodName: ToggleUseUDP
         m_Mode: 0
         m_Arguments:
@@ -19107,6 +19098,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: udpListener
+      value: 
+      objectReference: {fileID: 1685764777}
+    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: gridUnitListRoot
+      value: 
+      objectReference: {fileID: 781887446}
+    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: freeUnitListRoot
+      value: 
+      objectReference: {fileID: 467262337}
+    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: timeKnob
+      value: 
+      objectReference: {fileID: 6370203}
     - target: {fileID: 7884737900875790318, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19162,26 +19173,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: udpListener
-      value: 
-      objectReference: {fileID: 1685764777}
-    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: gridUnitListRoot
-      value: 
-      objectReference: {fileID: 781887446}
-    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: freeUnitListRoot
-      value: 
-      objectReference: {fileID: 467262337}
-    - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: knobListRoot
-      value: 
-      objectReference: {fileID: 1357756755}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 11cb84842869a384a9d30669f645964b, type: 3}
 --- !u!222 &4996149695343741003
@@ -21866,6 +21857,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.z
       value: -0
+      objectReference: {fileID: 0}
     - target: {fileID: 3264751389224248431, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -23216,6 +23208,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173091927137365325}
     m_Modifications:
+    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
+      propertyPath: m_Name
+      value: building_high
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23271,14 +23271,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
       propertyPath: m_LocalScale.z
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
-      propertyPath: m_Name
-      value: building_high
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}

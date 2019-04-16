@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.Collections.Generic;
-using OpenCVForUnity.CoreModule;
-using OpenCVForUnity.ImgprocModule;
-using OpenCVForUnity.UnityUtils;
+//using OpenCVForUnity.CoreModule;
+//using OpenCVForUnity.ImgprocModule;
+//using OpenCVForUnity.UnityUtils;
 
 public class WrapPerspective : MonoBehaviour
 {
@@ -11,7 +11,7 @@ public class WrapPerspective : MonoBehaviour
     public RenderTexture myRenderTexture;
     public Texture2D inputTexture;
     public GameObject[] corners;
-
+    /*
     // Use this for initialization
     void Start()
     {
@@ -68,4 +68,5 @@ public class WrapPerspective : MonoBehaviour
         
         gameObject.GetComponent<Renderer>().material.mainTexture = outputTexture;
     }
+    */
 }

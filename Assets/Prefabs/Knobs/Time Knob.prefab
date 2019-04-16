@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3404634821802974767}
+  - component: {fileID: 323045133}
   m_Layer: 0
   m_Name: Time Knob
   m_TagString: Untagged
@@ -32,6 +33,40 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &323045133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3404634821802974764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 61bf9374be34e114c903370e8efb0f06, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  knobValue: 0
+  pointerActiveSource: {fileID: 274046720160096692, guid: cf5cfae07fc954d4d94347775fb57129,
+    type: 3}
+  pointerActiveRoot: {fileID: 4133945879030446033}
+  pointerInactiveSource: {fileID: 1993500343574165576, guid: 75898845dec2745a3a00453f04ce6132,
+    type: 3}
+  pointerInactiveRoot: {fileID: 146872730804226863}
+  rotDegTotal: 270
+  pointerNumTotal: 55
+  valueTexts:
+  - 1 week
+  - 2 weeks
+  - 1 month
+  - 2 months
+  - 6 months
+  - 1 year
+  valueText: {fileID: 8040216426895225604}
+  pointerNumActive: 0
+  prevPointerNumActive: 0
+  rotDegInterval: 0
+  pointerActiveList: []
+  pointerInactiveList: []
 --- !u!1001 &4994123549767849346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -178,6 +213,24 @@ PrefabInstance:
 --- !u!4 &7112785208413037757 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 946079504349588450, guid: e7febf8543a7ac94380145a5cce1b079,
+    type: 3}
+  m_PrefabInstance: {fileID: 8040216426941009759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!102 &8040216426895225604 stripped
+TextMesh:
+  m_CorrespondingSourceObject: {fileID: 122551387, guid: e7febf8543a7ac94380145a5cce1b079,
+    type: 3}
+  m_PrefabInstance: {fileID: 8040216426941009759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4133945879030446033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6253863680624621710, guid: e7febf8543a7ac94380145a5cce1b079,
+    type: 3}
+  m_PrefabInstance: {fileID: 8040216426941009759}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &146872730804226863 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7898572425385952368, guid: e7febf8543a7ac94380145a5cce1b079,
     type: 3}
   m_PrefabInstance: {fileID: 8040216426941009759}
   m_PrefabAsset: {fileID: 0}

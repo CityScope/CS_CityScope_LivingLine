@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DimensionScoreCtrl : MonoBehaviour {
     
-    public CityMatrixRadarChart CMRadarChart;
+    public RadarChart radarChart;
     public Text[] currentDimensions;
     
     void Update () {
@@ -14,7 +14,7 @@ public class DimensionScoreCtrl : MonoBehaviour {
         // current
         for (int i = 0; i < currentDimensions.Length; i ++)
         {
-            currentDimensions[i].text = string.Format("{0:0}", CMRadarChart.dimensionMetrics[i] * 100f);
+            currentDimensions[i].text = string.Format("{0:0}", radarChart.dimensionMetrics[i] * 100f);
         }
 
     }

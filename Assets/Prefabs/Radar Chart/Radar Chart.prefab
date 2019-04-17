@@ -484,7 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f0fa87fef53dee4facd41aa550d5c9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CMRadarChart: {fileID: 7297946105957388062}
+  radarChart: {fileID: 7297946105957388062}
   density:
   - {fileID: 1890074612883966373}
   - {fileID: 1890074612883966423}
@@ -6701,7 +6701,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c827ecefc11229448aa77a0e58c9b842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CMRadarChart: {fileID: 7297946105957388062}
+  radarChart: {fileID: 7297946105957388062}
   currentAxises:
   - {fileID: 7533033665962414136}
   - {fileID: 7533033666336063564}
@@ -7615,7 +7615,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f033e9e20bbc09f46a8f041a53fab6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CMRadarChart: {fileID: 7297946105957388062}
+  radarChart: {fileID: 7297946105957388062}
   currentDimensions:
   - {fileID: 7533033667009726037}
   - {fileID: 7533033666710730025}

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class AxisScoreCtrl : MonoBehaviour {
     
     //public GameObject orange;
-    public CityMatrixRadarChart CMRadarChart;
+    public RadarChart radarChart;
     public Text[] currentAxises;
     //public Text[] suggestedAxises;
     //public GameObject currentScores;
@@ -20,9 +20,9 @@ public class AxisScoreCtrl : MonoBehaviour {
         // current
         for (int i = 0; i < currentAxises.Length; i ++)
         {
-            if(CMRadarChart!=null&&CMRadarChart.metrics!=null)
+            if(radarChart!=null && radarChart.metrics!=null)
             {
-                currentAxises[i].text = string.Format("{0:0}", CMRadarChart.metrics[i] * 100f);
+                currentAxises[i].text = string.Format("{0:0}", radarChart.metrics[i] * 100f);
             }
             
         }

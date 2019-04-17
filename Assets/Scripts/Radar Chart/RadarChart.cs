@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class CityMatrixRadarChart : MonoBehaviour
+public class RadarChart : MonoBehaviour
 {
 
     // shared

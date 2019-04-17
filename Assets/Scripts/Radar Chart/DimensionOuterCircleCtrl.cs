@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DimensionOuterCircleCtrl : MonoBehaviour
 {
-    public CityMatrixRadarChart CMRadarChart;
+    public RadarChart radarChart;
     public GameObject[] density;
     public GameObject[] densityProfile;
     public GameObject[] diversity;
@@ -14,9 +14,9 @@ public class DimensionOuterCircleCtrl : MonoBehaviour
 
     void Update()
     {
-        float d0 = CMRadarChart.dimensionMetrics[0];
-        float d1 = CMRadarChart.dimensionMetrics[1];
-        float d2 = CMRadarChart.dimensionMetrics[2];
+        float d0 = radarChart.dimensionMetrics[0];
+        float d1 = radarChart.dimensionMetrics[1];
+        float d2 = radarChart.dimensionMetrics[2];
 
         for (int i = 0; i < density.Length; i++)
         {

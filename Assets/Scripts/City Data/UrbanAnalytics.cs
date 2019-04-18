@@ -10,10 +10,32 @@ public class UrbanAnalytics : MonoBehaviour
     public UdpListener udpListener;
     public RadarChart radarChart;
     public BarChart barChart;
+    
+    public float[] fixedUnitCapacities = new float[7];
+    public int[] fixedUnitNumbers = new int[7];
 
-    public int fixedUnitTotalTypeNum = 7;
-    public float[] fixedUnitCapacities;
-    public int[] fixedUnitNumbers;
+    public float freeUnitCapacityMin = 0.1f;
+    public float freeUnitCapacityMax = 30.0f;
+
+    public float[,] weightMatrix = new float[9, 10] {  // row: 9 metrics; col: 10 types; Chart: https://docs.google.com/spreadsheets/d/1Px9YKB4KISgxatSMCHH4DWIWQqlYVx67bZ3H0zxhjQc/edit?usp=sharing
+        {15f, 10f, 10f, 8f, 2f, 10f, 5f, 10f, 4f, 5f},
+        {5f, 15f, 5f, 0f, 0f, 20f, 10f, 15f, 10f, 10f},
+        {20f, 15f, 10f, 5f, 0f, 10f, 10f, 8f, 2f, 10f},
+        {0.87f, 0.98f, 0.72f, 0.34f, 0.2f, 0.96f, 0.79f, 0.67f, 0.65f, 0.35f},
+        {0.66f, 0.85f, 0.54f, 0.42f, 0.26f, 0.85f, 0.73f, 0.73f, 0.71f, 0.57f},
+        {0.55f, 0.65f, 0.51f, 0.57f, 0.26f, 0.79f, 0.65f, 0.35f, 0.72f, 0.67f},
+        {0.5f, 0.63f, 0.43f, 0.69f, 0.27f, 0.74f, 0.81f, 0.46f, 0.58f, 0.73f},
+        {95f, 150f, 52f, 28f, 1f, 217f, 52f, 150f, 45f, 52f},
+        {45f, 105f, 45f, 10f, 5f, 45f, 45f, 28f, 5f, 45}
+    };
+    public float[] metricsMax = new float[9] { 100f, 100f, 100f, 10f, 10f, 10f, 10f, 1000f, 1000f };
+    public float[] metricsMin = new float[9] { 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f };
+    [Range(0.001f, 2.0f)]
+    public float metricsFactor = 1.0f;
+
+    public float[] allUnitTotalCapacities = new float[10];
+
+    public float[] metrics = new float[9];
 
     void Start()
     {
@@ -41,18 +63,26 @@ public class UrbanAnalytics : MonoBehaviour
         // {"type": 12, "x": 318.57, "y": 112.41, "rot": 122.77}]}
 
         // initiate fixed unit capacity list
-        fixedUnitCapacities = new float[fixedUnitTotalTypeNum];
-        for (int i = 0; i < fixedUnitTotalTypeNum; i++)
+        for (int i = 0; i < 7; i++)
         {
             fixedUnitCapacities[i] = 1.0f;
         }
 
-        // initiate fixed unit number list
-        fixedUnitNumbers = new int[fixedUnitTotalTypeNum];
-        for (int i = 0; i < fixedUnitTotalTypeNum; i++)
+        // print weight matrix
+        int rowLength = weightMatrix.GetLength(0);  // 9 (metrics)
+        int colLength = weightMatrix.GetLength(1);  // 10 (unit types)
+        Debug.Log(string.Format("rowLength = {0}", rowLength));
+        Debug.Log(string.Format("colLength = {0}", colLength));
+        string print = "";
+        for (int i = 0; i < rowLength; i++)
         {
-            fixedUnitNumbers[i] = 0;
+            for (int j = 0; j < colLength; j++)
+            {
+                print += string.Format("{0} ", weightMatrix[i, j]);
+            }
+            print += "\n";
         }
+        Debug.Log(print);
 
     }
 
@@ -79,19 +109,69 @@ public class UrbanAnalytics : MonoBehaviour
 
     void UpdateRadarChart(JsonData jsonData)
     {
+        // Computing fixed units' total capacities (number * capacities)
+        // numbers for each type
         // RZ TODO: need to be fixed, now counting the fixed unit on the side panel
-        // calculate fixed units numbers for each type
-        for (int i = 0; i < fixedUnitTotalTypeNum; i++)
+        for (int i = 0; i < 7; i++)
         {
             fixedUnitNumbers[i] = 0;
         }
         foreach (UnitInfoData infoData in jsonData.fixed_units)
         {
-            if (infoData.type < fixedUnitTotalTypeNum)
+            if (infoData.type < 7)
             {
                 fixedUnitNumbers[infoData.type]++;
             }
         }
+        // calculate total capacities for fixed units
+        for (int i = 0; i < 7; i++)
+        {
+            allUnitTotalCapacities[i] = fixedUnitNumbers[i] * fixedUnitCapacities[i];
+        }
+
+
+        // Computing free units' total capacities (number * capacities)
+        for (int i = 7; i < 10; i++)
+        {
+            allUnitTotalCapacities[i] = 0.0f;
+        }
+        foreach (UnitInfoData infoData in jsonData.free_units)
+        {
+            if (infoData.type >= 7 && infoData.type < 10)
+            {
+                allUnitTotalCapacities[infoData.type] += FreeUnitRot2Capacity(infoData.rot);
+            }
+        }
+
+
+        // Computing all units' impact on radar chart metrics
+        metrics = new float[9]; // { 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f };
+        int rowLength = weightMatrix.GetLength(0);  // 9 (metrics)
+        int colLength = weightMatrix.GetLength(1);  // 10 (unit types)
+        string print = "";
+        for (int i = 0; i < rowLength; i++)
+        {
+            for (int j = 0; j < colLength; j++)
+            {
+                // row: i: 9 metrics; col: j; 10 types;
+                metrics[i] += weightMatrix[i, j] * allUnitTotalCapacities[j];
+            }
+            print += metrics[i] + ", ";
+        }
+        Debug.Log("matrics(raw): " + print);
+
+        // computer normalized metrics;
+        print = "";
+        for (int i = 0; i < metrics.Length; i++)
+        {
+            metrics[i] = (metrics[i] - metricsMin[i]) / (metricsMax[i] - metricsMin[i]) * metricsFactor;
+            print += metrics[i] + ", ";
+        }
+        Debug.Log("matrics(normalized): " + print);
+
+
+        // update radar chart
+        radarChart.metrics = metrics;
     }
 
     void UpdateBarChart(JsonData jsonData)
@@ -102,5 +182,11 @@ public class UrbanAnalytics : MonoBehaviour
     void UpdateHeatmap(JsonData jsonData)
     {
 
+    }
+
+    float FreeUnitRot2Capacity(float rot)
+    {
+        float capacity = (1f - rot / 360f) * (freeUnitCapacityMax - freeUnitCapacityMin) + freeUnitCapacityMin;
+        return capacity;
     }
 }

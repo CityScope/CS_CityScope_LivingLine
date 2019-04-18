@@ -3864,9 +3864,58 @@ MonoBehaviour:
   udpListener: {fileID: 1685764777}
   radarChart: {fileID: 1798033082}
   barChart: {fileID: 1240393308}
-  fixedUnitTotalTypeNum: 7
-  fixedUnitCapacities: []
-  fixedUnitNumbers: 
+  fixedUnitCapacities:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  fixedUnitNumbers: 00000000000000000000000000000000000000000000000000000000
+  freeUnitCapacityMin: 0.1
+  freeUnitCapacityMax: 30
+  metricsMax:
+  - 8888.561
+  - 8372.413
+  - 10159.66
+  - 707.042
+  - 669.5613
+  - 621.2808
+  - 645.4244
+  - 78950.11
+  - 36966.82
+  metricsMin:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  allUnitTotalCapacities:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  metrics:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!4 &990599770
 Transform:
   m_ObjectHideFlags: 0

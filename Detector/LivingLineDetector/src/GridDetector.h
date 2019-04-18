@@ -57,7 +57,6 @@ public:
     int getMaxMarkers(){return mMaxMarkers;}
 
     void setupGridJsonPos(std::string filePos);
-    void generateGridPos();
     void setupBlocks();
 
     void generateMarkers(std::vector<int> & ids, std::vector<QRBlockRef> & blocks, bool sort = false );
@@ -167,11 +166,16 @@ private:
     std::map<int, int> mIdsCounter;
     std::map<int, int> mProCounter;
     std::map<int, int> mCenterCounter;
+    std::map<int, int> mRotCounter;
 
     // check if found marker
+    // point that we analyze if there was a detection or not
     std::vector<MarkerArucoRef> mMarkers;
 
+    //obtain the QRCode from the block
     std::vector<QRBlockRef> mCurrBlock;
+
+    //temporal vector that we clean the current blocks
     std::vector<std::vector<QRBlockRef>> mTmpBlocks;
 
     std::vector<QRBlockRef> mBlocks;

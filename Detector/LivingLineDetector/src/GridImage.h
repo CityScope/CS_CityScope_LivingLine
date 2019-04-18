@@ -44,11 +44,6 @@ public:
 
     int getCamId(){return mCamId;}
 
-    //setup GUI
-    void setupGUISwap(float x, float y);
-    void drawGUISwap();
-    void updateGUISwap();
-
     //draw update images
     bool updateImage();
     void drawImage(int x, int y, int w, int h);

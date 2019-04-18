@@ -37,14 +37,12 @@ Living Line
 #include "GridDetector.h"
 #include "QRBlock.h"
 
-#include "jsonclass.h"
-
 #define NUM_CAM_INPUTS 1
 
 #define CAM_WIDTH  1920  //1920
 #define CAM_HEIGHT 1080 //1080
 
-#define CAM_FRAMERATE 30 //10
+#define CAM_FRAMERATE 10 //10
 
 class ofApp : public ofBaseApp {
 

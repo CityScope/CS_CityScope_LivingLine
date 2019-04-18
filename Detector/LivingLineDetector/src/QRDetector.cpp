@@ -15,8 +15,8 @@ void QRDetector::resetMinMax() {
 }
 
 void QRDetector::setupCalibration(int markersX, int markersY) {
-  float markerLength     = 0.0162;     // 0.0165
-  float markerSeparation = 0.0042; // 0045
+  float markerLength     = 0.0165;     // 0.0165 2
+  float markerSeparation = 0.0045; // 0045 2
   int dictionaryId       = cv::aruco::DICT_4X4_50; //0
   std::string outputFile = "./cal.txt";
 
@@ -25,15 +25,15 @@ void QRDetector::setupCalibration(int markersX, int markersY) {
 
   detectorParams = cv::aruco::DetectorParameters::create();
 
-  detectorParams->adaptiveThreshWinSizeMin = 25; //20
-  detectorParams->adaptiveThreshWinSizeMax = 80; //50
+  detectorParams->adaptiveThreshWinSizeMin = 35; //20
+  detectorParams->adaptiveThreshWinSizeMax = 95; //50
   detectorParams->adaptiveThreshWinSizeStep = 5;
 
   detectorParams->perspectiveRemovePixelPerCell = 10; // 10
-  detectorParams->perspectiveRemoveIgnoredMarginPerCell = 0.3;
-  detectorParams->errorCorrectionRate = 0.53;
-  detectorParams->maxErroneousBitsInBorderRate = 0.3;
-  detectorParams->minOtsuStdDev = 2;
+  detectorParams->perspectiveRemoveIgnoredMarginPerCell = 0.12; //3
+  detectorParams->errorCorrectionRate = 0.51; //53
+  detectorParams->maxErroneousBitsInBorderRate = 0.22; //3
+  detectorParams->minOtsuStdDev = 2; //2
 
   bool refindStrategy = false;
 
@@ -90,13 +90,19 @@ void QRDetector::detectMarkers(cv::Mat &inputVideo, bool refiment) {
 
       cent = cent / 4.;
       QRBlockRef cva = QRBlock::create();
+
+      //set the position
       cva->setPos(glm::vec2(cent.x, cent.y));
+
+      //set the corner for the marker
       cva->setFirstCorner(glm::vec2(currentMarker.ptr<cv::Point2f>(0)[0].x, currentMarker.ptr<cv::Point2f>(0)[0].y));
 
       // get ids
       if (idsDetected.total() != 0) {
         int id = idsDetected.getMat().ptr<int>(0)[i];
         mTagsIds.push_back(id);
+
+        //set the id from the QR
         cva->setMarkerId(id);
 
         if (mMinFoundId > id) {

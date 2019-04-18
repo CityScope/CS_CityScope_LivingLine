@@ -57,7 +57,7 @@ void ofApp::cleanDetection() {
     }
 
     // send UDP in the correct format.
-    if (doneClean == 4) {
+    if (doneClean == 5) {
       std::string compandStr;
       compandStr += "i ";
 
@@ -642,7 +642,7 @@ void ofApp::keyPressed(int key) {
   }
 
   if (key == '0') {
-    mGridDetector.at(mCurrentInputIdx)->generateGridPos();
+  
     ofLog(OF_LOG_NOTICE) << "Reset gris pos " << mCurrentInputIdx;
   }
 

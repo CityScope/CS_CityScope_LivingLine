@@ -55,6 +55,8 @@ private:
   bool mEnable;
   MarkerType mMType;
 
+  //first -> QR Marker type
+  //Type -> building, Office, house, etc
   std::pair<int, int> mIdType;
 };
 ///----------------------------------------------------

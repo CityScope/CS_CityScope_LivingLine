@@ -39,7 +39,6 @@ public:
     ofParameter<bool>     ofParamBoolean;
     ofEventListener       buttonListener;
     bool                  mActive;
-
 };
 
 //Matrix Slider

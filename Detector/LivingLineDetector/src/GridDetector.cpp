@@ -40,40 +40,6 @@ void GridDetector::setupBlocks() {
   ofLog(OF_LOG_NOTICE) << "setup blocks ";
 }
 
-void GridDetector::generateGridPos() {
-  mMarkers.clear();
-  float startGridX = 1920 * 0.1;
-  float startGridY = 1080 * 0.1;
-
-  float stepX = 50.0;
-  float stepY = 50.0;
-
-  float gapX = 13;
-  float gapY = 13;
-
-  int indeY = 0;
-  int indeX = 0;
-  ofLog(OF_LOG_NOTICE) << "Max Markers: " << mMaxMarkers;
-
-  for (int i = 0; i < mMaxMarkers; i++) {
-    MarkerArucoRef m = MarkerAruco::create();
-
-    float x = indeX * stepX + indeX * gapX + startGridX;
-    float y = indeY * stepY + indeY * gapY + startGridY;
-
-    m->setPos(glm::vec2(x, y));
-    m->setGridId(i);
-    m->setMarkerId(-1);
-    mMarkers.push_back(m);
-    indeX++;
-    if (indeX >= mGridDim.x) {
-      indeY++;
-      indeX = 0;
-    }
-  }
-  
-}
-
 //-----------------------------------------------------------------------------
 void GridDetector::setupCleaner() {
 
@@ -90,12 +56,14 @@ void GridDetector::setupCleaner() {
   // ids from 0 -1000, max number of counters
   for (int i = 0; i < MAX_MARKERS; i++) {
     mCenterCounter.emplace(i, 0);
+    mRotCounter.empalce(i, 0);
   }
 
   ofLog(OF_LOG_NOTICE) << "setup clean";
 }
 
 //-----------------------------------------------------------------------------
+//--- save json position
 void GridDetector::setupGridJsonPos(std::string filePos) {
   ofLog(OF_LOG_NOTICE) << "Loading gridpos json: " << filePos;
   ofFile file(filePos); //"gridpos.json");
@@ -121,6 +89,8 @@ void GridDetector::setupGridJsonPos(std::string filePos) {
 
           m->setPos(glm::vec2(posx, posy));
           m->setGridId(i);
+
+          //positions to the detect the markers
           mMarkers.push_back(m);
         }
       }
@@ -134,7 +104,11 @@ void GridDetector::setupGridJsonPos(std::string filePos) {
 //-----------------------------------------------------------------------------
 void GridDetector::generateMarkers(std::vector<int> &ids,
                                    std::vector<QRBlockRef> &blocks, bool sort) {
+
+  //copy identified ids
   mTagsIds = ids;
+
+  //copy positions of the qr blokcs
   mCurrBlock = blocks;
 
   // clasification of ids and blocks
@@ -145,7 +119,10 @@ void GridDetector::generateMarkers(std::vector<int> &ids,
               });
     ofLog(OF_LOG_NOTICE) << "sorted";
   }
+
   mNumMarkers = mCurrBlock.size();
+
+  //collection of blocks for error detection.
   mTmpBlocks.push_back(mCurrBlock);
 }
 
@@ -386,7 +363,10 @@ void GridDetector::recordGrid() {
         for (auto &cblock : mCurrBlock) {
           glm::vec2 cenPos = cblock->getPos();
           float dis = glm::fastDistance(cenPos, pos);
-          if (dis >= 0.0 && dis <= mRadDetection) {
+          int arucoID = cblock->getMarkerId();
+
+          //if the marker is inside the a distance or if the marker is a free unit then
+          if ((dis >= 0.0 && dis <= mRadDetection) || (arucoID == 37 || arucoID == 38 || arucoID == 39) ) {
             mk->setMarkerId(mTagsIds.at(k));
 
             // got ids/
@@ -445,14 +425,23 @@ void GridDetector::cleanGrid() {
         for (auto &mk : mMarkers) {
           glm::vec2 boardPos = mk->getPos();
           float dis = glm::fastDistance(blockPos, boardPos);
-          if (dis >= 0 && dis <= mRadDetection) {
+          int qrId  = block->getMarkerId();
+          //check if the detection was free unit or a knob
+          if ( (dis >= 0 && dis <= mRadDetection) || (qrId == 37  || qrId == 38 || qrId == 40 || qrId == 41 || qrId == 49)) {
             mIdsCounter[k] = block->getMarkerId(); // block.mId
+
+            //center an rotation
+            mCenterCounter[k] = block->getPos();
+            mRotCounter[k] = block->getRot();
             mk->incProba();
             // not sure i need it break;
             break;
           }
           k++;
         }
+
+
+
       }
     }
 
@@ -480,6 +469,7 @@ void GridDetector::cleanGrid() {
       float proba = mk->getProba(mWindowIterMax);
       if (proba >= 1.0 / (float)mWindowIterMax) {
         mk->enableOn();
+        
         mk->setMarkerId(mIdsCounter[i]);
         mk->updateIdPair(mIdsCounter[i]);
 

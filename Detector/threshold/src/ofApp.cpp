@@ -38,17 +38,20 @@ void ofApp::update() {
 
 		//input.copyTo(mMatSat);
 		ofxCv::toOf(mMatSat, imgCut.getPixels());
+		ofxCv::toOf(mMatSat, thresh.getPixels());
+		
 		imgCut.update();
+		thresh.update();
 
 
 		if(ofGetMousePressed()) {
-			autothreshold(thresh);
+			autothreshold(imgCut);
 		} else {
 			float thresholdValue = ofMap(mouseX, 0, ofGetWidth(), 0, 255);
 			std::cout<< thresholdValue <<std::endl;
-			threshold(thresh, thresholdValue);
+			threshold(imgCut, thresholdValue);
 		}
-		thresh.update();
+		imgCut.update();
 	}
 }
 

@@ -53,27 +53,6 @@ void GridImage::setupCam(int id, int fps) {
 }
 
 //-----------------------------------------------------------------------------
-void GridImage::setupGUISwap(float x, float y) {
-  mSwapCamId = ofxDatMatrix::create();
-  mSwapCamId->matrix =new ofxDatGuiMatrix("Cam Selector: " + to_string(mId), 4, true);
-  mSwapCamId->matrix->setRadioMode(true);
-  mSwapCamId->matrix->setOpacity(0.7);
-  mSwapCamId->matrix->setWidth(390, .4);
-  mSwapCamId->matrix->setPosition(x, y);
-  mSwapCamId->matrix->onMatrixEvent([&](ofxDatGuiMatrixEvent v) {
-    ofLog(OF_LOG_NOTICE) << "Id: " << mCamId << " New Index: " << v.child<< std::endl;
-    mCam.close();
-
-    mCamId = v.child;
-    mCam.setDeviceID(mCamId);
-    // mCam.setVerbose(true);
-    mCam.setDesiredFrameRate(mFps);
-    mCam.initGrabber(mDim.x, mDim.y);
-  });
-}
-
-
-//-----------------------------------------------------------------------------
 bool GridImage::updateImage() {
   bool newFrame = false;
 
@@ -111,18 +90,6 @@ void GridImage::drawImage(int x, int y, int w, int h) {
 //-----------------------------------------------------------------------------
 void GridImage::drawImage(int x, int y) {
   mCam.draw(x, y, mDim.x, mDim.y);
-}
-
-//-----------------------------------------------------------------------------
-void GridImage::drawGUISwap() {
-  // draw GUI
-  mSwapCamId->draw();
-}
-
-//-----------------------------------------------------------------------------
-void GridImage::updateGUISwap() {
-  // update GUI
-  mSwapCamId->update();
 }
 
 //-----------------------------------------------------------------------------

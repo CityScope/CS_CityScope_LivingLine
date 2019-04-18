@@ -79,10 +79,10 @@ public:
 
 private:
     //QR id
-    int        mMakerId;
+    int        mMakerId; //qr id
 
     //grid id
-    int        mGridId;
+    int        mGridId;  //grid id, 0,1,2,4..etc
 
     //orientation of the marker
     int        mOrientation;

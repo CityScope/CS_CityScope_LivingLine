@@ -427,7 +427,10 @@ void GridDetector::cleanGrid() {
           float dis = glm::fastDistance(blockPos, boardPos);
           int qrId  = block->getMarkerId();
           //check if the detection was free unit or a knob
-          if ( (dis >= 0 && dis <= mRadDetection) || (qrId == 37  || qrId == 38 || qrId == 40 || qrId == 41 || qrId == 49)) {
+          if ( (dis >= 0 && dis <= mRadDetection) ||
+               (qrId == 37 || qrId == 38 ||  //knobs
+                qrId == 40 || qrId == 41 || qrId == 49)) { //free units
+                  
             mIdsCounter[k] = block->getMarkerId(); // block.mId
 
             //center an rotation
@@ -469,8 +472,8 @@ void GridDetector::cleanGrid() {
       float proba = mk->getProba(mWindowIterMax);
       if (proba >= 1.0 / (float)mWindowIterMax) {
         mk->enableOn();
-        
-        mk->setMarkerId(mIdsCounter[i]);
+
+        mk->setMarkerId(mIdsCounter[i]); //qr id
         mk->updateIdPair(mIdsCounter[i]);
 
         // find id and update it;

@@ -138,6 +138,7 @@ public class App : MonoBehaviour
         }
     }
 
+    // RZ TODO: need to be optimized, now deleting and re-instantiate every frame
     void UpdateFreeUnits(JsonData jsonData)
     {
         // clean up last frame GOs

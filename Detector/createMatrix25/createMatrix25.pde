@@ -3,6 +3,7 @@ import processing.pdf.*;
 
 ControlP5 cp5;
 
+
 int numRows = 4;
 int numColums = 3;
 
@@ -59,14 +60,14 @@ void setup() {
     .setPosition(50, 50)
     .setSize(200, 20)
     .setRange(0, 100)
-    .setValue(72)
+    .setValue(82) //72
     ;
 
   cp5.addSlider("startY")
     .setPosition(50, 80)
     .setSize(200, 20)
     .setRange(0, 100)
-    .setValue(22)
+    .setValue(32) //32
     ;
 
 
@@ -74,14 +75,14 @@ void setup() {
     .setPosition(50, 110)
     .setSize(200, 20)
     .setRange(0, 200)
-    .setValue(184.5)
+    .setValue(166.5) //184.5
     ;
 
   cp5.addSlider("tamY")
     .setPosition(50, 140)
     .setSize(200, 20)
     .setRange(0, 200)
-    .setValue(184.5)
+    .setValue(166.5) //184.5
     ;
 
   cp5.addSlider("spaceX")
@@ -109,7 +110,7 @@ void draw() {
 
   background(255);
 
- //image(testGrid, 0, 0);
+  image(testGrid, 0, 0);
   
 
 
@@ -124,7 +125,7 @@ void draw() {
       
       fill(0);
       textSize(16);
-      text(ids[index], x - 20, y + spaceY);
+      //text(ids[index], x - 20, y + spaceY);
     }
   }
 

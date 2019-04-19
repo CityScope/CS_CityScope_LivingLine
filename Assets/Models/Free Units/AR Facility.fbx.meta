@@ -7,14 +7,19 @@ ModelImporter:
     100002: //RootNode
     100004: Facility
     100006: Group59
+    100008: Mesh04
     400000: AR
     400002: //RootNode
     400004: Facility
     400006: Group59
+    400008: Mesh04
     2100000: FrontCol
     2300000: Group59
+    2300002: Mesh04
     3300000: Group59
+    3300002: Mesh04
     4300000: Group59
+    4300002: Mesh04
   externalObjects: {}
   materials:
     importMaterials: 1

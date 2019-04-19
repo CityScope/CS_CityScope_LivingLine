@@ -265,6 +265,7 @@ public class App : MonoBehaviour
                 Destroy(go);
             }
         }
+        freeUnits = new List<GameObject>();
 
         // add new GOs according to json via udp
         foreach (UnitInfoData infoData in jsonData.free_units)

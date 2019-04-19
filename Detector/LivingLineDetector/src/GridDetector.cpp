@@ -56,7 +56,7 @@ void GridDetector::setupCleaner() {
   // ids from 0 -1000, max number of counters
   for (int i = 0; i < MAX_MARKERS; i++) {
     mCenterCounter.emplace(i, 0);
-    mRotCounter.empalce(i, 0);
+    mRotCounter.emplace(i, 0);
   }
 
   ofLog(OF_LOG_NOTICE) << "setup clean";
@@ -430,12 +430,13 @@ void GridDetector::cleanGrid() {
           if ( (dis >= 0 && dis <= mRadDetection) ||
                (qrId == 37 || qrId == 38 ||  //knobs
                 qrId == 40 || qrId == 41 || qrId == 49)) { //free units
-                  
+
             mIdsCounter[k] = block->getMarkerId(); // block.mId
 
             //center an rotation
-            mCenterCounter[k] = block->getPos();
-            mRotCounter[k] = block->getRot();
+            //mCenterCounter[k] = block->getPos();
+            //mRotCounter[k] = block->getRot();
+
             mk->incProba();
             // not sure i need it break;
             break;
@@ -475,6 +476,9 @@ void GridDetector::cleanGrid() {
 
         mk->setMarkerId(mIdsCounter[i]); //qr id
         mk->updateIdPair(mIdsCounter[i]);
+
+        //set position, get rotation
+
 
         // find id and update it;
         /*

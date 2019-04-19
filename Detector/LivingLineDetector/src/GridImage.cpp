@@ -19,6 +19,9 @@ GridImage::GridImage(glm::vec2 dims) {
   mActivateCam = true;
   mFps = 30;
 
+  mCamCounter  = 0;
+  mCamThread   = 0;
+
   mCornerUp = glm::vec2(100, 100);
   mCornerDown = glm::vec2(300, 300);
   mDisp = glm::vec2(23, 23);
@@ -32,6 +35,13 @@ GridImage::GridImage(glm::vec2 dims) {
   mFboResolution.end();
 }
 
+void GridImage::threadTimer(int counter) {
+
+  while(counter <= 1000){
+    counter++;
+  }
+}
+
 //-----------------------------------------------------------------------------
 void GridImage::setupCam(int id, int fps) {
   mCamId = id;
@@ -43,10 +53,27 @@ void GridImage::setupCam(int id, int fps) {
 
   //mCam.setVerbose(true);
   //mCam.listDevices();
-  mCam.setDeviceID(mCamId);
-  mCam.setDesiredFrameRate(mFps);
-  mCam.setUseTexture(true);
-  mCam.setup(mDim.x, mDim.y);
+
+  ofLog(OF_LOG_NOTICE) << "Starting to open Cam: " << mCamId<<std::endl;
+
+  while(mCamCounter < 5 ){
+
+    mCam.setDeviceID(mCamId);
+    mCam.setDesiredFrameRate(mFps);
+    mCam.setUseTexture(true);
+
+    ofSleepMillis(3000);
+    bool camSetup = mCam.setup(mDim.x, mDim.y);
+
+    if(camSetup == true){
+      ofLog(OF_LOG_NOTICE) << "Cam opened: " << mCamId<<" "<<mCamCounter<<std::endl;
+
+      break;
+    }
+    mCamCounter++;
+
+    ofLog(OF_LOG_NOTICE) << "trying to open Cam: " << mCamId<<std::endl;
+  }
 
   ofLog(OF_LOG_NOTICE) << "loaded Cam: " << mCamId <<
   " Cam: "<< mCam.getWidth()<< ", " << mCam.getHeight()<<std::endl;

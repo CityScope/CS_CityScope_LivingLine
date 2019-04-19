@@ -95,6 +95,8 @@ public:
     //get cornes for transformation
     void updateCorners();
 
+    void threadTimer(int counter);
+
 
 private:
     //input stream
@@ -106,6 +108,9 @@ private:
     glm::vec2           mDim;
     glm::vec2           mLength;
 
+    int               mCamCounter;
+    int               mCamThrea;
+    
     //Resolution of the I
     ofFbo               mFboResolution;
 

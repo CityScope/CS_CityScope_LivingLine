@@ -201,7 +201,7 @@ void ofApp::setupGUI() {
   //gamma
   mGammaValue = ofxDatSlider::create();
   mGammaValue->slider =
-      new ofxDatGuiSlider(mGammaValue->ofParam.set("gamma", 0.65, 0, 2));
+      new ofxDatGuiSlider(mGammaValue->ofParam.set("gamma", 1.29, 0, 2));
   mGammaValue->slider->setWidth(390, .4);
   mGammaValue->slider->setPosition(sliderStartX, 110);
   mGammaValue->slider->onSliderEvent(
@@ -209,14 +209,14 @@ void ofApp::setupGUI() {
 
   //alpha
   mAlphaValue = ofxDatSlider::create();
-  mAlphaValue->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("alpha", 0.65, 0, 3));
+  mAlphaValue->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("alpha", 1.03, 0, 3));
   mAlphaValue->slider->setWidth(390, .4);
   mAlphaValue->slider->setPosition(sliderStartX, 160);
   mAlphaValue->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mAlphaValue->ofParam = v.value; });
 
   //beta
   mBetaValue = ofxDatSlider::create();
-  mBetaValue->slider = new ofxDatGuiSlider(mBetaValue->ofParam.set("beta", 50, 0, 255));
+  mBetaValue->slider = new ofxDatGuiSlider(mBetaValue->ofParam.set("beta", 17.21, 0, 255));
   mBetaValue->slider->setWidth(390, .4);
   mBetaValue->slider->setPosition(sliderStartX, 210);
   mBetaValue->slider->onSliderEvent( [&](ofxDatGuiSliderEvent v) { mBetaValue->ofParam = v.value; });

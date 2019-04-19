@@ -48,7 +48,7 @@ public class App : MonoBehaviour
     #endregion
 
     // RZ
-    public bool useUDP = false;
+    public bool useUDP = true;
     public string jsonData;
     public List<GameObject> freeUnits;
     public GameObject freeUnitListRoot;
@@ -112,6 +112,23 @@ public class App : MonoBehaviour
         // "knobs": [{"type": 10, "x": 276.52, "y": 10.55, "rot": 274.2}, 
         // {"type": 11, "x": 290.22, "y": 106.35, "rot": 161.43}, 
         // {"type": 12, "x": 318.57, "y": 112.41, "rot": 122.77}]}
+    }
+
+    void Update()
+    {
+        if (useUDP)
+        {
+            if (udpListener._encodedUDP == "")
+            {
+                Debug.LogWarning("UDP recieved null");
+            }
+            else
+            {
+                jsonData = udpListener._encodedUDP;
+
+                UpdateData();
+            }
+        }
     }
 
     void LoadJson()

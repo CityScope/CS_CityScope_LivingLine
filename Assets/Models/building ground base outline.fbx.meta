@@ -251,6 +251,45 @@ ModelImporter:
     4300072: Object_36
     4300074: Object_37
     4300076: Object_38
+    6400000: Object_1
+    6400002: Object_10
+    6400004: Object_11
+    6400006: Object_12
+    6400008: Object_13
+    6400010: Object_14
+    6400012: Object_15
+    6400014: Object_16
+    6400016: Object_17
+    6400018: Object_18
+    6400020: Object_19
+    6400022: Object_2
+    6400024: Object_20
+    6400026: Object_21
+    6400028: Object_22
+    6400030: Object_23
+    6400032: Object_24
+    6400034: Object_25
+    6400036: Object_26
+    6400038: Object_27
+    6400040: Object_28
+    6400042: Object_29
+    6400044: Object_3
+    6400046: Object_30
+    6400048: Object_31
+    6400050: Object_32
+    6400052: Object_33
+    6400054: Object_34
+    6400056: Object_35
+    6400058: Object_36
+    6400060: Object_37
+    6400062: Object_38
+    6400064: Object_39
+    6400066: Object_4
+    6400068: Object_5
+    6400070: Object_6
+    6400072: Object_7
+    6400074: Object_8
+    6400076: Object_9
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -284,7 +323,7 @@ ModelImporter:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
-    addColliders: 0
+    addColliders: 1
     useSRGBMaterialColor: 1
     importVisibility: 1
     importBlendShapes: 1

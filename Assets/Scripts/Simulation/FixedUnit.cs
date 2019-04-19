@@ -24,7 +24,7 @@ public class FixedUnit : MonoBehaviour
             return false;
         }
 
-        if(Mathf.Abs( infoData.x-this.transform.position.x)>3.5|| Mathf.Abs(infoData.y - this.transform.position.z) > 3.5)
+        if(Mathf.Abs( infoData.x+ App.c_UnitXoffset - this.transform.position.x)>3.5|| Mathf.Abs(infoData.y - this.transform.position.z) > 3.5)
         {
             return false;
         }
@@ -73,6 +73,17 @@ public class FixedUnit : MonoBehaviour
         showUnitGo = go;
 
         lastShowType = infoData.type;
+
+        UpdateAI();
         return true;
     }
+
+    private void UpdateAI()
+    {
+        for(int i=0;i<10;i++)
+        {
+            SingletonTMono<App>.Instance.CreateAI(this.transform.position);
+        }
+    }
+
 }

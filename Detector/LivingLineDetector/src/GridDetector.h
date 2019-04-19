@@ -46,12 +46,16 @@ public:
         return std::make_shared<GridDetector>(dim);
     }
 
+    //reset grid pos
+    void generateGridPos();
+
     glm::vec2 getDim(){return mGridDim;}
 
     void setId(int id);
     int getId(){return mId;}
 
     int getNumMarkers(){return mNumMarkers;}
+
 
     void setMaxMarkers(int max);
     int getMaxMarkers(){return mMaxMarkers;}
@@ -143,16 +147,6 @@ private:
 
     bool mCleanDone;
 
-    ///radar
-    int mNumRL;
-    int mNumRM;
-    int mNumRS;
-
-    int mNumOL;
-    int mNumOM;
-    int mNumOS;
-    int mNumPark;
-
     //movable part of fixed
     // Free piece does not take into account
     bool mFreePiece;
@@ -163,10 +157,11 @@ private:
     //calibrate grid
     bool mCalibrateGrid;
 
+    //key -> value
     std::map<int, int> mIdsCounter;
     std::map<int, int> mProCounter;
-    std::map<int, int> mCenterCounter;
-    std::map<int, int> mRotCounter;
+    std::map<int, glm::vec2> mCenterCounter;
+    std::map<int, float> mRotCounter;
 
     // check if found marker
     // point that we analyze if there was a detection or not

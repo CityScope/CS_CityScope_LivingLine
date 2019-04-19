@@ -57,13 +57,16 @@ void GridImage::setupCam(int id, int fps) {
   ofLog(OF_LOG_NOTICE) << "Starting to open Cam: " << mCamId<<std::endl;
 
   while(mCamCounter < 5 ){
+    mCam.close();
 
     mCam.setDeviceID(mCamId);
     mCam.setDesiredFrameRate(mFps);
-    mCam.setUseTexture(true);
 
-    ofSleepMillis(3000);
-    bool camSetup = mCam.setup(mDim.x, mDim.y);
+    ofLog(OF_LOG_NOTICE) << "Cam:"<<std::endl;
+
+    ofSleepMillis(1000);
+    bool camSetup = mCam.initGrabber(mDim.x, mDim.y);
+    mCam.setUseTexture(true);
 
     if(camSetup == true){
       ofLog(OF_LOG_NOTICE) << "Cam opened: " << mCamId<<" "<<mCamCounter<<std::endl;

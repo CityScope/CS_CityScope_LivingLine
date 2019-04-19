@@ -109,8 +109,8 @@ private:
     glm::vec2           mLength;
 
     int               mCamCounter;
-    int               mCamThrea;
-    
+    int               mCamThread;
+
     //Resolution of the I
     ofFbo               mFboResolution;
 

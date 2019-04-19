@@ -46,15 +46,19 @@ public:
         return std::make_shared<MarkerAruco>();
     }
 
+    //qr code id
     void setMarkerId(int i){mMakerId = i;}
     int getMarkerId(){return mMakerId;}
 
+    //grid id
     void setGridId(int i){mGridId = i;}
     int getGridId(){return mGridId;}
 
+    //grid pos
     void setPos(glm::vec2 mpos){mPos = mpos;}
     glm::vec2 getPos(){return mPos;}
 
+    //enable 
     void enableOn(){mEnable = true;}
     void enableOff(){mEnable = false;}
 

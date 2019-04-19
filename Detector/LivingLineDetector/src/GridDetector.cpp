@@ -10,14 +10,39 @@ GridDetector::GridDetector(glm::vec2 dim) {
 
   mRadDetection = RAD_DETECTION;
   mMaxMarkers = mGridDim.x * mGridDim.y;
+}
+//-----------------------------------------------------------------------------
+void GridDetector::generateGridPos() {
+  mMarkers.clear();
+  float startGridX = 1920 * 0.1;
+  float startGridY = 1080 * 0.1;
 
-  mNumRL = 0;
-  mNumRM = 0;
-  mNumRS = 0;
-  mNumOL = 0;
-  mNumOM = 0;
-  mNumOS = 0;
-  mNumPark = 0;
+  float stepX = 50.0;
+  float stepY = 50.0;
+
+  float gapX = 13;
+  float gapY = 13;
+
+  int indeY = 0;
+  int indeX = 0;
+
+  ofLog(OF_LOG_NOTICE) << "Max Markers: " << mMaxMarkers;
+  for (int i = 0; i < mMaxMarkers; i++) {
+    MarkerArucoRef m = MarkerAruco::create();
+
+    float x = indeX * stepX + indeX * gapX + startGridX;
+    float y = indeY * stepY + indeY * gapY + startGridY;
+
+    m->setPos(glm::vec2(x, y));
+    m->setGridId(i);
+    m->setMarkerId(-1);
+    mMarkers.push_back(m);
+    indeX++;
+    if (indeX >= mGridDim.x) {
+      indeY++;
+      indeX = 0;
+    }
+  }
 }
 
 //-----------------------------------------------------------------------------
@@ -428,8 +453,8 @@ void GridDetector::cleanGrid() {
           int qrId  = block->getMarkerId();
           //check if the detection was free unit or a knob
           if ( (dis >= 0 && dis <= mRadDetection) ||
-               (qrId == 37 || qrId == 38 ||  //knobs
-                qrId == 40 || qrId == 41 || qrId == 49)) { //free units
+               (qrId == 37 || qrId == 38 || qrId == 45 ||  //knobs
+                qrId == 40 || qrId == 41 || qrId == 49) ) { //free units
 
             mIdsCounter[k] = block->getMarkerId(); // block.mId
 
@@ -443,32 +468,14 @@ void GridDetector::cleanGrid() {
           }
           k++;
         }
-
-
-
       }
-    }
+    } //done calculating probabilty
 
     // ofLog(OF_LOG_NOTICE) << "Update";
 
-    // reset
-    mNumRL = 0;
-    mNumRM = 0;
-    mNumRS = 0;
-    mNumOL = 0;
-    mNumOM = 0;
-    mNumOS = 0;
-    mNumPark = 0;
-
-    // send upd data and activations;
+    //check the markers that have been detected
     int i = 0;
     int indeX = 0;
-    mUDPMsgIds = "";
-    mUDPStrIds.clear();
-    mUDPVecIds.clear();
-    std::vector<int> udpVectorRow;
-    std::string strMsg = "";
-
     for (auto &mk : mMarkers) {
       float proba = mk->getProba(mWindowIterMax);
       if (proba >= 1.0 / (float)mWindowIterMax) {
@@ -478,19 +485,10 @@ void GridDetector::cleanGrid() {
         mk->updateIdPair(mIdsCounter[i]);
 
         //set position, get rotation
+        int id        = mIdsCounter[i];
+      //  glm::vec2 pos = mCenterCounter[i];
+      //  float rot     = mRotCounter[i];
 
-
-        // find id and update it;
-        /*
-        for (auto &blocks : mBlocks) {
-          int makerId = mk->getIdTypePair().first;
-          if (blocks->getMarkerId() == makerId) {
-            mk->updateType(blocks->getType());
-            // need it?
-            break;
-          }
-        }
-        */
       } else {
         mk->enableOff();
         mk->setMarkerId(-1);
@@ -499,53 +497,10 @@ void GridDetector::cleanGrid() {
       indeX++;
 
       int newId = mk->getMarkerId();
-
-      /*
-            ///residential
-            if(newId == 0){
-              mNumRL++;
-            }else if(newId == 9){
-              mNumRM++;
-            }else if(newId == 19){
-              mNumRS++;
-            }else if(newId == 43){
-              mNumOL++;
-            }else if(newId == 63){
-              mNumOM++;
-            }else if(newId == 126){
-              mNumOS++;
-            }else if(newId == 138){
-              mNumPark++;
-            }
-      */
-
-      // UDP
-      mUDPMsgIds += std::to_string(newId);
-      mUDPMsgIds += " ";
-
-      udpVectorRow.push_back(newId);
-
-      strMsg += std::to_string(newId);
-      strMsg += " ";
-
-      if (indeX >= mGridDim.x) {
-        mUDPStrIds.push_back(strMsg);
-        mUDPVecIds.push_back(udpVectorRow);
-        strMsg = "";
-        udpVectorRow.clear();
-        indeX = 0;
-      }
     }
-
-    // Num Tags
-    // mUDPNumTags  = to_string(mNumRL)+" "+to_string(mNumRM)+"
-    // "+to_string(mNumRS)+" ";
-    // mUDPNumTags += to_string(mNumOL)+" "+to_string(mNumOM)+"
-    // "+to_string(mNumOS)+" "+to_string(mNumPark);
-
     // done activation and disactivation
     mTmpBlocks.clear();
     ofLog(OF_LOG_NOTICE) << "done";
-
   }
+
 }

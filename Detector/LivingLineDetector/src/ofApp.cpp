@@ -15,8 +15,6 @@ void ofApp::setup() {
     ofSetLogLevel(OF_LOG_VERBOSE);
   }
 
-   std::setprecision(3);
-
   ofSetBackgroundAuto(false);
   ofBackground(0);
 
@@ -529,7 +527,7 @@ float ofApp::round(float var)
     // 3766.66 + .5 =37.6716    for rounding off value
     // then type cast to int so value is 3766
     // then divided by 100 so the value converted into 37.66
-    float value = (int)(var * 100 + .5);
+    float value = (int)(var * 100 + 0.5);
     return (float)value / 100;
 }
 

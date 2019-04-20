@@ -118,7 +118,6 @@ private:
     //Resolution of the I
     ofFbo               mFboResolution;
 
-
     //input image
     ofImage             mVidImg;
 
@@ -140,8 +139,6 @@ private:
 
     //crop Mat
     cv::Mat   mCropMat;
-
-
 
     //id of the Image
     int mId;

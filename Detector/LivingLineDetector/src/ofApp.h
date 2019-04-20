@@ -121,7 +121,7 @@ public:
 
   ofxDatButtonRef mBEnableCrop;
   ofxDatButtonRef mBCalibrateGrid;
-  ofxDatButtonRef mBEnableVideo;
+  ofxDatButtonRef mBEnableCams;
   ofxDatButtonRef mBDebugMarkers;
 
   ofxDatSliderRef mGammaValue;

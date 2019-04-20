@@ -111,6 +111,9 @@ private:
     int               mCamCounter;
     int               mCamThread;
 
+    //if loaded cam
+    bool                mCamLoaded;
+
     //Resolution of the I
     ofFbo               mFboResolution;
 

@@ -19,6 +19,8 @@ GridImage::GridImage(glm::vec2 dims) {
   mActivateCam = true;
   mFps = 30;
 
+  mCamLoaded = false;
+
   mCamCounter  = 0;
   mCamThread   = 0;
 
@@ -53,10 +55,8 @@ void GridImage::setupCam(int id, int fps) {
 
   //mCam.setVerbose(true);
   //mCam.listDevices();
-
-  ofLog(OF_LOG_NOTICE) << "Starting to open Cam: " << mCamId<<std::endl;
-
-  while(mCamCounter < 5 ){
+ if(!mCamLoaded){
+   ofLog(OF_LOG_NOTICE) << "Starting to open and close Cam: " << mCamId<<std::endl;
     mCam.close();
 
     mCam.setDeviceID(mCamId);
@@ -67,16 +67,10 @@ void GridImage::setupCam(int id, int fps) {
 
     ofSleepMillis(1000);
     bool camSetup = mCam.initGrabber(mDim.x, mDim.y);
-
-
     if(camSetup == true){
       ofLog(OF_LOG_NOTICE) << "Cam opened: " << mCamId<<" "<<mCamCounter<<std::endl;
-
-      break;
+      mCamLoaded = true;
     }
-    mCamCounter++;
-
-    ofLog(OF_LOG_NOTICE) << "trying to open Cam: " << mCamId<<std::endl;
   }
 
   ofLog(OF_LOG_NOTICE) << "loaded Cam: " << mCamId <<

@@ -25,7 +25,7 @@ void ofApp::setup() {
   setupGridDetector();
   setupDetection();
   setupCalibration();
-  setupCam();
+  //setupCam(); //dont load the cameras at the begining
   setupConnection();
   setupGUI();
 
@@ -380,7 +380,7 @@ void ofApp::updateGUI() {
   mBetaValue->update();
 
   mBEnableCrop->update();
-  mBEnableVideo->update();
+  mBEnableCams->update();
   mBDebugVideoGrid->update();
   mBFullCamView->update();
 
@@ -404,7 +404,7 @@ void ofApp::drawGUI() {
   mBetaValue->draw();
 
   mBEnableCrop->draw();
-  mBEnableVideo->draw();
+  mBEnableCams->draw();
   mBFullCamView->draw();
 
   mCamCalibration->draw();

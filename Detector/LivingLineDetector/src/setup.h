@@ -198,15 +198,13 @@ void ofApp::setupGUI() {
     mGridImg.at(mCurrentInputIdx)->toogleCrop();
   });
 
-  mBEnableVideo = ofxDatButton::create();
-  mBEnableVideo->setActivation(false);
-  mBEnableVideo->button = new ofxDatGuiToggle("Toogle Video");
-  mBEnableVideo->button->setPosition(sliderStartX, 60);
-  mBEnableVideo->button->setWidth(390, .4);
-  mBEnableVideo->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
-    for (auto &gridImage : mGridImg) {
-      gridImage->toogleCam();
-    }
+  mBEnableCams = ofxDatButton::create();
+  mBEnableCams->setActivation(false);
+  mBEnableCams->button = new ofxDatGuiToggle("Toogle Cam");
+  mBEnableCams->button->setPosition(sliderStartX, 60);
+  mBEnableCams->button->setWidth(390, .4);
+  mBEnableCams->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
+    setupCam();
   });
 
   //gamma

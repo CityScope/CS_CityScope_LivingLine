@@ -480,16 +480,40 @@ void ofApp::sendUDPJson(){
         ofJson json;
         int id =mb->getMarkerId();
         //not fixed or knobs
-        if(id != 40 || id != 41 || id != 49 || id != 37 || id != 38 || id != 45){
+        if(id == 3){
           json["x"] = round(mb->getPos().x);
           json["y"] = round(mb->getPos().y);
-          if(id == 3) json["type"] = 0;
-          if(id == 10) json["type"] = 1;
-          if(id == 13) json["type"] = 6;
-          if(id == 17) json["type"] = 3;
-          if(id == 22) json["type"] = 2;
-          if(id == 30) json["type"] = 5;
-          if(id == 34) json["type"] = 4;
+          json["type"] = 0;
+          fixed.push_back(json);
+        }else if(id == 10){
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
+          json["type"] = 1;
+          fixed.push_back(json);
+        }else if(id  == 13){
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
+          json["type"] = 6;
+          fixed.push_back(json);
+        }else if(id  == 17){
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
+          json["type"] = 3;
+          fixed.push_back(json);
+        }else if(id  == 22){
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
+          json["type"] = 2;
+          fixed.push_back(json);
+        }else if(id  == 30){
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
+          json["type"] = 5;
+        fixed.push_back(json);
+        }else if(id  == 34){
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
+          json["type"] = 4;
           fixed.push_back(json);
         }
       }
@@ -507,13 +531,23 @@ void ofApp::sendUDPJson(){
       for(auto & mb : markers){
         ofJson json;
         int id =mb->getMarkerId();
-        if( id == 40 || id == 41 || id == 49){
+        if( id == 40){
           json["x"]    = round(mb->getPos().x);
           json["y"]    = round(mb->getPos().y);
-          json["rot"]  = round(mb->getRot());
-          if(id == 40) json["type"] = 7;
-          if(id == 41) json["type"] = 8;
-          if(id == 49) json["type"] = 9;
+          json["rot"]  = mb->getRot();
+          json["type"] = 7;
+          free.push_back(json);
+        }else if(id == 41){
+          json["x"]    = round(mb->getPos().x);
+          json["y"]    = round(mb->getPos().y);
+          json["rot"]  = mb->getRot();
+          json["type"] = 8;
+          free.push_back(json);
+        }else if(id == 49){
+          json["x"]    = round(mb->getPos().x);
+          json["y"]    = round(mb->getPos().y);
+          json["rot"]  = mb->getRot();
+          json["type"] = 9;
           free.push_back(json);
         }
       }
@@ -531,13 +565,23 @@ void ofApp::sendUDPJson(){
       for(auto & mb : markers){
         ofJson json;
         int id =mb->getMarkerId();
-        if( id == 37 || id == 38 || id == 45){
+        if( id == 37){
           json["x"]    = round(mb->getPos().x);
           json["y"]    = round(mb->getPos().y);
-          json["rot"]  = round(mb->getRot());
-          if(id == 37) json["type"] = 10;
-          if(id == 38) json["type"] = 11;
-          if(id == 45) json["type"] = 12;
+          json["rot"]  = mb->getRot();
+          json["type"] = 10;
+          knob.push_back(json);
+        }else if(id == 38){
+          json["x"]    = round(mb->getPos().x);
+          json["y"]    = round(mb->getPos().y);
+          json["rot"]  = mb->getRot();
+          json["type"] = 11;
+          knob.push_back(json);
+        }else if(id == 45){
+          json["x"]    = round(mb->getPos().x);
+          json["y"]    = round(mb->getPos().y);
+          json["rot"]  = mb->getRot();
+          json["type"] = 12;
           knob.push_back(json);
         }
       }

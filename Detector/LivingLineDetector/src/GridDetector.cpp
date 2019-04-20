@@ -428,6 +428,8 @@ void GridDetector::cleanGrid() {
       for (auto &block : blocks) {
         int qrId  = block->getMarkerId();
 
+        block->calculateRotation();
+
           //check if the detection was free unit or a knob
         if ( qrId == 37){
           mCurrFree.at(qrId)->addPos( block->getPos() );

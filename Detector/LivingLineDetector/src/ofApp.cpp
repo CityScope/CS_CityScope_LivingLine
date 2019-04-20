@@ -543,7 +543,10 @@ void ofApp::sendUDPJson(){
   //ofLog(OF_LOG_NOTICE) << "Image json UDP writing";
   //ofSaveJson("sendUDP.json", writer);
   std::string udpjson = writer.dump();
-  udpjson.erase (udpjson.begin(), udpjson.end());
+  udpjson.erase (udpjson.begin(), udpjson.begin() +1);
+  udpjson.erase (udpjson.end()-1, udpjson.end());
+
+  ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
 
   //ofLog(OF_LOG_NOTICE) << "Set UDP Test";
   mUDPConnectionTable.Send(udpjson.c_str(), udpjson.length());

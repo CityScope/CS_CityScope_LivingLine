@@ -148,4 +148,12 @@ private:
 
     float mAlpha;
     int  mBeta;
+
+    //maping
+    float mCoorMapMinX;
+    float mCoorMapMaxX;
+
+    float mCoorMapMinY;
+    float mCoorMapMaxY;
+
 };

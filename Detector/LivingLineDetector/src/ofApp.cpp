@@ -15,7 +15,7 @@ void ofApp::setup() {
     ofSetLogLevel(OF_LOG_VERBOSE);
   }
 
-    std::setprecision(3);
+   std::setprecision(3);
 
   ofSetBackgroundAuto(false);
   ofBackground(0);
@@ -39,32 +39,15 @@ void ofApp::cleanDetection() {
   if (mBSingleGrid->isActive()) {
     mGridDetector.at(mCurrentInputIdx)->cleanGrid();
 
-    //send a single grid
-    if (mGridDetector.at(mCurrentInputIdx)->isDoneCleaner()) {
-
-    }
-
     mGridDetector.at(mCurrentInputIdx)->resetCleaner();
   } else if (mBFullGrid->isActive()) {
 
-    //if we have clean succesfully 4 times the.
-    int doneClean = 0;
     for (auto &gridDetector : mGridDetector) {
       gridDetector->cleanGrid();
-      if (gridDetector->isDoneCleaner()) {
-        doneClean++;
-      }
     }
 
-    // send UDP in the correct format.
-    if (doneClean == 5) {
-
-    }
-
-    if (doneClean == 4) {
-      for (auto &gridDetector : mGridDetector) {
+    for (auto &gridDetector : mGridDetector) {
         gridDetector->resetCleaner();
-      }
     }
   }
 }
@@ -325,8 +308,6 @@ void ofApp::draw() {
   for (auto gridDetector : mGridDetector) {
     gridDetector->drawRotation();
   }
-  // record grid
-  recordGrid();
 
   // draw GUI
   if (mDrawGUI) {

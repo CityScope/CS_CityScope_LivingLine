@@ -42,7 +42,7 @@ Living Line
 #define CAM_WIDTH  1920  //1920
 #define CAM_HEIGHT 1080 //1080
 
-#define CAM_FRAMERATE 10 //10
+#define CAM_FRAMERATE 15 //10
 
 class ofApp : public ofBaseApp {
 

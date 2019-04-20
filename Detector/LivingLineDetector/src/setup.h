@@ -104,7 +104,7 @@ void ofApp::setupGUI() {
   mBDebugVideo = ofxDatButton::create();
   mBDebugVideo->button = new ofxDatGuiToggle("Debug View", true);
   mBDebugVideo->button->setPosition(10, 10);
-  mBDebugVideo->button->setWidth(100, .4);
+  mBDebugVideo->button->setWidth(110, .4);
   mBDebugVideo->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mBDebugVideo->mActive = !mBDebugVideo->mActive;
   });
@@ -112,7 +112,7 @@ void ofApp::setupGUI() {
   mBDebugGrid = ofxDatButton::create();
   mBDebugGrid->button = new ofxDatGuiToggle("Aruco View", false);
   mBDebugGrid->button->setPosition(10, 60);
-  mBDebugGrid->button->setWidth(100, .4);
+  mBDebugGrid->button->setWidth(110, .4);
   mBDebugGrid->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mBDebugGrid->mActive = !mBDebugGrid->mActive;
   });
@@ -120,7 +120,7 @@ void ofApp::setupGUI() {
   mBDebugVideoGrid = ofxDatButton::create();
   mBDebugVideoGrid->button = new ofxDatGuiToggle("Grid View", false);
   mBDebugVideoGrid->button->setPosition(10, 110);
-  mBDebugVideoGrid->button->setWidth(100, .4);
+  mBDebugVideoGrid->button->setWidth(110, .4);
   mBDebugVideoGrid->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mBDebugVideoGrid->mActive = !mBDebugVideoGrid->mActive;
   });
@@ -128,7 +128,7 @@ void ofApp::setupGUI() {
   mBSingleGrid = ofxDatButton::create();
   mBSingleGrid->button = new ofxDatGuiToggle("Single Input", false);
   mBSingleGrid->button->setPosition(10, 160);
-  mBSingleGrid->button->setWidth(100, .4);
+  mBSingleGrid->button->setWidth(110, .4);
   mBSingleGrid->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mBSingleGrid->mActive = !mBSingleGrid->mActive;
   });
@@ -137,7 +137,7 @@ void ofApp::setupGUI() {
   mBFullGrid->setActivation(false);
   mBFullGrid->button = new ofxDatGuiToggle("Full Input");
   mBFullGrid->button->setPosition(10, 210);
-  mBFullGrid->button->setWidth(100, .4);
+  mBFullGrid->button->setWidth(110, .4);
   mBFullGrid->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mBFullGrid->mActive = !mBFullGrid->mActive;
 
@@ -152,25 +152,25 @@ void ofApp::setupGUI() {
   mBFullCamView->setActivation(false);
   mBFullCamView->button = new ofxDatGuiToggle("Full Cam View");
   mBFullCamView->button->setPosition(10, 260);
-  mBFullCamView->button->setWidth(100, .4);
+  mBFullCamView->button->setWidth(110, .4);
   mBFullCamView->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mBFullCamView->mActive = !mBFullCamView->mActive;
   });
 
   mCamCalibration = ofxDatButton::create();
   mCamCalibration->setActivation(false);
-  mCamCalibration->button = new ofxDatGuiToggle("Camera Calibration");
+  mCamCalibration->button = new ofxDatGuiToggle("Calibration");
   mCamCalibration->button->setPosition(10, 310);
-  mCamCalibration->button->setWidth(100, .4);
+  mCamCalibration->button->setWidth(110, .4);
   mCamCalibration->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mCamCalibration->mActive = !mBFullCamView->mActive;
   });
 
   mCamPerspective = ofxDatButton::create();
   mCamPerspective->setActivation(false);
-  mCamPerspective->button = new ofxDatGuiToggle("Debug Perspective");
+  mCamPerspective->button = new ofxDatGuiToggle("Perspective");
   mCamPerspective->button->setPosition(10, 360);
-  mCamPerspective->button->setWidth(100, .4);
+  mCamPerspective->button->setWidth(110, .4);
   mCamCalibration->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mCamPerspective->mActive = !mCamPerspective->mActive;
   });
@@ -179,7 +179,7 @@ void ofApp::setupGUI() {
   mSendUDP->setActivation(false);
   mSendUDP->button = new ofxDatGuiToggle("Send Json");
   mSendUDP->button->setPosition(10, 410);
-  mSendUDP->button->setWidth(100, .4);
+  mSendUDP->button->setWidth(110, .4);
   mSendUDP->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mSendUDP->mActive = !mSendUDP->mActive;
   });

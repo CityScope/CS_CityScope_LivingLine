@@ -71,7 +71,7 @@ void GridDetector::setupCleaner() {
 
   // cleaner
   mWindowCounter = 0;
-  mWindowIterMax = 4; ///
+  mWindowIterMax = 3; ///
   mCleanDone = false;
 
   for (int i = 0; i < mMaxMarkers; i++) {
@@ -361,45 +361,6 @@ void GridDetector::saveGridJson(std::string fileName){
 //-----------------------------------------------------------------------------
 void GridDetector::calibrateGrid() {
   // draw grid
-}
-
-//-----------------------------------------------------------------------------
-void GridDetector::recordGrid() {
-  if (mRecordOnce) {
-    // ofLog(OF_LOG_NOTICE) << mCurrBlock.size() << " " << mMarkers.size();
-    if (mCurrBlock.size() == mMaxMarkers) {
-      ofLog(OF_LOG_NOTICE) << mCurrBlock.size() << " markes = " << mMaxMarkers;
-
-      ofLog(OF_LOG_NOTICE) << "Detect";
-      // set ids
-      mFullIds.clear();
-      for (auto &mk : mMarkers) {
-        glm::vec2 pos = mk->getPos();
-        int k = 0;
-        for (auto &cblock : mCurrBlock) {
-          glm::vec2 cenPos = cblock->getPos();
-          float dis = glm::fastDistance(cenPos, pos);
-          int arucoID = cblock->getMarkerId();
-
-          //if the marker is inside the a distance or if the marker is a free unit then
-          if ((dis >= 0.0 && dis <= mRadDetection) || (arucoID == 37 || arucoID == 38 || arucoID == 39) ) {
-            mk->setMarkerId(mTagsIds.at(k));
-
-            // got ids/
-            mFullIds.push_back(mTagsIds.at(k));
-            break;
-          }
-          k++;
-        }
-      }
-
-      ofLog(OF_LOG_NOTICE) << "Done update fullids";
-      ofLog(OF_LOG_NOTICE) << "Num Uniques: " << mFullIds.size();
-      ofLog(OF_LOG_NOTICE) << "Done Recording";
-
-      mRecordOnce = false;
-    }
-  }
 }
 
 //-----------------------------------------------------------------------------

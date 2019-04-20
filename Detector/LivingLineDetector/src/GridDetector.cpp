@@ -58,6 +58,7 @@ void GridDetector::setId(int id) { mId = id; }
 void GridDetector::setupBlocks() {
   for (int i = 0; i < mMaxMarkers; i++) {
     QRBlockRef block = QRBlock::create();
+
     block->setMarkerId(i);
     mBlocks.push_back(block);
   }
@@ -80,8 +81,8 @@ void GridDetector::setupCleaner() {
 
   // ids from 0 -1000, max number of counters
   for (int i = 0; i < MAX_MARKERS; i++) {
-    mCenterCounter.emplace(i, 0);
-    mRotCounter.emplace(i, 0);
+    mCenterFree.emplace(i, 0);
+    mRotFree.emplace(i, 0);
   }
 
   ofLog(OF_LOG_NOTICE) << "setup clean";
@@ -439,11 +440,13 @@ void GridDetector::cleanGrid() {
       mk->resetProba();
     }
 
+    mCurrFree.clear();
+    mCurrFree.resize(MAX_MARKERS);
+
     // ofLog(OF_LOG_NOTICE) << "calculate freq";
     // calculate the frequency of ocurance
     for (auto &blocks : mTmpBlocks) {
       for (auto &block : blocks) {
-
         glm::vec2 blockPos = block->getPos();
 
         int k = 0;
@@ -452,16 +455,8 @@ void GridDetector::cleanGrid() {
           float dis = glm::fastDistance(blockPos, boardPos);
           int qrId  = block->getMarkerId();
           //check if the detection was free unit or a knob
-          if ( (dis >= 0 && dis <= mRadDetection) ||
-               (qrId == 37 || qrId == 38 || qrId == 45 ||  //knobs
-                qrId == 40 || qrId == 41 || qrId == 49) ) { //free units
-
+          if ( (dis >= 0 && dis <= mRadDetection)) { //free units
             mIdsCounter[k] = block->getMarkerId(); // block.mId
-
-            //center an rotation
-            //mCenterCounter[k] = block->getPos();
-            //mRotCounter[k] = block->getRot();
-
             mk->incProba();
             // not sure i need it break;
             break;
@@ -471,18 +466,55 @@ void GridDetector::cleanGrid() {
       }
     } //done calculating probabilty
 
+
+    //free units
+    for (auto &blocks : mTmpBlocks) {
+      for (auto &block : blocks) {
+        int qrId  = block->getMarkerId();
+          //check if the detection was free unit or a knob
+        if ( qrId == 37){
+          mCurrFree.at(qrId)->addPos( block->getPos() );
+          mCurrFree.at(qrId)->addRot( block->getRot() );
+          mCurrFree.at(qrId)->setMarkerId(qrId);
+          mCurrFree->incProba();
+        }else if( qrId == 38){
+          mCurrFree.at(qrId)->addPos( block->getPos() );
+          mCurrFree.at(qrId)->addRot( block->getRot() );
+          mCurrFree.at(qrId)->setMarkerId(qrId);
+          mCurrFree->incProba();
+        }else if( qrId == 45 ){
+          mCurrFree.at(qrId)->addPos( block->getPos() );
+          mCurrFree.at(qrId)->addRot( block->getRot() );
+          mCurrFree.at(qrId)->setMarkerId(qrId);
+          mCurrFree->incProba();
+        }
+      }
+    } //done calculating probabilty
+
+
     // ofLog(OF_LOG_NOTICE) << "Update";
 
     //check the markers that have been detected
     int i = 0;
     int indeX = 0;
+    mBlocksSend.clear();
     for (auto &mk : mMarkers) {
       float proba = mk->getProba(mWindowIterMax);
-      if (proba >= 1.0 / (float)mWindowIterMax) {
+      if (proba >= 0.5){//1.0 / (float)mWindowIterMax) {
         mk->enableOn();
 
         mk->setMarkerId(mIdsCounter[i]); //qr id
         mk->updateIdPair(mIdsCounter[i]);
+
+        //get position
+        glm::vec2 pos = mk->getPos();
+
+        MarkerArucoRef m = MarkerAruco::create();
+        m->setMarkerId(mIdsCounter[i]);
+        m->setPos(pos);
+
+        mBlocksSend.push_back(m);
+
 
         //set position, get rotation
         int id        = mIdsCounter[i];
@@ -498,6 +530,26 @@ void GridDetector::cleanGrid() {
 
       int newId = mk->getMarkerId();
     }
+
+    for (auto & mFree : mCurrFree) {
+      int itr = mFree->getInc();
+      if(itr >= 1){
+        glm::vec2 pos =  mFree->getPos();
+        float rot = mFree->getRot();
+        int id =  mFree->getMarkerId();
+
+        glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
+        float rot = glm::vec2(rot/(float)itr, rot/(float)itr);
+
+        MarkerArucoRef m = MarkerAruco::create();
+        mFree->setMarkerId(id);
+        mFree->setPos(newPos);
+        mFree->setRot(newPos);
+
+        mBlocksSend.push_back(m);
+      }
+    }
+
     // done activation and disactivation
     mTmpBlocks.clear();
     ofLog(OF_LOG_NOTICE) << "done";

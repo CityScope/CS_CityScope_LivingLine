@@ -39,9 +39,7 @@ void ofApp::cleanDetection() {
 
     //send a single grid
     if (mGridDetector.at(mCurrentInputIdx)->isDoneCleaner()) {
-      std::string udpMsg = "i ";
-      udpMsg += mGridDetector.at(mCurrentInputIdx)->getUDPMsg();
-      mUDPConnectionTable.Send(udpMsg.c_str(), udpMsg.length());
+
     }
 
     mGridDetector.at(mCurrentInputIdx)->resetCleaner();
@@ -58,45 +56,7 @@ void ofApp::cleanDetection() {
 
     // send UDP in the correct format.
     if (doneClean == 5) {
-      std::string compandStr;
-      compandStr += "i ";
 
-      for (int i = 1; i >= 0; i--) {
-        int index = i * 2;
-        int indexNext = i * 2 + 1;
-        auto currentVec = mGridDetector.at(index)->getUDPMsgVector();
-        auto nextVec = mGridDetector.at(indexNext)->getUDPMsgVector();
-
-        auto currentIntVec = mGridDetector.at(index)->getUDPVector();
-        auto nextIntVec = mGridDetector.at(indexNext)->getUDPVector();
-
-        for (int j = 0; j < currentIntVec.size(); j++) {
-          auto rowCurr = currentIntVec.at(j);
-          auto rowNext = nextIntVec.at(j);
-          std::vector<int> rowIds;
-          int length = 0;
-          for (int k = 0; k < rowNext.size(); k++) {
-            rowIds.push_back(rowNext.at(k));
-            length++;
-          }
-
-          for (int k = 0; k < rowCurr.size(); k++) {
-            rowIds.push_back(rowCurr.at(k));
-            length++;
-          }
-
-          // create strs
-          for (int k = length - 1; k >= 0; k--) {
-            compandStr += to_string(rowIds[k]) + " ";
-          }
-        }
-
-      }
-
-      // send the full grid
-      if (compandStr.size() > 0) {
-        mUDPConnectionTable.Send(compandStr.c_str(), compandStr.length());
-      }
     }
 
     if (doneClean == 4) {
@@ -556,17 +516,21 @@ void ofApp::keyPressed(int key) {
     {
       ofJson jsonFixed;
       std::string inputStr("fixed units");
+
+      //fill the fixed units with the real values
       std::vector<ofJson> fixed;
-      for(int i = 0; i < 10; i++){
+      for (auto &gridDetector : mGridDetector) {
+        auto markers = gridDetector->getCompiledMarkers();
+        for(auto & mb : markers){
           ofJson json;
-          json["x"] = 20.0 + i *30;
-          json["y"] = 10.0 + i*20;
-          json["rot"] = 10.0;
-          json["type"] = 2;
+          json["x"] = mb->getPos().x;
+          json["y"] = mb->getPos().y;
+          json["type"] = mb->getMarkerId();
           fixed.push_back(json);
         }
-        jsonFixed[inputStr] = fixed;
-        writer.push_back(jsonFixed);
+      }
+      jsonFixed[inputStr] = fixed;
+      writer.push_back(jsonFixed);
     }
 
     {

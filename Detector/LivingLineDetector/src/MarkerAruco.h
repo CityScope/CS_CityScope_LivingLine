@@ -26,6 +26,8 @@ public:
     void incProba();
     float getProba(int num);
     void resetProba();
+
+    int getInc(){return mInc;}
 private:
     float mProba;
     int   mInc;
@@ -37,6 +39,7 @@ public:
     MarkerAruco() : RectDetector(), ProbabiltyAruco() {
         mGridId = -1;
         mMakerId = -1;
+        mRot = 0;
         mBType = BlockType::grid;
         mIdType = std::make_pair(-1, 0);
         mDebugPos = false;
@@ -58,7 +61,11 @@ public:
     void setPos(glm::vec2 mpos){mPos = mpos;}
     glm::vec2 getPos(){return mPos;}
 
-    //enable 
+    //rot
+    void setRot(float rot){mRot = rot;}
+    float getRot(){return mRot;}
+
+    //enable
     void enableOn(){mEnable = true;}
     void enableOff(){mEnable = false;}
 
@@ -105,6 +112,9 @@ private:
 
     //block type, RO, RL, RM, OS, etc..
     BlockType  mBType;
+
+    //rotation
+    float mRot;
 
     //Marker type
     MarkerType mCurrentType;

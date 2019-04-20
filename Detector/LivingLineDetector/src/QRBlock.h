@@ -4,6 +4,7 @@
 
 #include "ofMain.h"
 #include "CommonTypes.h"
+#include "MarkerAruco.h"
 
 /*
 Class for each  Physical Block
@@ -12,10 +13,10 @@ Class for each  Physical Block
 class QRBlock;
 typedef std::shared_ptr<QRBlock> QRBlockRef;
 
-class QRBlock {
+class QRBlock : public ProbabiltyAruco{
 
 public:
-  QRBlock() {
+  QRBlock() : ProbabiltyAruco()  {
     mPos = glm::vec2(0, 0);
     mFirstCorner = glm::vec2(0, 0);
     mRot = 0;
@@ -27,6 +28,7 @@ public:
 
   glm::vec2 getPos() { return mPos; }
   void setPos(glm::vec2 p) { mPos = p; }
+  void addPos(glm::vec2 p){mPos+=p;}
 
   glm::vec2 getFirstCorner(){return mFirstCorner;}
   void setFirstCorner(glm::vec2 pos){mFirstCorner = pos;}
@@ -39,6 +41,7 @@ public:
 
   void setRot(float rot){mRot = rot;}
   float getRot(){return mRot;}
+  void addRot(float rot){mRot += mRot;}
 
   void calculateRotation(){
     float dot = mPos.x * mFirstCorner.x + mPos.y * mFirstCorner.y;

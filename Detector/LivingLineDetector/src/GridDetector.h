@@ -98,13 +98,11 @@ public:
 
     void drawBlock(float posx, float posy, float size = 20, float space = 5);
 
-    std::string getUDPMsg(){return mUDPMsgIds;}
-    std::vector< std::string > getUDPMsgVector(){return mUDPStrIds;}
-    std::vector< std::vector<int> > getUDPVector(){return mUDPVecIds;}
-
-    std::string getUPDNumTypes(){return mUDPNumTags;}
-
     void drawRotation();
+
+    std::vector<MarkerArucoRef> getCompiledMarkers(){
+      return mBlocksSend;
+    }
 
 private:
 
@@ -160,15 +158,20 @@ private:
     //key -> value
     std::map<int, int> mIdsCounter;
     std::map<int, int> mProCounter;
-    std::map<int, glm::vec2> mCenterCounter;
-    std::map<int, float> mRotCounter;
+
+
 
     // check if found marker
     // point that we analyze if there was a detection or not
     std::vector<MarkerArucoRef> mMarkers;
 
+    std::vector<MarkerArucoRef> mBlocksSend;
+
     //obtain the QRCode from the block
     std::vector<QRBlockRef> mCurrBlock;
+
+    //free units blocks
+    std::vector<QRBlockRef> mCurrFree;
 
     //temporal vector that we clean the current blocks
     std::vector<std::vector<QRBlockRef>> mTmpBlocks;

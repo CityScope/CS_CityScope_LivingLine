@@ -131,6 +131,11 @@ public:
   ofxDatSliderRef mAlphaValue;
   ofxDatSliderRef mBetaValue;
 
+  //ofxDatSliderRef mCoordinateX;
+  //ofxDatSliderRef mAlphaValue;
+  //ofxDatSliderRef mBetaValue;
+  //ofxDatSliderRef mBetaValue;
+
   ofxDatMatrixRef mBGridSelect;
   ofxDatButtonRef mViewCams;
 

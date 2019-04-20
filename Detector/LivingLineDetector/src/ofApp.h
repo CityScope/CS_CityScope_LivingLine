@@ -79,7 +79,6 @@ public:
   void setupDetection();
 
   void updateGrid();
-  void recordGrid();
 
   // clean Detection
   void cleanDetection();

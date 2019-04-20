@@ -77,7 +77,6 @@ public:
     void gridPosIdDec();
 
     void calibrateGrid();
-    void recordGrid();
 
     void setupCleaner();
     void updateCleaner();

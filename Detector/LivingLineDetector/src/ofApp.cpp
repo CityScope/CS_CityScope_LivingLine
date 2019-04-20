@@ -352,17 +352,6 @@ void ofApp::drawInfoScreen() {
   ofDrawBitmapString("UDP Port: " + to_string(mUDPPort), posx, 270);
 }
 
-//-------------------------------------------------------------------------
-void ofApp::recordGrid() {
-  // updte points
-  if (mBSingleGrid->isActive()) {
-    mGridDetector.at(mCurrentInputIdx)->recordGrid();
-  } else if (mBFullGrid->isActive()) {
-    for (auto gridDetector : mGridDetector) {
-      gridDetector->recordGrid();
-    }
-  }
-}
 //---------------------------------------------------------------------------
 void ofApp::offScreenRenderGrid() {
   if (mBSingleGrid->isActive()) {

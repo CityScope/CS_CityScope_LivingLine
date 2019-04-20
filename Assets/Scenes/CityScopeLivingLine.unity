@@ -1778,6 +1778,7 @@ GameObject:
   - component: {fileID: 534669905}
   - component: {fileID: 534669904}
   - component: {fileID: 534669903}
+  - component: {fileID: 534669908}
   - component: {fileID: 534669906}
   - component: {fileID: 534669907}
   m_Layer: 0
@@ -1888,6 +1889,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b1129698e2da6d448cc26e280b857c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &534669908
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 534669902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8da7b7b5c3fd46b48925426a2beb13ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDisplays: 3
 --- !u!4 &545453969 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6435106877744856844, guid: 1ccd35ffd6967413491214fe6d833f68,
@@ -14005,6 +14019,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173091927137365325}
     m_Modifications:
+    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
+      propertyPath: m_Name
+      value: cameras
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -14060,14 +14082,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
       propertyPath: m_LocalScale.z
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
-      propertyPath: m_Name
-      value: cameras
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: df87b4b99559f6b4ab4b31a52eea4167, type: 3}
@@ -20877,6 +20891,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173091927137365325}
     m_Modifications:
+    - target: {fileID: 100004, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
+      propertyPath: m_Name
+      value: table_footprint
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -20932,14 +20954,6 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
       propertyPath: m_LocalScale.z
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
-      propertyPath: m_Name
-      value: table_footprint
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3344927d234675c4ea2bed188d6c877a, type: 3}
@@ -21992,6 +22006,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173091927137365325}
     m_Modifications:
+    - target: {fileID: 100004, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
+      propertyPath: m_Name
+      value: tabletop_base_glass
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400004, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -22047,14 +22069,6 @@ PrefabInstance:
     - target: {fileID: 400004, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
       propertyPath: m_LocalScale.z
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
-      propertyPath: m_Name
-      value: tabletop_base_glass
-      objectReference: {fileID: 0}
-    - target: {fileID: 100004, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 434f5c329c8002645bc2ad8cc8733b79, type: 3}
@@ -23779,6 +23793,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3173091927137365325}
     m_Modifications:
+    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
+      propertyPath: m_Name
+      value: building_high
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -23834,14 +23856,6 @@ PrefabInstance:
     - target: {fileID: 400000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
       propertyPath: m_LocalScale.z
       value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
-      propertyPath: m_Name
-      value: building_high
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7a58c7b747fd8540a8bc710a5cf3a56, type: 3}

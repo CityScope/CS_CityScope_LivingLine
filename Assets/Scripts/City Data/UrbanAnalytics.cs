@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
 
 public class UrbanAnalytics : MonoBehaviour
 {
@@ -97,8 +96,8 @@ public class UrbanAnalytics : MonoBehaviour
             else
             {
                 jsonData = udpListener._encodedUDP;
-
-                JsonData data = JsonConvert.DeserializeObject<JsonData>(jsonData);
+                
+                JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData>(jsonData);
 
                 UpdateRadarChart(data);
                 UpdateBarChart(data);

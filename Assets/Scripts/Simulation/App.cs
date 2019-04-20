@@ -1,7 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Newtonsoft.Json;
 
 public class App : MonoBehaviour
 {
@@ -134,13 +133,13 @@ public class App : MonoBehaviour
     void LoadJson()
     {
         TextAsset textAsset = Resources.Load<TextAsset>("JsonFile/CityScope_LivingLine_grid_cell_coordinates");
-        data = JsonConvert.DeserializeObject<CoordinatesData>(textAsset.text);
-
+        data = Newtonsoft.Json.JsonConvert.DeserializeObject<CoordinatesData>(textAsset.text);
+        
         textAsset = Resources.Load<TextAsset>("JsonFile/CityScope_LivingLine_type_capacity");
-        IdCapacityProperty = JsonConvert.DeserializeObject<ID_type_capacity>(textAsset.text);
+        IdCapacityProperty = Newtonsoft.Json.JsonConvert.DeserializeObject<ID_type_capacity>(textAsset.text);
 
         textAsset = Resources.Load<TextAsset>("JsonFile/CityScope_LivingLine_agent type_unit increase");
-        angentUnitIncrease = JsonConvert.DeserializeObject<AgentUnitIncrease>(textAsset.text);
+        angentUnitIncrease = Newtonsoft.Json.JsonConvert.DeserializeObject<AgentUnitIncrease>(textAsset.text);
     }
 
     void CreateAITimer()
@@ -212,15 +211,16 @@ public class App : MonoBehaviour
     {
         if (useUDP)
         {
-            JsonData data = JsonConvert.DeserializeObject<JsonData>(jsonData);
+            JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData>(jsonData);
             UpdateFixedUnits(data);
             UpdateFreeUnits(data);
             UpdateKnobs(data);
         }
         else
         {
-            TextAsset textAsset = Resources.Load<TextAsset>("JsonFile/Data_example");
-            JsonData data = JsonConvert.DeserializeObject<JsonData>(textAsset.text);
+            TextAsset textAsset = Resources.Load<TextAsset>("JsonFile/CityScope_LivingLine_input_data");
+            JsonData data = Newtonsoft.Json.JsonConvert.DeserializeObject<JsonData>(textAsset.text); 
+            //JsonData data = JsonUtility.FromJson<JsonData>(textAsset.text);
             UpdateFixedUnits(data);
             UpdateFreeUnits(data);
             UpdateKnobs(data);

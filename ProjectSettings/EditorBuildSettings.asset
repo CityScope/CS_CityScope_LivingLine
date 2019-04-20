@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/CityScopeLivingLine.unity
+    guid: 0c939640863385d46aeaf3791e509b36
   m_configObjects: {}

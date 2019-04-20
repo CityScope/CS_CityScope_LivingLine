@@ -4,7 +4,7 @@
 
 #include "ofMain.h"
 #include "CommonTypes.h"
-#include "MarkerAruco.h"
+#include "ProbaAruco.h"
 
 /*
 Class for each  Physical Block
@@ -13,6 +13,7 @@ Class for each  Physical Block
 class QRBlock;
 typedef std::shared_ptr<QRBlock> QRBlockRef;
 
+//----------------------------------------------------------
 class QRBlock : public ProbabiltyAruco{
 
 public:

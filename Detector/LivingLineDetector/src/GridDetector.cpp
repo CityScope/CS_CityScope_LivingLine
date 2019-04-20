@@ -79,12 +79,6 @@ void GridDetector::setupCleaner() {
     mProCounter.emplace(i, 0);
   }
 
-  // ids from 0 -1000, max number of counters
-  for (int i = 0; i < MAX_MARKERS; i++) {
-    mCenterFree.emplace(i, 0);
-    mRotFree.emplace(i, 0);
-  }
-
   ofLog(OF_LOG_NOTICE) << "setup clean";
 }
 
@@ -476,17 +470,17 @@ void GridDetector::cleanGrid() {
           mCurrFree.at(qrId)->addPos( block->getPos() );
           mCurrFree.at(qrId)->addRot( block->getRot() );
           mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree->incProba();
+          mCurrFree.at(qrId)->incProba();
         }else if( qrId == 38){
           mCurrFree.at(qrId)->addPos( block->getPos() );
           mCurrFree.at(qrId)->addRot( block->getRot() );
           mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree->incProba();
+          mCurrFree.at(qrId)->incProba();
         }else if( qrId == 45 ){
           mCurrFree.at(qrId)->addPos( block->getPos() );
           mCurrFree.at(qrId)->addRot( block->getRot() );
           mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree->incProba();
+          mCurrFree.at(qrId)->incProba();
         }
       }
     } //done calculating probabilty
@@ -539,12 +533,12 @@ void GridDetector::cleanGrid() {
         int id =  mFree->getMarkerId();
 
         glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
-        float rot = glm::vec2(rot/(float)itr, rot/(float)itr);
+        float newRot =  rot / (float)itr;
 
         MarkerArucoRef m = MarkerAruco::create();
         mFree->setMarkerId(id);
         mFree->setPos(newPos);
-        mFree->setRot(newPos);
+        mFree->setRot(newRot);
 
         mBlocksSend.push_back(m);
       }

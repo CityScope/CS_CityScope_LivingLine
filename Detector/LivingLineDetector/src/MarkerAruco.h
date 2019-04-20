@@ -10,33 +10,16 @@ LLL
 #include "ofMain.h"
 
 #include "CommonTypes.h"
-#include "RectDetector.h"
 #include "QRBlock.h"
+#include "ProbaAruco.h"
 
 class MarkerAruco;
-class ProbabiltyAruco;
-
 typedef std::shared_ptr<MarkerAruco> MarkerArucoRef;
 
-//------------------------------------------------------------------------------
-class ProbabiltyAruco{
+//--------------------------------------------------------------------
+class MarkerAruco : public ProbabiltyAruco{
 public:
-    ProbabiltyAruco();
-
-    void incProba();
-    float getProba(int num);
-    void resetProba();
-
-    int getInc(){return mInc;}
-private:
-    float mProba;
-    int   mInc;
-};
-
-//------------------------------------------------------------------------------
-class MarkerAruco : public RectDetector, public ProbabiltyAruco{
-public:
-    MarkerAruco() : RectDetector(), ProbabiltyAruco() {
+    MarkerAruco() : ProbabiltyAruco() {
         mGridId = -1;
         mMakerId = -1;
         mRot = 0;

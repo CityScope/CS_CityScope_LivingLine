@@ -76,7 +76,7 @@ void ofApp::update() {
     cv::Mat copyCrop;
     ofPixels pixs = pixelsImg.at(currentId);
     if (pixs.getHeight() > 0) {
-      //pixs.rotate90(2);
+      pixs.rotate90(2);
       cv::Mat input = ofxCv::toCv(pixs);;//.clone();
 
       //crop
@@ -478,7 +478,13 @@ void ofApp::sendUDPJson(){
         if(id != 40 || id != 41 || id != 49 || id != 37 || id != 38 || id != 45){
           json["x"] = round(mb->getPos().x);
           json["y"] = round(mb->getPos().y);
-          json["type"] = mb->getMarkerId();
+          if(id == 3) json["type"] = 0;
+          if(id == 10) json["type"] = 1;
+          if(id == 13) json["type"] = 6;
+          if(id == 17) json["type"] = 3;
+          if(id == 22) json["type"] = 2;
+          if(id == 30) json["type"] = 5;
+          if(id == 34) json["type"] = 4;
           fixed.push_back(json);
         }
       }
@@ -500,7 +506,9 @@ void ofApp::sendUDPJson(){
           json["x"]    = round(mb->getPos().x);
           json["y"]    = round(mb->getPos().y);
           json["rot"]  = round(mb->getRot());
-          json["type"] = mb->getMarkerId();
+          if(id == 40) json["type"] = 7;
+          if(id == 41) json["type"] = 8;
+          if(id == 49) json["type"] = 9;
           free.push_back(json);
         }
       }
@@ -522,7 +530,9 @@ void ofApp::sendUDPJson(){
           json["x"]    = round(mb->getPos().x);
           json["y"]    = round(mb->getPos().y);
           json["rot"]  = round(mb->getRot());
-          json["type"] = mb->getMarkerId();
+          if(id == 37) json["type"] = 10;
+          if(id == 38) json["type"] = 11;
+          if(id == 45) json["type"] = 12;
           knob.push_back(json);
         }
       }

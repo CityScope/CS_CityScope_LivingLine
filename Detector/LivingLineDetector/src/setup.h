@@ -175,6 +175,17 @@ void ofApp::setupGUI() {
     mCamPerspective->mActive = !mCamPerspective->mActive;
   });
 
+  mSendUDP = ofxDatButton::create();
+  mSendUDP->setActivation(false);
+  mSendUDP->button = new ofxDatGuiToggle("Send Json");
+  mSendUDP->button->setPosition(10, 410);
+  mSendUDP->button->setWidth(100, .4);
+  mSendUDP->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
+    mSendUDP->mActive = !mSendUDP->mActive;
+  });
+
+
+
   int sliderStartX = 150;
 
   mBEnableCrop = ofxDatButton::create();

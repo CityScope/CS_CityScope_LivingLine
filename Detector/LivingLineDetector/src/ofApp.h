@@ -103,6 +103,9 @@ public:
   //setup markers detector
   void   setupGridDetector();
 
+  //json
+  void sendUDPJson();
+
   // GUI
   bool mDrawGUI;
   ofxDatButtonRef mBDebugVideo;
@@ -115,6 +118,7 @@ public:
   //cam calibration process
   ofxDatButtonRef mCamCalibration;
   ofxDatButtonRef mCamPerspective;
+  ofxDatButtonRef mSendUDP;
 
   ofxDatButtonRef mBEnableCrop;
   ofxDatButtonRef mBCalibrateGrid;

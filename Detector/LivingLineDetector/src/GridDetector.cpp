@@ -530,9 +530,9 @@ void GridDetector::cleanGrid() {
         float newRot =  rot / (float)itr;
 
         MarkerArucoRef m = MarkerAruco::create();
-        mFree->setMarkerId(id);
-        mFree->setPos(newPos);
-        mFree->setRot(newRot);
+        m->setMarkerId(id);
+        m->setPos(newPos);
+        m->setRot(newRot);
 
         mBlocksSend.push_back(m);
       }

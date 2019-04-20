@@ -15,6 +15,8 @@ void ofApp::setup() {
     ofSetLogLevel(OF_LOG_VERBOSE);
   }
 
+    std::setprecision(3);
+
   ofSetBackgroundAuto(false);
   ofBackground(0);
 
@@ -338,6 +340,11 @@ void ofApp::draw() {
     mGridImg.at(mCurrentInputIdx)->drawCropRoi();
   }
 
+  //send json
+  if(mSendUDP->isActive()){
+    sendUDPJson();
+  }
+
   // draw results
   drawInfoScreen();
 }
@@ -408,6 +415,8 @@ void ofApp::updateGUI() {
   mBFullCamView->update();
 
   mCamCalibration->update();
+  mCamPerspective->update();
+  mSendUDP->update();
 
   mBDebugVideo->update();
   mBDebugGrid->update();
@@ -429,6 +438,8 @@ void ofApp::drawGUI() {
   mBFullCamView->draw();
 
   mCamCalibration->draw();
+  mCamPerspective->draw();
+  mSendUDP->draw();
 
   mBDebugVideo->draw();
   mBDebugGrid->draw();
@@ -455,6 +466,70 @@ void ofApp::saveJSONBlocks() {
 
   }
   */
+}
+
+//--------------------------------------------------------------
+void ofApp::sendUDPJson(){
+  ofJson writer;
+  {
+    ofJson jsonFixed;
+    std::string inputStr("fixed units");
+
+    //fill the fixed units with the real values
+    std::vector<ofJson> fixed;
+    for (auto &gridDetector : mGridDetector) {
+      auto markers = gridDetector->getCompiledMarkers();
+      for(auto & mb : markers){
+        ofJson json;
+        json["x"] = mb->getPos().x;
+        json["y"] = mb->getPos().y;
+        json["type"] = mb->getMarkerId();
+        fixed.push_back(json);
+      }
+    }
+    jsonFixed[inputStr] = fixed;
+    writer.push_back(jsonFixed);
+  }
+
+  {
+    ofJson jsonFree;
+    std::string inputStr("free units");
+    std::vector<ofJson> free;
+    for(int i = 0; i< 5; i++){
+        ofJson json;
+        json["x"] = i + 0.00;
+        json["y"] = i*2 + 1.00;
+        json["rot"] = 10.00;
+        json["type"] = 2;
+        free.push_back(json);
+      }
+      jsonFree[inputStr] = free;
+      writer.push_back(jsonFree);
+  }
+
+  {
+    ofJson jsonKnob;
+    std::string inputStr("knobs");
+    std::vector<ofJson> knob;
+    for(int i = 0; i < 3; i++){
+        ofJson json;
+        json["x"] = i + 1.00;
+        json["y"] = i*2;
+        json["rot"] = 10.00;
+        json["type"] = 2;
+        knob.push_back(json);
+      }
+      jsonKnob[inputStr] = knob;
+      writer.push_back(jsonKnob);
+  }
+  //ofLog(OF_LOG_NOTICE) << "Image json UDP writing";
+  //ofSaveJson("sendUDP.json", writer);
+  std::string udpjson = writer.dump();
+
+  //ofLog(OF_LOG_NOTICE) << "Set UDP Test";
+  mUDPConnectionTable.Send(udpjson.c_str(), udpjson.length());
+  //ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
+
 }
 
 //--------------------------------------------------------------
@@ -511,67 +586,7 @@ void ofApp::keyPressed(int key) {
 
   //send test json file
   if(key == 'j'){
-    std::setprecision(3);
-    ofJson writer;
-    {
-      ofJson jsonFixed;
-      std::string inputStr("fixed units");
-
-      //fill the fixed units with the real values
-      std::vector<ofJson> fixed;
-      for (auto &gridDetector : mGridDetector) {
-        auto markers = gridDetector->getCompiledMarkers();
-        for(auto & mb : markers){
-          ofJson json;
-          json["x"] = mb->getPos().x;
-          json["y"] = mb->getPos().y;
-          json["type"] = mb->getMarkerId();
-          fixed.push_back(json);
-        }
-      }
-      jsonFixed[inputStr] = fixed;
-      writer.push_back(jsonFixed);
-    }
-
-    {
-      ofJson jsonFree;
-      std::string inputStr("free units");
-      std::vector<ofJson> free;
-      for(int i = 0; i< 5; i++){
-          ofJson json;
-          json["x"] = i + 0.00;
-          json["y"] = i*2 + 1.00;
-          json["rot"] = 10.00;
-          json["type"] = 2;
-          free.push_back(json);
-        }
-        jsonFree[inputStr] = free;
-        writer.push_back(jsonFree);
-    }
-
-    {
-      ofJson jsonKnob;
-      std::string inputStr("knobs");
-      std::vector<ofJson> knob;
-      for(int i = 0; i < 3; i++){
-          ofJson json;
-          json["x"] = i + 1.00;
-          json["y"] = i*2;
-          json["rot"] = 10.00;
-          json["type"] = 2;
-          knob.push_back(json);
-        }
-        jsonKnob[inputStr] = knob;
-        writer.push_back(jsonKnob);
-    }
-
-    ofLog(OF_LOG_NOTICE) << "Image json UDP writing";
-    ofSaveJson("sendUDP.json", writer);
-    std::string udpjson = writer.dump();
-
-    ofLog(OF_LOG_NOTICE) << "Set UDP Test";
-    mUDPConnectionTable.Send(udpjson.c_str(), udpjson.length());
-    ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
+    sendUDPJson();
   }
 
   if (key == 's') {

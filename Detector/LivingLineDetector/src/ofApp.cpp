@@ -321,9 +321,9 @@ void ofApp::draw() {
   }
 
   //draw rotation of the markers
-  for (auto gridDetector : mGridDetector) {
-    gridDetector->drawRotation();
-  }
+  //for (auto gridDetector : mGridDetector) {
+    //gridDetector->drawRotation();
+  //}
 
   // draw GUI
   if (mDrawGUI) {
@@ -416,6 +416,8 @@ void ofApp::updateGUI() {
 
   mBGridSelect->update();
   mViewCams->update();
+
+  mMapMinX->update();
 }
 
 //--------------------------------------------------------------
@@ -441,6 +443,8 @@ void ofApp::drawGUI() {
 
   mBGridSelect->draw();
   mViewCams->draw();
+
+  mMapMinX->draw();
 }
 
 //--------------------------------------------------------------

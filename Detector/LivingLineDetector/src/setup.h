@@ -268,6 +268,13 @@ void ofApp::setupGUI() {
     mViewCams->mActive = !mViewCams->mActive;
   });
 
+  mMapMinX = ofxDatSlider::create();
+  mMapMinX->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("mMapMinX", 1.03, 0, 3));
+  mMapMinX->slider->setWidth(390, .4);
+  mMapMinX->slider->setPosition(sliderStartX, 410);
+  mMapMinX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mAlphaValue->ofParam = v.value; });
+
+
 
 
   // initial comands for setup

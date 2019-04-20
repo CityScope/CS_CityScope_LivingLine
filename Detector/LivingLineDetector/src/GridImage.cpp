@@ -217,11 +217,7 @@ void GridImage::drawCropImg() {
 //-----------------------------------------------------------------------------
 void GridImage::updateCorners(glm::vec2 corner){
 
-  //update corners
-  //mInputQuad[0]
-  //mInputQuad[1]
-  //mInputQuad[2]
-  //mInputQuad[3]
+  //update corners Input
 
   //Input Quadilateral or Image plane coordinates
   mInputQuad[cornerIndex] = cv::Point2f(corner.x, corner.y);

@@ -178,4 +178,6 @@ public:
 
   bool          mActivePerspectivePoints;
 
+  glm::vec2     mMousePos;
+
 };

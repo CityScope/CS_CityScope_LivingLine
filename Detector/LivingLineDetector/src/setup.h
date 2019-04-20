@@ -173,7 +173,7 @@ void ofApp::setupGUI() {
   mCamPerspective->button = new ofxDatGuiToggle("Perspective");
   mCamPerspective->button->setPosition(10, 360);
   mCamPerspective->button->setWidth(110, .4);
-  mCamCalibration->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
+  mCamPerspective->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
     mCamPerspective->mActive = !mCamPerspective->mActive;
   });
 

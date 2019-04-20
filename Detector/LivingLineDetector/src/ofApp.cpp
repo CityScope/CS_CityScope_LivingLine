@@ -80,7 +80,7 @@ void ofApp::update() {
       cv::Mat input = ofxCv::toCv(pixs);;//.clone();
 
       //crop
-      if(!mCamPerspective-isActive()){
+      if( !mCamPerspective->isActive() ){
         mGridImg.at(currentId)->cropImg(input);
         cv::Mat copMat = mGridImg.at(currentId)->getCropMat();
         copMat.copyTo(copyCrop);
@@ -92,8 +92,6 @@ void ofApp::update() {
         cv::Mat copMat = mGridImg.at(currentId)->getPersMat();
         copMat.copyTo(copyCrop);
       }
-
-
 
       //color correction
       mGridImg.at(currentId)->setGamma(mGammaValue->getValue());
@@ -117,7 +115,7 @@ void ofApp::update() {
         //pixs.rotate90(2);
         cv::Mat input = ofxCv::toCv(pixs);
 
-
+        //crop img
         mGridImg.at(i)->cropImg(input);
         cv::Mat copMat = mGridImg.at(i)->getCropMat();
         copMat.copyTo(copyCrop);
@@ -342,6 +340,10 @@ void ofApp::draw() {
   //send json
   if(mSendUDP->isActive()){
     sendUDPJson();
+  }
+
+  if(mActivePerspectivePoints){
+    ofDrawCircle(mMousePos.x, mMousePos.y, 20);
   }
 
   // draw results
@@ -656,7 +658,14 @@ void ofApp::keyPressed(int key) {
 void ofApp::keyReleased(int key) {}
 
 //--------------------------------------------------------------
-void ofApp::mouseMoved(int x, int y) {}
+void ofApp::mouseMoved(int x, int y) {
+
+  if(mActivePerspectivePoints){
+    mMousePos.x = x;
+    mMousePos.y = y;
+  }
+
+}
 
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button) {
@@ -679,6 +688,7 @@ void ofApp::mouseDragged(int x, int y, int button) {
       }
     }
   }
+
 
 }
 

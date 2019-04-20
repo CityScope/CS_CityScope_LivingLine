@@ -17,6 +17,8 @@ void ofApp::setupValues() {
   mCurrentInputIdx  = 0;
   mTotalMaxMarkers  = 0;
 
+  mActivePerspectivePoints = false;
+
 
   //load imputs for #cameras
 

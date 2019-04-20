@@ -176,4 +176,6 @@ public:
   std::string   mUDPRadarIp;
   int           mUDPRadarPort;
 
+  bool          mActivePerspectivePoints;
+
 };

@@ -35,6 +35,14 @@ GridImage::GridImage(glm::vec2 dims) {
   mFboResolution.begin();
   ofClear(0, 0, 0, 255);
   mFboResolution.end();
+
+  //Perspective
+  cornerIndex= 0;
+  mCalculatedPersp = false;
+  mInputQuad[0] = cv::Point2f(20, 20);
+  mInputQuad[1] = cv::Point2f(700, 20);
+  mInputQuad[2] = cv::Point2f(700, 800);
+  mInputQuad[3] = cv::Point2f(20, 800);
 }
 
 void GridImage::threadTimer(int counter) {
@@ -207,44 +215,53 @@ void GridImage::drawCropImg() {
 }
 
 //-----------------------------------------------------------------------------
-void GridImage::updateCorners(){
+void GridImage::updateCorners(glm::vec2 corner){
 
   //update corners
   //mInputQuad[0]
   //mInputQuad[1]
   //mInputQuad[2]
   //mInputQuad[3]
-  if(mEnablePerspective){
 
+  //Input Quadilateral or Image plane coordinates
+  mInputQuad[cornerIndex] = cv::Point2f(corner.x, corner.y);
+  ofLog(OF_LOG_NOTICE)<<"added point "<<cornerIndex<<" "<<corner.x<<", "<<corner.y<<std::endl;
 
+  cornerIndex++;
+  if(cornerIndex>=4){
+    cornerIndex =0;
+    ofLog(OF_LOG_NOTICE) << "new calculated perspective done";
+    mCalculatedPersp = true;
   }
+
 }
-
 //-----------------------------------------------------------------------------
-void GridImage::calculatePerspective(){
-
-  //mCropMat
-  // Input Quadilateral or Image plane coordinates
-   Point2f inputQuad[4];
-
-   inputQuad[0] = Point2f(0, 0);
-   inputQuad[1] = Point2f(0, 0);
-   inputQuad[2] = Point2f(0, 0);
-   inputQuad[3] = Point2f(0, 0);
+void GridImage::calculatePerspective(cv::Mat &inputVideo){
+    //mCropMat
 
    // Output Quadilateral or World plane coordinates
-   Point2f outputQuad[4];
-   outputQuad[0] = Point2f(0, 0);
-   outputQuad[1] = Point2f(0, 0);
-   outputQuad[2] = Point2f(0, 0);
-   outputQuad[3] = Point2f(0, 0);
+   ofPoint tl(mInputQuad[0].x, mInputQuad[0].y);
+   ofPoint tr(mInputQuad[1].x, mInputQuad[1].y);
+   ofPoint br(mInputQuad[2].x, mInputQuad[2].y);
+   ofPoint bl(mInputQuad[3].x, mInputQuad[3].y);
+
+   float widthA = sqrt( pow(br.x - bl.x, 2) +  pow(br.y - bl.y, 2) );
+   float widthB = sqrt( pow(tr.x - tl.x, 2) +  pow(tr.y - tl.y, 2) );
+   float maxWidth = glm::max(widthA, widthB);
+
+   float heightA = sqrt( pow(tr.x - br.x, 2) +  pow(tr.y - br.y, 2) );
+   float heightB = sqrt( pow(tl.x - bl.x, 2) +  pow(tl.y - bl.y, 2) );
+   float maxHeight = glm::max(heightA, heightB);
+
+   cv::Point2f outputQuad[4];
+   outputQuad[0] =  cv::Point2f(0, 0);
+   outputQuad[1] =  cv::Point2f(maxWidth - 1, 0);
+   outputQuad[2] =  cv::Point2f(maxWidth - 1, maxHeight -1);
+   outputQuad[3] =  cv::Point2f(0, maxHeight -1);
 
    // Lambda Matrix
-   Mat lambda;
-   lambda = getPerspectiveTransform( inputQuad, outputQuad );
+   Mat lambda = getPerspectiveTransform( mInputQuad, outputQuad );
 
    // Apply the Perspective Transform just found to the src image
-   warpPerspective(mCropMat, mPerspectiveMat, lambda, mPerspectiveMat.size());
-
-   //
+   warpPerspective(inputVideo, mPerspectiveMat, lambda, mPerspectiveMat.size());
 }

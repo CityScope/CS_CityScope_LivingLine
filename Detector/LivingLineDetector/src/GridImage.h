@@ -72,6 +72,7 @@ public:
     void resetCrop();
 
     cv::Mat & getCropMat(){return mCropMat;}
+    cv::Mat & getPersMat(){return mPerspectiveMat;}
 
     void setCropUp(glm::vec2 up);
     void setCropDown(glm::vec2 down);
@@ -90,13 +91,13 @@ public:
     ofTexture & getFboTexture(){return mFboResolution.getTexture();}
 
     //Perspective Transform
-    void calculatePerspective();
-
+    void calculatePerspective(cv::Mat &inputVideo);
     //get cornes for transformation
-    void updateCorners();
+    void updateCorners(glm::vec2 corner);
+
+    bool calculatedPersp(){return mCalculatedPersp;}
 
     void threadTimer(int counter);
-
 
 private:
     //input stream
@@ -131,15 +132,16 @@ private:
     glm::vec2 mCornerDown;
     glm::vec2 mDisp;
 
-    //corners
-    bool        mEnablePerspective;
+    // Perspective Transformation
+    bool        mCalculatedPersp;
     cv::Point2f mInputQuad[4];
+    cv::Mat     mPerspectiveMat;
+    int         cornerIndex;
 
     //crop Mat
     cv::Mat   mCropMat;
 
-    // Perspective Transformation
-    cv::Mat  mPerspectiveMat;
+
 
     //id of the Image
     int mId;

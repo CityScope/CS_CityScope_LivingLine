@@ -78,9 +78,22 @@ void ofApp::update() {
     if (pixs.getHeight() > 0) {
       //pixs.rotate90(2);
       cv::Mat input = ofxCv::toCv(pixs);;//.clone();
-      mGridImg.at(currentId)->cropImg(input);
-      cv::Mat copMat = mGridImg.at(currentId)->getCropMat();
-      copMat.copyTo(copyCrop);
+
+      //crop
+      if(!mCamPerspective-isActive()){
+        mGridImg.at(currentId)->cropImg(input);
+        cv::Mat copMat = mGridImg.at(currentId)->getCropMat();
+        copMat.copyTo(copyCrop);
+      }else{
+        //perspective transformation
+        if(mGridImg.at(currentId)->calculatedPersp()){
+          mGridImg.at(currentId)->calculatePerspective(input);
+        }
+        cv::Mat copMat = mGridImg.at(currentId)->getPersMat();
+        copMat.copyTo(copyCrop);
+      }
+
+
 
       //color correction
       mGridImg.at(currentId)->setGamma(mGammaValue->getValue());
@@ -103,9 +116,13 @@ void ofApp::update() {
       if (pixs.getHeight() > 0) {
         //pixs.rotate90(2);
         cv::Mat input = ofxCv::toCv(pixs);
+
+
         mGridImg.at(i)->cropImg(input);
         cv::Mat copMat = mGridImg.at(i)->getCropMat();
         copMat.copyTo(copyCrop);
+
+
         mGridImg.at(i)->adjustGamma(copyCrop);
         imageCopys.push_back(copyCrop);
       } else {
@@ -588,7 +605,11 @@ void ofApp::keyPressed(int key) {
     sendUDPJson();
   }
 
-  if (key == 's') {
+  //perspective
+  if (key == 'p') {
+    //add corners to the perspective
+    mActivePerspectivePoints  = !mActivePerspectivePoints;
+    ofLog(OF_LOG_NOTICE) << "Perspective Points " << mCurrentInputIdx<<" "<<mActivePerspectivePoints;
   }
 
   if (key == 'd') {
@@ -667,8 +688,8 @@ void ofApp::mousePressed(int x, int y, int button) {}
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button) {
   //move center points for the GUI
-  {
-
+  if(mActivePerspectivePoints){
+    mGridImg.at(mCurrentInputIdx)->updateCorners(glm::vec2(x, y));
   }
 
 }

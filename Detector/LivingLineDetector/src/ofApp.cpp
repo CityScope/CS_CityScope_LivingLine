@@ -467,9 +467,10 @@ void ofApp::saveJSONBlocks() {
 //--------------------------------------------------------------
 void ofApp::sendUDPJson(){
   ofJson writer;
+  ofJson writerObj;
   {
     ofJson jsonFixed;
-    std::string inputStr("fixed units");
+    std::string inputStr("fixed_units");
 
     //fill the fixed units with the real values
     std::vector<ofJson> fixed;
@@ -493,13 +494,13 @@ void ofApp::sendUDPJson(){
         }
       }
     }
-    jsonFixed[inputStr] = fixed;
-    writer.push_back(jsonFixed);
+    writer[inputStr] = fixed;
+    //writer.push_back(jsonFixed);
   }
 
   {
     ofJson jsonFree;
-    std::string inputStr("free units");
+    std::string inputStr("free_units");
     std::vector<ofJson> free;
     for (auto &gridDetector : mGridDetector) {
       auto markers = gridDetector->getCompiledMarkers();
@@ -517,8 +518,8 @@ void ofApp::sendUDPJson(){
         }
       }
     }
-    jsonFree[inputStr] = free;
-    writer.push_back(jsonFree);
+    writer[inputStr] = free;
+    //writer.push_back(jsonFree);
   }
 
   {
@@ -541,21 +542,16 @@ void ofApp::sendUDPJson(){
         }
       }
     }
-    jsonKnob[inputStr] = knob;
-    writer.push_back(jsonKnob);
+    writer[inputStr] = knob;
+    //writer.push_back(jsonKnob);
   }
-  //ofLog(OF_LOG_NOTICE) << "Image json UDP writing";
-  //ofSaveJson("sendUDP.json", writer);
   std::string udpjson = writer.dump();
-  udpjson.erase (udpjson.begin(), udpjson.begin() +1);
-  udpjson.erase (udpjson.end()-1, udpjson.end());
 
   ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
 
   //ofLog(OF_LOG_NOTICE) << "Set UDP Test";
   mUDPConnectionTable.Send(udpjson.c_str(), udpjson.length());
   //ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
-
 }
 
 float ofApp::round(float var)

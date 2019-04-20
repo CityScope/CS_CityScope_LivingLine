@@ -117,8 +117,6 @@ private:
     //Resolution of the I
     ofFbo               mFboResolution;
 
-    //swap camId
-    ofxDatMatrixRef     mSwapCamId;
 
     //input image
     ofImage             mVidImg;
@@ -134,6 +132,7 @@ private:
     glm::vec2 mDisp;
 
     //corners
+    bool        mEnablePerspective;
     cv::Point2f mInputQuad[4];
 
     //crop Mat

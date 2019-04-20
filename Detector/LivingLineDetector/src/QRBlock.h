@@ -45,8 +45,15 @@ public:
   void addRot(float rot){mRot += mRot;}
 
   void calculateRotation(){
-    float dot = mPos.x * mFirstCorner.x + mPos.y * mFirstCorner.y;
-    mRot = acos(dot / (glm::length(mPos) * glm::length(mFirstCorner)) );
+
+    glm::vec2 lineBetween  = mPos - mFirstCorner;
+    float mRot2 = atan2(lineBetween.x, lineBetween.y) - M_PI/2.0;
+    float mapRot = ofMap(mRot2, -M_PI/2, M_PI/2, 0, 360);
+    float mapAngle = ofMap(mapRot, -360, 360, 0, 360);
+
+    mRot = mapAngle;
+     //float maP = mapAngle + 135;
+
   }
 
 private:

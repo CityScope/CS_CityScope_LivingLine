@@ -25,7 +25,7 @@ void ofApp::setup() {
   setupGridDetector();
   setupDetection();
   setupCalibration();
-  //setupCam(); //dont load the cameras at the begining
+  setupCam(); //dont load the cameras at the begining
   setupConnection();
   setupGUI();
 
@@ -78,8 +78,8 @@ void ofApp::update() {
     cv::Mat copyCrop;
     ofPixels pixs = pixelsImg.at(currentId);
     if (pixs.getHeight() > 0) {
-      pixs.rotate90(2);
-      cv::Mat input = ofxCv::toCv(pixs).clone();
+      //pixs.rotate90(2);
+      cv::Mat input = ofxCv::toCv(pixs);;//.clone();
       mGridImg.at(currentId)->cropImg(input);
       cv::Mat copMat = mGridImg.at(currentId)->getCropMat();
       copMat.copyTo(copyCrop);
@@ -103,7 +103,7 @@ void ofApp::update() {
     for (auto &pixs : pixelsImg) {
       cv::Mat copyCrop;
       if (pixs.getHeight() > 0) {
-        pixs.rotate90(2);
+        //pixs.rotate90(2);
         cv::Mat input = ofxCv::toCv(pixs);
         mGridImg.at(i)->cropImg(input);
         cv::Mat copMat = mGridImg.at(i)->getCropMat();
@@ -128,11 +128,12 @@ void ofApp::update() {
       // calculate the number of total markers
       mTotalMarkers += mArucoDetector.at(currentId)->getNumMarkers();
 
-      // get the marker image output
-      mInputDetectImg = mArucoDetector.at(currentId)->getOfImg();
-      //vidMat = mArucoDetector.at(currentId)->getMatImg();
-
-      mGridImg.at(currentId)->updateDetectImg(mInputDetectImg);
+      if(mViewCams->isActive()){
+        // get the marker image output
+        mInputDetectImg = mArucoDetector.at(currentId)->getOfImg();
+        //vidMat = mArucoDetector.at(currentId)->getMatImg();
+        mGridImg.at(currentId)->updateDetectImg(mInputDetectImg);
+      }
 
       // save the positions and id from the detected markers.
       mGridDetector.at(currentId)->generateMarkers(mArucoDetector.at(currentId)->getTagIds(), mArucoDetector.at(currentId)->getBoard(), mSortMarkers);
@@ -154,11 +155,13 @@ void ofApp::update() {
         // calculate the number of total markers
         mTotalMarkers += mArucoDetector.at(i)->getNumMarkers();
 
-        // get the marker image output
-        mInputDetectImg = mArucoDetector.at(i)->getOfImg();
-        //vidMat = mArucoDetector.at(i)->getMatImg();
+        if(mViewCams->isActive()){
+          // get the marker image output
+          mInputDetectImg = mArucoDetector.at(i)->getOfImg();
+          //vidMat = mArucoDetector.at(i)->getMatImg();
 
-        mGridImg.at(i)->updateDetectImg(mInputDetectImg);
+          mGridImg.at(i)->updateDetectImg(mInputDetectImg);
+        }
 
         // save the positions and id from the detected markers.
         mGridDetector.at(i)->generateMarkers(mArucoDetector.at(i)->getTagIds(), mArucoDetector.at(i)->getBoard());
@@ -395,6 +398,7 @@ void ofApp::updateGUI() {
   mBDebugMarkers->update();
 
   mBGridSelect->update();
+  mViewCams->update();
 }
 
 //--------------------------------------------------------------
@@ -419,6 +423,7 @@ void ofApp::drawGUI() {
   mBDebugVideoGrid->draw();
 
   mBGridSelect->draw();
+  mViewCams->draw();
 }
 
 //--------------------------------------------------------------
@@ -451,10 +456,14 @@ void ofApp::sendUDPJson(){
       auto markers = gridDetector->getCompiledMarkers();
       for(auto & mb : markers){
         ofJson json;
-        json["x"] = mb->getPos().x;
-        json["y"] = mb->getPos().y;
-        json["type"] = mb->getMarkerId();
-        fixed.push_back(json);
+        int id =mb->getMarkerId();
+        //not fixed or knobs
+        if(id != 40 || id != 41 || id != 49 || id != 37 || id != 38 || id != 45){
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
+          json["type"] = mb->getMarkerId();
+          fixed.push_back(json);
+        }
       }
     }
     jsonFixed[inputStr] = fixed;
@@ -465,32 +474,44 @@ void ofApp::sendUDPJson(){
     ofJson jsonFree;
     std::string inputStr("free units");
     std::vector<ofJson> free;
-    for(int i = 0; i< 5; i++){
+    for (auto &gridDetector : mGridDetector) {
+      auto markers = gridDetector->getCompiledMarkers();
+      for(auto & mb : markers){
         ofJson json;
-        json["x"] = i + 0.00;
-        json["y"] = i*2 + 1.00;
-        json["rot"] = 10.00;
-        json["type"] = 2;
-        free.push_back(json);
+        int id =mb->getMarkerId();
+        if( id == 40 || id == 41 || id == 49){
+          json["x"]    = round(mb->getPos().x);
+          json["y"]    = round(mb->getPos().y);
+          json["rot"]  = round(mb->getRot());
+          json["type"] = mb->getMarkerId();
+          free.push_back(json);
+        }
       }
-      jsonFree[inputStr] = free;
-      writer.push_back(jsonFree);
+    }
+    jsonFree[inputStr] = free;
+    writer.push_back(jsonFree);
   }
 
   {
     ofJson jsonKnob;
     std::string inputStr("knobs");
     std::vector<ofJson> knob;
-    for(int i = 0; i < 3; i++){
+    for (auto &gridDetector : mGridDetector) {
+      auto markers = gridDetector->getCompiledMarkers();
+      for(auto & mb : markers){
         ofJson json;
-        json["x"] = i + 1.00;
-        json["y"] = i*2;
-        json["rot"] = 10.00;
-        json["type"] = 2;
-        knob.push_back(json);
+        int id =mb->getMarkerId();
+        if( id == 37 || id == 38 || id == 45){
+          json["x"]    = round(mb->getPos().x);
+          json["y"]    = round(mb->getPos().y);
+          json["rot"]  = round(mb->getRot());
+          json["type"] = mb->getMarkerId();
+          knob.push_back(json);
+        }
       }
-      jsonKnob[inputStr] = knob;
-      writer.push_back(jsonKnob);
+    }
+    jsonKnob[inputStr] = knob;
+    writer.push_back(jsonKnob);
   }
   //ofLog(OF_LOG_NOTICE) << "Image json UDP writing";
   //ofSaveJson("sendUDP.json", writer);
@@ -500,6 +521,16 @@ void ofApp::sendUDPJson(){
   mUDPConnectionTable.Send(udpjson.c_str(), udpjson.length());
   //ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
 
+}
+
+float ofApp::round(float var)
+{
+    // 37.66666 * 100 =3766.66
+    // 3766.66 + .5 =37.6716    for rounding off value
+    // then type cast to int so value is 3766
+    // then divided by 100 so the value converted into 37.66
+    float value = (int)(var * 100 + .5);
+    return (float)value / 100;
 }
 
 //--------------------------------------------------------------

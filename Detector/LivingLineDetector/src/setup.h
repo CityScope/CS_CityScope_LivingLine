@@ -257,6 +257,17 @@ void ofApp::setupGUI() {
     mFboSingle.end();
   });
 
+  mViewCams = ofxDatButton::create();
+  mViewCams->setActivation(false);
+  mViewCams->button = new ofxDatGuiToggle("View Cams");
+  mViewCams->button->setPosition(sliderStartX, 360);
+  mViewCams->button->setWidth(390, .4);
+  mViewCams->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
+    mViewCams->mActive = !mViewCams->mActive;
+  });
+
+
+
   // initial comands for setup
   mBFullGrid->setActivation(false);
   mBDebugVideoGrid->setActivation(false);

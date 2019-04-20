@@ -214,6 +214,10 @@ void GridImage::updateCorners(){
   //mInputQuad[1]
   //mInputQuad[2]
   //mInputQuad[3]
+  if(mEnablePerspective){
+
+
+  }
 }
 
 //-----------------------------------------------------------------------------

@@ -305,6 +305,7 @@ void GridDetector::drawRotation(){
     float py = sin(angle * TWO_PI) * 20 + pos.y;
 
     ofDrawLine(pos.x, pos.y, px, py);
+    ofLog(OF_LOG_NOTICE) << "angle: "<<angle<<std::endl;
   }
 }
 
@@ -426,6 +427,7 @@ void GridDetector::cleanGrid() {
     for (auto &blocks : mTmpBlocks) {
       for (auto &block : blocks) {
         int qrId  = block->getMarkerId();
+
           //check if the detection was free unit or a knob
         if ( qrId == 37){
           mCurrFree.at(qrId)->addPos( block->getPos() );
@@ -442,7 +444,23 @@ void GridDetector::cleanGrid() {
           mCurrFree.at(qrId)->addRot( block->getRot() );
           mCurrFree.at(qrId)->setMarkerId(qrId);
           mCurrFree.at(qrId)->incProba();
+        }else if ( qrId == 40){ //free units
+          mCurrFree.at(qrId)->addPos( block->getPos() );
+          mCurrFree.at(qrId)->addRot( block->getRot() );
+          mCurrFree.at(qrId)->setMarkerId(qrId);
+          mCurrFree.at(qrId)->incProba();
+        }else if( qrId == 41){
+          mCurrFree.at(qrId)->addPos( block->getPos() );
+          mCurrFree.at(qrId)->addRot( block->getRot() );
+          mCurrFree.at(qrId)->setMarkerId(qrId);
+          mCurrFree.at(qrId)->incProba();
+        }else if( qrId == 49 ){
+          mCurrFree.at(qrId)->addPos( block->getPos() );
+          mCurrFree.at(qrId)->addRot( block->getRot() );
+          mCurrFree.at(qrId)->setMarkerId(qrId);
+          mCurrFree.at(qrId)->incProba();
         }
+
       }
     } //done calculating probabilty
 
@@ -492,6 +510,7 @@ void GridDetector::cleanGrid() {
 
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(id);
+
         m->setPos(newPos);
         m->setRot(newRot);
 

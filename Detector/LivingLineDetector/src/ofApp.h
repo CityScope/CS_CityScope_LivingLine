@@ -105,6 +105,9 @@ public:
   //json
   void sendUDPJson();
 
+  //round
+  float round(float var);
+
   // GUI
   bool mDrawGUI;
   ofxDatButtonRef mBDebugVideo;
@@ -129,6 +132,7 @@ public:
   ofxDatSliderRef mBetaValue;
 
   ofxDatMatrixRef mBGridSelect;
+  ofxDatButtonRef mViewCams;
 
   // 4 camera render
   ofFbo mFboSingle;

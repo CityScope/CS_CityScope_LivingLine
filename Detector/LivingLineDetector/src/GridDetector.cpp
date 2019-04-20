@@ -103,10 +103,6 @@ void GridDetector::setupGridJsonPos(std::string filePos) {
           float posx = gridPos[to_string(i)]["posx"];
           float posy = gridPos[to_string(i)]["posy"];
 
-          m->setRectPos(
-              glm::vec2(posx - 20, posy - 20), glm::vec2(posx + 20, posy - 20),
-              glm::vec2(posx + 20, posy + 20), glm::vec2(posx - 20, posy + 20));
-
           m->setPos(glm::vec2(posx, posy));
           m->setGridId(i);
 

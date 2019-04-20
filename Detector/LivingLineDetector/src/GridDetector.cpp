@@ -430,8 +430,12 @@ void GridDetector::cleanGrid() {
       mk->resetProba();
     }
 
+    //clean free memory
     mCurrFree.clear();
-    mCurrFree.resize(MAX_MARKERS);
+    for(int i = 0; i < MAX_MARKERS; i++){
+      QRBlockRef free =  QRBlock::create();
+      mCurrFree.push_back(free);
+    }
 
     // ofLog(OF_LOG_NOTICE) << "calculate freq";
     // calculate the frequency of ocurance
@@ -504,12 +508,6 @@ void GridDetector::cleanGrid() {
         m->setPos(pos);
 
         mBlocksSend.push_back(m);
-
-
-        //set position, get rotation
-        int id        = mIdsCounter[i];
-      //  glm::vec2 pos = mCenterCounter[i];
-      //  float rot     = mRotCounter[i];
 
       } else {
         mk->enableOff();

@@ -10,6 +10,7 @@ public class PathPoint : Point
        Residence,
        Exit,
        Enter,
+       custum,
     }
 
     public PathPointType pathPointType;

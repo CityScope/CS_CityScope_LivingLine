@@ -35,16 +35,18 @@ public class BarChart : MonoBehaviour
                 meshRenderers.Add(mr);
             }
         }
+
+        InvokeRepeating("UpdateBarChart", 1, 0.3f);
     }
 
 
-    void Update()
+    void UpdateBarChart()
     {
         // enable or disable gos by metrics
-        for (int j=0;j<bars.Count;j++)
+        for (int j = 0; j < bars.Count; j++)
         {
             GameObject bar = bars[j];
-            for (int i = 0; i < bar.transform.childCount; i ++)
+            for (int i = 0; i < bar.transform.childCount; i++)
             {
                 if (metrics[j] > 1.0f / bar.transform.childCount * i && metrics[j] <= 1.0f / bar.transform.childCount * (i + 1))
                 {
@@ -57,20 +59,20 @@ public class BarChart : MonoBehaviour
             }
         }
 
-        
         // decide color by vizType
         foreach (MeshRenderer mr in meshRenderers)
         {
-            if (mr.material.name.Contains("Line"))
+            if (mr.sharedMaterial.name.Contains("Line"))
             {
-                mr.material = vizProfileMaterials[vizType];
+                if (mr.sharedMaterial != vizProfileMaterials[vizType])
+                    mr.sharedMaterial = vizProfileMaterials[vizType];
             }
             else
             {
-                mr.material = vizFillMaterials[vizType];
+                if (mr.sharedMaterial != vizFillMaterials[vizType])
+                    mr.sharedMaterial = vizFillMaterials[vizType];
             }
         }
-
     }
 
 }

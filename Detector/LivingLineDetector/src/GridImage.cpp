@@ -257,11 +257,18 @@ void GridImage::calculatePerspective(cv::Mat &inputVideo){
    // Lambda Matrix
    Mat lambda = getPerspectiveTransform( mInputQuad, outputQuad );
 
+   cv::Size matSize(maxWidth, maxHeight);
+
    // Apply the Perspective Transform just found to the src image
-   warpPerspective(inputVideo, mPerspectiveMat, lambda, mPerspectiveMat.size());
+   warpPerspective(inputVideo, mPerspectiveMat, lambda, matSize);
 }
 //-----------------------------------------------------------------------------
 void GridImage::resetPerspetive(){
-  mCalculatedPersp = false;
+  mCalculatedPersp = true;
   cornerIndex      = 0;
+
+  mInputQuad[0] =  cv::Point2f(0, 0);
+  mInputQuad[1] =  cv::Point2f(mDim.x - 1, 0);
+  mInputQuad[2] =  cv::Point2f(mDim.x - 1, mDim.y -1);
+  mInputQuad[3] =  cv::Point2f(0, mDim.y -1);
 }

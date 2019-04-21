@@ -17,7 +17,8 @@ void ofApp::setupValues() {
   mTotalMaxMarkers  = 0;
 
   mActivePerspectivePoints = false;
-
+  mPerspInc = glm::vec2(0, 0);
+  mPerspectiveIndex = 0; 
   //load imputs for #cameras
 
   if(mNumInputs >= 1){

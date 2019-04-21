@@ -347,7 +347,11 @@ void ofApp::draw() {
   }
 
   if(mActivePerspectivePoints){
+    ofSetColor(0, 200, 255, 150);
     ofDrawCircle(mMousePos.x, mMousePos.y, 20);
+
+    ofSetColor(0, 220, 225, 150);
+    ofDrawCircle(mCurretPerspInc.x, mCurretPerspInc.y, 15);
   }
 
   // draw results
@@ -638,8 +642,45 @@ void ofApp::keyPressed(int key) {
   }
 
   if (key == '1') {
-
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
+      mPerspectiveIndex++;
+      if(mPerspectiveIndex>=4){
+        mPerspectiveIndex =0;
+      }
+      ofLog(OF_LOG_NOTICE) << "Perspective Index " << mPerspectiveIndex;
+    }
   }
+
+  if(key == OF_KEY_UP){
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
+      mPerspInc =glm::vec2(0.1, 0);
+      mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
+      mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
+    }
+  }
+  if(key == OF_KEY_DOWN){
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
+      mPerspInc =glm::vec2(-0.1, 0);
+      mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
+      mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
+    }
+  }
+  if(key == OF_KEY_RIGHT){
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
+      mPerspInc =glm::vec2(0, 0.1);
+      mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
+      mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
+    }
+  }
+  if(key == OF_KEY_LEFT){
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
+      mPerspInc =glm::vec2(0, -0.1);
+      mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
+      mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
+    }
+  }
+
+  //up, down
 
   if (key == '5') {
     mGridImg.at(mCurrentInputIdx)->setCropDisp(mGridImg.at(mCurrentInputIdx)->getCropDisp() + glm::vec2(1, 1));

@@ -103,6 +103,10 @@ public:
 
     void resetPerspetive();
 
+    void setInputPersp(glm::vec2 pos, int index);
+    void addInputPersp(glm::vec2 pos, int index);
+
+    glm::vec2 getInputPersp(int index);
 private:
     //input stream
     ofVideoGrabber      mCam;

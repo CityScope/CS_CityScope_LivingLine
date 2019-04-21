@@ -184,6 +184,9 @@ public:
   int           mUDPRadarPort;
 
   bool          mActivePerspectivePoints;
+  glm::vec2     mPerspInc;
+  int           mPerspectiveIndex;
+  glm::vec2     mCurretPerspInc;
 
   glm::vec2     mMousePos;
 

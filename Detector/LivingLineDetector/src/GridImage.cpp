@@ -263,6 +263,20 @@ void GridImage::calculatePerspective(cv::Mat &inputVideo){
    warpPerspective(inputVideo, mPerspectiveMat, lambda, matSize);
 }
 //-----------------------------------------------------------------------------
+void GridImage::setInputPersp(glm::vec2 pos, int index){
+  mInputQuad[index] = cv::Point2f(pos.x, pos.y);
+}
+
+void GridImage::addInputPersp(glm::vec2 point, int index){
+  mInputQuad[index] += cv::Point2f(point.x, point.y);
+  ofLog(OF_LOG_NOTICE)<<"set point "<<index<<" "<<mInputQuad[index].x<<" "<<mInputQuad[index].y;
+}
+
+glm::vec2 GridImage::getInputPersp(int index){
+  return glm::vec2(mInputQuad[index].x, mInputQuad[index].y);
+}
+
+//-----------------------------------------------------------------------------
 void GridImage::resetPerspetive(){
   mCalculatedPersp = true;
   cornerIndex      = 0;

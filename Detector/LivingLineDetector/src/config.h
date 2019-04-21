@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 /*
 
@@ -22,6 +23,7 @@ public:
     //add here config parameters
     int width;
     int height;
+    std::string projectName;
 
 private:
 
@@ -29,6 +31,7 @@ private:
     SystemVars() {
         width  = 1920;
         height =  1080;
+        projectName = "";
     }
 
     SystemVars(SystemVars const&) = delete;

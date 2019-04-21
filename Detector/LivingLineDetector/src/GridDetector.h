@@ -106,12 +106,12 @@ public:
     void calculateRotations();
 
     //coordinate mapping
-    float setMapCoord(float minX, flaot maxX, float minY, float maxY);
+    float setMapCoord(float minX, float maxX, float minY, float maxY);
     float getCoordMapMinX(){return mCoordMapMinX;}
     float getCoordMapMaxX(){return mCoordMapMaxX;}
     float getCoordMapMinY(){return mCoordMapMinY;}
     float getCoordMapMaxY(){return mCoordMapMaxY;}
-    void setCoordDims(glm::vec2 dims){mCoordDim = dims;}
+    void setCoordDim(glm::vec2 dims){mCoordDim = dims;}
 
 private:
 
@@ -131,7 +131,7 @@ private:
     glm::vec2  mGridDim;
 
     //coordinate Dimenstions
-    glm::vec   mCoordDim;
+    glm::vec2   mCoordDim;
 
     //id;
     int mId;
@@ -190,7 +190,7 @@ private:
     std::vector<int> mTagsIds;
     std::vector<int> mFullIds;
 
-    //coordinate maping
+    //coordinate maping for unity
     float mCoordMapMinX;
     float mCoordMapMaxX;
     float mCoordMapMinY;

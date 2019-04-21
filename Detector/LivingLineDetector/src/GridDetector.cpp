@@ -123,7 +123,7 @@ void GridDetector::setupGridJsonPos(std::string filePos) {
   }
 }
 
-float GridDetector::setMapCoord(float minX, flaot maxX, float minY, float maxY){
+float GridDetector::setMapCoord(float minX, float maxX, float minY, float maxY){
   mCoordMapMinX = minX;
   mCoordMapMaxX = maxX;
   mCoordMapMinY = minY;

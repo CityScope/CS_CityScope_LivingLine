@@ -27,6 +27,7 @@ void prepareSettings() {
 
     SystemVars::getInstance().width = js["window"]["width"];
     SystemVars::getInstance().height = js["window"]["height"];
+    SystemVars::getInstance().projectName = js["deploy"]["location"];
 
   }
 }

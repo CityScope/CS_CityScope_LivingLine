@@ -91,7 +91,7 @@ void ofApp::update() {
 
           //settiup the the dims
           glm::vec2 persp = mGridImg.at(currentId)->getPerspDim();
-          mGridDetector.at(currentId)->setCoordDims(persp);
+          mGridDetector.at(currentId)->setCoordDim(persp);
         }
         cv::Mat copMat = mGridImg.at(currentId)->getPersMat();
         copMat.copyTo(copyCrop);
@@ -491,8 +491,9 @@ void ofApp::sendUDPJson(){
       float maxX = mMapMaxX->getValue();
       float minY = mMapMinY->getValue();
       float maxY = mMapMaxY->getValue();
-        //save coordinate system
-      mGridImg.at(currentId)->setMapCoord(minX, maxX, minY, maxY);
+
+      //save coordinate system
+      mGridDetector.at(mCurrentInputIdx)->setMapCoord(minX, maxX, minY, maxY);
     }
 
     ofJson jsonFixed;
@@ -507,8 +508,8 @@ void ofApp::sendUDPJson(){
         int id =mb->getMarkerId();
         //not fixed or knobs
         if(id == 3){
-          json["x"] = map(round(mb->getPos().x);
-          json["y"] = map(round(mb->getPos().y);
+          json["x"] = round(mb->getPos().x);
+          json["y"] = round(mb->getPos().y);
           json["type"] = 0;
           fixed.push_back(json);
         }else if(id == 10){
@@ -691,7 +692,7 @@ void ofApp::keyPressed(int key) {
   if(key == 'o'){
     mGridImg.at(mCurrentInputIdx)->resetPerspetive();
     mActivePerspectivePoints = false;
-    ofLog(OF_LOG_NOTICE) << "Reset Perspective" << mCurrentInputIdx<<;
+    ofLog(OF_LOG_NOTICE) << "Reset Perspective" << mCurrentInputIdx;
   }
 
   if (key == 'd') {

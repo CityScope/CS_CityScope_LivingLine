@@ -10,6 +10,10 @@
 
   "version":{
     "v": 0.1
+  },
+
+  "authors":{
+    "0": "MIT Media Lab"
   }
 
 }

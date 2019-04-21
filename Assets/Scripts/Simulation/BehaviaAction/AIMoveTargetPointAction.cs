@@ -13,26 +13,34 @@ public class AIMoveTargetPointAction : Action
     public PathPoint.PathPointType pointType;
     public float stopDistance = 3;
     public SharedBool stopMoveFlag;
+    public bool ignoreStopFlag;
 
     public override void OnAwake()
     {
         base.OnAwake();
         ai = this.transform.GetComponent<IAstarAI>();
-        stopMoveFlag = (SharedBool)this.Owner.GetVariable("StopAiMove");
+        //stopMoveFlag = (SharedBool)this.Owner.GetVariable("StopAiMove");
     }
 
     public override void OnStart()
     {
         base.OnStart();
-        GetTarget();
+        if (this.stopMoveFlag != null && this.stopMoveFlag.Value)
+        {
+            
+        }else 
+        {
+            GetTarget();
+        }
+       
         ai.isStopped = false;
     }
 
     public override TaskStatus OnUpdate()
     {
-        if (this.stopMoveFlag != null && this.stopMoveFlag.Value)
+        if (this.stopMoveFlag != null && this.stopMoveFlag.Value&& !ignoreStopFlag)
         {
-            ai.isStopped = true;
+            //ai.isStopped = true;
             return TaskStatus.Running;
         }
         if (target != null && ai != null) ai.destination = target.Value.position;
@@ -42,6 +50,13 @@ public class AIMoveTargetPointAction : Action
             ai.isStopped = true;
             return TaskStatus.Success;
         }
+
+        if(target == null)
+        {
+            GetTarget();
+        }
+
+        ai.isStopped = false;
         return TaskStatus.Running;
     }
 

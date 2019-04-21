@@ -35,6 +35,10 @@ public class App : MonoBehaviour
     public GameObject pathPointRoot;
     public int maxAINum;
     public int perCreateAINum;
+    public float createAITimer = 100;
+
+    public float influenceAIDistance;
+    public float influenceAINum;
 
     #region PointList
     private List<GameObject> aiList = new List<GameObject>();
@@ -88,7 +92,7 @@ public class App : MonoBehaviour
     void Start()
     {
         Invoke("CreateAITimer", 2);
-        InvokeRepeating("CreateAITimer", 20,20);
+        InvokeRepeating("CreateAITimer", createAITimer, createAITimer);
 
         // if use udp
         if (useUDP)
@@ -254,6 +258,8 @@ public class App : MonoBehaviour
         }
     }
 
+    Dictionary<int, GameObject> freeUnitDic = new Dictionary<int, GameObject>(); 
+
     // RZ TODO: need to be optimized, now deleting and re-instantiate every frame
     void UpdateFreeUnits(JsonData jsonData)
     {
@@ -336,6 +342,21 @@ public class App : MonoBehaviour
     public void ToggleUseUDP(bool toggleValue)
     {
         useUDP = toggleValue;
+    }
+
+    public List<GameObject> GetNearListAI(Vector3 pos)
+    {
+        List<GameObject> goList = new List<GameObject>();
+
+        foreach(GameObject go in this.aiList)
+        {
+            if(Vector3.Distance( go.transform.position,pos)<= influenceAIDistance&&goList.Count<influenceAINum)
+            {
+                goList.Add(go);
+            }
+        }
+
+        return goList;
     }
 }
 

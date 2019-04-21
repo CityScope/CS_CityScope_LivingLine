@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using BehaviorDesigner.Runtime;
 
 public class FixedUnit : MonoBehaviour
 {
@@ -80,10 +81,24 @@ public class FixedUnit : MonoBehaviour
 
     private void UpdateAI()
     {
-        for(int i=0;i<10;i++)
+
+        //for(int i=0;i<10;i++)
+        //{
+        //    SingletonTMono<App>.Instance.CreateAI(this.transform.position);
+        //}
+        List<GameObject> goList = SingletonTMono<App>.Instance.GetNearListAI(this.transform.position);
+        foreach(GameObject go in goList)
         {
-            SingletonTMono<App>.Instance.CreateAI(this.transform.position);
+            BehaviorDesigner.Runtime.BehaviorTree  tree = go.GetComponent<BehaviorDesigner.Runtime.BehaviorTree>();
+            SharedTransform st = new SharedTransform();
+            st.Value = this.transform;
+            tree.SetVariable("EventTarget", st);
+
+            SharedBool sb = new SharedBool();
+            sb.Value = true;
+            tree.SetVariable("EventTargetFlag", sb);
         }
+
     }
 
 }

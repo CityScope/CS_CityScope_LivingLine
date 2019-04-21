@@ -86,7 +86,7 @@ void ofApp::update() {
         copMat.copyTo(copyCrop);
       }else{
         //perspective transformation
-        if(mGridImg.at(currentId)->calculatedPersp()){
+        if(mGridImg.at(currentId)->isCalculatedPersp()){
           mGridImg.at(currentId)->calculatePerspective(input);
 
           //settiup the the dims
@@ -378,6 +378,7 @@ void ofApp::drawInfoScreen() {
   ofDrawBitmapString("Full Dim: " + to_string(int(mFullGridDim.x)) + " " + to_string(int(mFullGridDim.y)), posx, 210);
   ofDrawBitmapString("UDP IP: " + mUDPIp, posx, 250);
   ofDrawBitmapString("UDP Port: " + to_string(mUDPPort), posx, 270);
+  ofDrawBitmapString("Persp: "+to_string(mPerspectiveIndex)+" - "+to_string(mCurretPerspInc.x)+" "+to_string(mCurretPerspInc.y), posx, 290);
 }
 
 //---------------------------------------------------------------------------
@@ -642,7 +643,7 @@ void ofApp::keyPressed(int key) {
   }
 
   if (key == '1') {
-    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
       mPerspectiveIndex++;
       if(mPerspectiveIndex>=4){
         mPerspectiveIndex =0;
@@ -652,29 +653,29 @@ void ofApp::keyPressed(int key) {
   }
 
   if(key == OF_KEY_UP){
-    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
-      mPerspInc =glm::vec2(0.1, 0);
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
+      mPerspInc = glm::vec2(0.2, 0.0);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
   }
   if(key == OF_KEY_DOWN){
-    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
-      mPerspInc =glm::vec2(-0.1, 0);
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
+      mPerspInc = glm::vec2(-0.2, 0.0);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
   }
   if(key == OF_KEY_RIGHT){
-    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
-      mPerspInc =glm::vec2(0, 0.1);
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
+      mPerspInc = glm::vec2(0.0, 0.2);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
   }
   if(key == OF_KEY_LEFT){
-    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->calculatedPersp() ){
-      mPerspInc =glm::vec2(0, -0.1);
+    if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
+      mPerspInc = glm::vec2(0.0, -0.2);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
@@ -696,26 +697,70 @@ void ofApp::keyPressed(int key) {
   }
 
   if (key == '3') {
-        ofJson writer;
-        int i = 0;
-        for (auto &gridImage : mGridImg) {
-          ofJson pt;
-          std::string inputImg("cam_" + to_string(i));
-          pt[inputImg]["x1"] = gridImage->getCropUp().x;
-          pt[inputImg]["y1"] = gridImage->getCropUp().y;
-          pt[inputImg]["x2"] = gridImage->getCropDown().x;
-          pt[inputImg]["y2"] = gridImage->getCropDown().y;
-          pt[inputImg]["disX"] = gridImage->getCropDisp().x;
-          pt[inputImg]["disY"] = gridImage->getCropDisp().y;
-          pt[inputImg]["camId"] = gridImage->getCamId();
-          pt[inputImg]["gamma"] = gridImage->getGamma();
+      ofJson writer;
+      int i = 0;
+      for (auto &gridImage : mGridImg) {
+        ofJson pt;
+        std::string inputImg("cam_" + to_string(i));
+        pt[inputImg]["x1"] = gridImage->getCropUp().x;
+        pt[inputImg]["y1"] = gridImage->getCropUp().y;
+        pt[inputImg]["x2"] = gridImage->getCropDown().x;
+        pt[inputImg]["y2"] = gridImage->getCropDown().y;
+        pt[inputImg]["disX"] = gridImage->getCropDisp().x;
+        pt[inputImg]["disY"] = gridImage->getCropDisp().y;
+        pt[inputImg]["camId"] = gridImage->getCamId();
+        pt[inputImg]["gamma"] = gridImage->getGamma();
 
-          writer.push_back(pt);
-          i++;
+        pt[inputImg]["px0"] = gridImage->getInputPersp(0).x;
+        pt[inputImg]["py0"] = gridImage->getInputPersp(0).y;
+
+        pt[inputImg]["px1"] = gridImage->getInputPersp(1).x;
+        pt[inputImg]["py1"] = gridImage->getInputPersp(1).y;
+
+        pt[inputImg]["px2"] = gridImage->getInputPersp(2).x;
+        pt[inputImg]["py2"] = gridImage->getInputPersp(2).y;
+
+        pt[inputImg]["px3"] = gridImage->getInputPersp(3).x;
+        pt[inputImg]["py3"] = gridImage->getInputPersp(3).y;
+
+        writer.push_back(pt);
+        i++;
+      }
+
+      ofLog(OF_LOG_NOTICE) << "Image json write grid";
+      ofSaveJson("img.json", writer);
+  }
+
+  if(key == '4'){
+    ofLog(OF_LOG_NOTICE)<<"Loading Cam files";
+    ofFile file("img.json");
+    if (file.exists()) {
+      ofJson camjs;
+      file >> camjs;
+      int j = 0;
+      for (auto & cam : camjs) {
+        if(j < mNumInputs){
+          std::string inputImg("cam_" + to_string(j));
+          int camId =  cam[inputImg]["camId"];
+          ofLog(OF_LOG_NOTICE)<<"Loading: " << j << ": CamId: " << camId<<" "<<std::endl;
+
+          mGridImg.at(j)->resetPerspetive();
+          mGridImg.at(j)->calculatedPersp();
+
+          glm::vec2 inputQuad0 = glm::vec2(cam[inputImg]["px0"], cam[inputImg]["py0"]);
+          glm::vec2 inputQuad1 = glm::vec2(cam[inputImg]["px1"], cam[inputImg]["py1"]);
+          glm::vec2 inputQuad2 = glm::vec2(cam[inputImg]["px2"], cam[inputImg]["py2"]);
+          glm::vec2 inputQuad3 = glm::vec2(cam[inputImg]["px3"], cam[inputImg]["py3"]);
+
+          mGridImg.at(j)->setInputPersp(inputQuad0, 0);
+          mGridImg.at(j)->setInputPersp(inputQuad1, 1);
+          mGridImg.at(j)->setInputPersp(inputQuad2, 2);
+          mGridImg.at(j)->setInputPersp(inputQuad3, 3);
+
+          j++;
         }
-
-        ofLog(OF_LOG_NOTICE) << "Image json write grid";
-        ofSaveJson("img.json", writer);
+      }
+    }
   }
 
   //send test json file

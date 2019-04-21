@@ -95,7 +95,8 @@ public:
     //get cornes for transformation
     void updateCorners(glm::vec2 corner);
 
-    bool calculatedPersp(){return mCalculatedPersp;}
+    bool isCalculatedPersp(){return mCalculatedPersp;}
+    void calculatedPersp(){mCalculatedPersp = true;}
 
     void threadTimer(int counter);
 

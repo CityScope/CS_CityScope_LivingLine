@@ -49,7 +49,7 @@ public:
     glm::vec2 lineBetween  = mPos - mFirstCorner;
     float mRot2 = atan2(lineBetween.x, lineBetween.y) - M_PI/2.0;
     float mapRot = ofMap(mRot2, -M_PI/2, M_PI/2, 0, 360);
-    float mapAngle = ofMap(mapRot, -360, 360, 0, 360);
+    float mapAngle = ofMap(mapRot, -360, 360, 360, 0);
 
     mRot = mapAngle;
 

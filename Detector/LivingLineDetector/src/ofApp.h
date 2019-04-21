@@ -39,10 +39,10 @@ Living Line
 
 #define NUM_CAM_INPUTS 1
 
-#define CAM_WIDTH  1920  //1920
-#define CAM_HEIGHT 1080 //1080
+#define CAM_WIDTH  1280  //1920
+#define CAM_HEIGHT 720 //1080
 
-#define CAM_FRAMERATE 15 //10
+#define CAM_FRAMERATE 30 //10
 
 class ofApp : public ofBaseApp {
 
@@ -121,6 +121,7 @@ public:
   ofxDatButtonRef mCamCalibration;
   ofxDatButtonRef mCamPerspective;
   ofxDatButtonRef mSendUDP;
+  ofxDatButtonRef mDebugMode;
 
   ofxDatButtonRef mBEnableCrop;
   ofxDatButtonRef mBCalibrateGrid;

@@ -185,6 +185,17 @@ void ofApp::setupGUI() {
     mSendUDP->mActive = !mSendUDP->mActive;
   });
 
+  mDebugMode = ofxDatButton::create();
+  mDebugMode->setActivation(false);
+  mDebugMode->button = new ofxDatGuiToggle("Debug");
+  mDebugMode->button->setPosition(10, 460);
+  mDebugMode->button->setWidth(110, .4);
+  mDebugMode->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
+    mDebugMode->mActive = !mDebugMode->mActive;
+  });
+
+
+
 
 
   int sliderStartX = 150;

@@ -8,7 +8,7 @@ using namespace cv;
 void ofApp::setup() {
 
   // DEBUG
-  mDebug = true;
+  mDebug = false;
   ofLog(OF_LOG_NOTICE) << "Debuging: " << mDebug << std::endl;
 
   if(mDebug){
@@ -76,7 +76,7 @@ void ofApp::update() {
     cv::Mat copyCrop;
     ofPixels pixs = pixelsImg.at(currentId);
     if (pixs.getHeight() > 0) {
-      pixs.rotate90(2);
+      //pixs.rotate90(2);
       cv::Mat input = ofxCv::toCv(pixs);;//.clone();
 
       //crop
@@ -104,7 +104,7 @@ void ofApp::update() {
       copyCrop.copyTo(imageCopy);
       // copyCrop.copyTo(vidMat);
     } else {
-      ofLog(OF_LOG_NOTICE) << "error size ";
+      if(mDebugMode->isActive()) ofLog(OF_LOG_NOTICE) << "error size ";
     }
 
   } else if (mBFullGrid->isActive()) {
@@ -124,7 +124,7 @@ void ofApp::update() {
         mGridImg.at(i)->adjustGamma(copyCrop);
         imageCopys.push_back(copyCrop);
       } else {
-        ofLog(OF_LOG_NOTICE) << "error size: " << i;
+        if(mDebugMode->isActive()) ofLog(OF_LOG_NOTICE) << "error size: " << i;
       }
       i++;
     }
@@ -154,7 +154,7 @@ void ofApp::update() {
       //update error check
       mGridDetector.at(currentId)->updateCleaner();
     } else {
-      ofLog(OF_LOG_NOTICE) << "empty mat img copy: " << currentId;
+      if(mDebugMode->isActive()) ofLog(OF_LOG_NOTICE) << "empty mat img copy: " << currentId;
     }
   } else if (mBFullGrid->isActive()) {
     if (!imageCopys.empty()) {
@@ -184,7 +184,7 @@ void ofApp::update() {
         i++;
       }
     } else {
-      ofLog(OF_LOG_NOTICE) << "empty mat img copy ";
+      if(mDebugMode->isActive()) ofLog(OF_LOG_NOTICE) << "empty mat img copy ";
     }
   }
 
@@ -591,7 +591,7 @@ void ofApp::sendUDPJson(){
   }
   std::string udpjson = writer.dump();
 
-  ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
+  if(mDebug) ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
 
   //ofLog(OF_LOG_NOTICE) << "Set UDP Test";
   mUDPConnectionTable.Send(udpjson.c_str(), udpjson.length());

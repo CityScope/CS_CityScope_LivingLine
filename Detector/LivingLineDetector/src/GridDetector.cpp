@@ -494,7 +494,7 @@ void GridDetector::cleanGrid() {
         glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
         float newRot =  rot / (float)itr;
 
-        ofLog(OF_LOG_NOTICE) <<"new 45: "<<newRot<<" "<<mFree->getRot();
+        //ofLog(OF_LOG_NOTICE) <<"new 45: "<<newRot<<" "<<mFree->getRot();
 
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(id);

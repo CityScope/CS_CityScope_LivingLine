@@ -63,6 +63,11 @@ public class App : MonoBehaviour
     public float camResW = 1280f;
     public float camResH = 720f;
 
+    public bool moveKnobsToSidePanel = false;
+    public float xOffsetSidePanel = -487.2f;
+    public float yOffsetSidePanel = -152f;
+    public float zOffsetSidePanel = -70f;
+
     void Awake()
     {
         LoadJson();
@@ -314,13 +319,22 @@ public class App : MonoBehaviour
         {
             if (infoData.type == 10)
             {
+                float dx = 0f;
+                float dy = 0f;
+                float dz = 0f;
+                if (moveKnobsToSidePanel)
+                {
+                    dx = xOffsetSidePanel;
+                    dy = yOffsetSidePanel;
+                    dz = zOffsetSidePanel;
+                }
                 if (remap)
                 {
-                    timeKnob.transform.localPosition = new Vector3(Remap(infoData.x, 0f, camResW, xRemapMin, xRemapMax) - 287.2f - 200f, 0.0f - 152f, Remap(infoData.y, 0f, camResH, yRemapMin, yRemapMax) - 70f);
+                    timeKnob.transform.localPosition = new Vector3(Remap(infoData.x, 0f, camResW, xRemapMin, xRemapMax) + dx, dy, Remap(infoData.y, 0f, camResH, yRemapMin, yRemapMax) + dz);
                 }
                 else
                 {
-                    timeKnob.transform.localPosition = new Vector3(infoData.x - 287.2f - 200f, 0.0f - 152f, infoData.y - 70f);
+                    timeKnob.transform.localPosition = new Vector3(infoData.x + dx, dy, infoData.y + dz);
                 }
                 timeKnob.GetComponent<TimeKnob>().knobValue = 1.0f - infoData.rot / 360.0f;
             }

@@ -88,6 +88,10 @@ void ofApp::update() {
         //perspective transformation
         if(mGridImg.at(currentId)->calculatedPersp()){
           mGridImg.at(currentId)->calculatePerspective(input);
+
+          //settiup the the dims 
+          glm::vec2 persp = mGridImg.at(currentId)->getPerspDim();
+          mGridDetector.at(currentId)->setCoordDims(persp);
         }
         cv::Mat copMat = mGridImg.at(currentId)->getPersMat();
         copMat.copyTo(copyCrop);
@@ -413,11 +417,19 @@ void ofApp::updateGUI() {
   mBSingleGrid->update();
   mBFullGrid->update();
   mBDebugMarkers->update();
+  mBDebugVideoGrid->update();
 
   mBGridSelect->update();
   mViewCams->update();
 
   mMapMinX->update();
+
+  mMapMinX->update();
+  mMapMaxX->update();
+  mMapMinY->update();
+  mMapMaxY->update();
+
+  mUpdateCoordinate->update();
 }
 
 //--------------------------------------------------------------
@@ -445,6 +457,11 @@ void ofApp::drawGUI() {
   mViewCams->draw();
 
   mMapMinX->draw();
+  mMapMaxX->draw();
+  mMapMinY->draw();
+  mMapMaxY->draw();
+
+  mUpdateCoordinate->draw();
 }
 
 //--------------------------------------------------------------
@@ -467,8 +484,17 @@ void ofApp::saveJSONBlocks() {
 //--------------------------------------------------------------
 void ofApp::sendUDPJson(){
   ofJson writer;
-  ofJson writerObj;
+
   {
+    if(mUpdateCoordinate->isActive()){
+      float minX = mMapMinX->getValue();
+      float maxX = mMapMaxX->getValue();
+      float minY = mMapMinY->getValue();
+      float maxY = mMapMaxY->getValue();
+        //save coordinate system
+      mGridImg.at(currentId)->setMapCoord(minX, maxX, minY, maxY);
+    }
+
     ofJson jsonFixed;
     std::string inputStr("fixed_units");
 
@@ -481,8 +507,8 @@ void ofApp::sendUDPJson(){
         int id =mb->getMarkerId();
         //not fixed or knobs
         if(id == 3){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = map(round(mb->getPos().x);
+          json["y"] = map(round(mb->getPos().y);
           json["type"] = 0;
           fixed.push_back(json);
         }else if(id == 10){
@@ -598,12 +624,7 @@ void ofApp::sendUDPJson(){
   //ofLog(OF_LOG_NOTICE) << udpjson<<std::endl;
 }
 
-float ofApp::round(float var)
-{
-    // 37.66666 * 100 =3766.66
-    // 3766.66 + .5 =37.6716    for rounding off value
-    // then type cast to int so value is 3766
-    // then divided by 100 so the value converted into 37.66
+float ofApp::round(float var){
     float value = (int)(var * 100 + 0.5);
     return (float)value / 100;
 }

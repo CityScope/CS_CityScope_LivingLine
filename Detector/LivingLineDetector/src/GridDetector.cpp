@@ -10,6 +10,12 @@ GridDetector::GridDetector(glm::vec2 dim) {
 
   mRadDetection = RAD_DETECTION;
   mMaxMarkers = mGridDim.x * mGridDim.y;
+
+  //coordinate
+  mCoordMapMinX = 0;
+  mCoordMapMaxX = 0;
+  mCoordMapMinY = 0;
+  mCoordMapMaxY = 0;
 }
 //-----------------------------------------------------------------------------
 void GridDetector::generateGridPos() {
@@ -115,6 +121,13 @@ void GridDetector::setupGridJsonPos(std::string filePos) {
   } else {
     ofLog(OF_LOG_NOTICE) << "cannot find file";
   }
+}
+
+float GridDetector::setMapCoord(float minX, flaot maxX, float minY, float maxY){
+  mCoordMapMinX = minX;
+  mCoordMapMaxX = maxX;
+  mCoordMapMinY = minY;
+  mCoordMapMaxY = maxY;
 }
 
 //-----------------------------------------------------------------------------
@@ -411,7 +424,6 @@ void GridDetector::cleanGrid() {
 
         ofLog(OF_LOG_NOTICE) <<" "<< block->getRot() ;
 
-
           //check if the detection was free unit or a knob
         if ( qrId == 37){
           mCurrFree.at(qrId)->addPos( block->getPos() );
@@ -428,8 +440,6 @@ void GridDetector::cleanGrid() {
           mCurrFree.at(qrId)->addRot( block->getRot() );
           mCurrFree.at(qrId)->setMarkerId(qrId);
           mCurrFree.at(qrId)->incProba();
-
-
         }else if ( qrId == 40){ //free units
           mCurrFree.at(qrId)->addPos( block->getPos() );
           mCurrFree.at(qrId)->addRot( block->getRot() );
@@ -446,7 +456,6 @@ void GridDetector::cleanGrid() {
           mCurrFree.at(qrId)->setMarkerId(qrId);
           mCurrFree.at(qrId)->incProba();
         }
-
       }
     } //done calculating probabilty
 
@@ -467,7 +476,6 @@ void GridDetector::cleanGrid() {
 
         //get position
         glm::vec2 pos = mk->getPos();
-
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(mIdsCounter[i]);
         m->setPos(pos);
@@ -491,17 +499,19 @@ void GridDetector::cleanGrid() {
         float rot = mFree->getRot();
         int id =  mFree->getMarkerId();
 
+        //calcute error
         glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
         float newRot =  rot / (float)itr;
 
-        //ofLog(OF_LOG_NOTICE) <<"new 45: "<<newRot<<" "<<mFree->getRot();
+        //Coordinate mapping
+        float newMapPosX = ofMap(newPos.x, 0, mCoordDim.x, mCoordMapMinX, mCoordMapMaxX);
+        float newMapPosY = ofMap(newPos.y, 0, mCoordDim.y, mCoordMapMinY, mCoordMapMaxY);
 
+        //save the files
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(id);
-
-        m->setPos(newPos);
+        m->setPos(glm::vec2(newMapPosX, newMapPosY));
         m->setRot(newRot);
-
         mBlocksSend.push_back(m);
       }
     }

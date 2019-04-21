@@ -194,10 +194,6 @@ void ofApp::setupGUI() {
     mDebugMode->mActive = !mDebugMode->mActive;
   });
 
-
-
-
-
   int sliderStartX = 150;
 
   mBEnableCrop = ofxDatButton::create();
@@ -278,12 +274,39 @@ void ofApp::setupGUI() {
     mViewCams->mActive = !mViewCams->mActive;
   });
 
+  //coodinate mapping
   mMapMinX = ofxDatSlider::create();
-  mMapMinX->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("mMapMinX", 1.03, 0, 3));
+  mMapMinX->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Min X", 0, -20, 20));
   mMapMinX->slider->setWidth(390, .4);
   mMapMinX->slider->setPosition(sliderStartX, 410);
-  mMapMinX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mAlphaValue->ofParam = v.value; });
+  mMapMinX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMinX->ofParam = v.value; });
 
+  mMapMaxX = ofxDatSlider::create();
+  mMapMaxX->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Max X", 1.03, -320, 320));
+  mMapMaxX->slider->setWidth(390, .4);
+  mMapMaxX->slider->setPosition(sliderStartX, 460);
+  mMapMaxX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMaxX->ofParam = v.value; });
+
+  mMapMinY = ofxDatSlider::create();
+  mMapMinY->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Min Y", 1.03, -20, 20));
+  mMapMinY->slider->setWidth(390, .4);
+  mMapMinY->slider->setPosition(sliderStartX, 510);
+  mMapMinY->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMinY->ofParam = v.value; });
+
+  mMapMaxY = ofxDatSlider::create();
+  mMapMaxY->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Min X", 1.03, -140, 140));
+  mMapMaxY->slider->setWidth(390, .4);
+  mMapMaxY->slider->setPosition(sliderStartX, 560);
+  mMapMaxY->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMaxY->ofParam = v.value; });
+
+  mUpdateCoordinate = ofxDatButton::create();
+  mUpdateCoordinate->setActivation(false);
+  mUpdateCoordinate->button = new ofxDatGuiToggle("Update Coordinate");
+  mUpdateCoordinate->button->setPosition(sliderStartX, 610);
+  mUpdateCoordinate->button->setWidth(390, .4);
+  mUpdateCoordinate->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
+    mUpdateCoordinate->mActive = !mUpdateCoordinate->mActive;
+  });
 
 
 

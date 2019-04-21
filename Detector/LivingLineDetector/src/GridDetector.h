@@ -105,6 +105,14 @@ public:
 
     void calculateRotations();
 
+    //coordinate mapping
+    float setMapCoord(float minX, flaot maxX, float minY, float maxY);
+    float getCoordMapMinX(){return mCoordMapMinX;}
+    float getCoordMapMaxX(){return mCoordMapMaxX;}
+    float getCoordMapMinY(){return mCoordMapMinY;}
+    float getCoordMapMaxY(){return mCoordMapMaxY;}
+    void setCoordDims(glm::vec2 dims){mCoordDim = dims;}
+
 private:
 
     //tags
@@ -121,6 +129,9 @@ private:
 
     //dimentions
     glm::vec2  mGridDim;
+
+    //coordinate Dimenstions
+    glm::vec   mCoordDim;
 
     //id;
     int mId;
@@ -160,8 +171,6 @@ private:
     std::map<int, int> mIdsCounter;
     std::map<int, int> mProCounter;
 
-
-
     // check if found marker
     // point that we analyze if there was a detection or not
     std::vector<MarkerArucoRef> mMarkers;
@@ -181,4 +190,9 @@ private:
     std::vector<int> mTagsIds;
     std::vector<int> mFullIds;
 
+    //coordinate maping
+    float mCoordMapMinX;
+    float mCoordMapMaxX;
+    float mCoordMapMinY;
+    float mCoordMapMaxY;
 };

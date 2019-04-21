@@ -43,12 +43,6 @@ GridImage::GridImage(glm::vec2 dims) {
   mInputQuad[1] = cv::Point2f(700, 20);
   mInputQuad[2] = cv::Point2f(700, 800);
   mInputQuad[3] = cv::Point2f(20, 800);
-
-   mCoorMapMinX =0;
-   mCoorMapMaxX=0;
-
-   mCoorMapMinY=0;
-   mCoorMapMaxY=0;
 }
 
 void GridImage::threadTimer(int counter) {
@@ -260,6 +254,9 @@ void GridImage::calculatePerspective(cv::Mat &inputVideo){
    outputQuad[1] =  cv::Point2f(maxWidth - 1, 0);
    outputQuad[2] =  cv::Point2f(maxWidth - 1, maxHeight -1);
    outputQuad[3] =  cv::Point2f(0, maxHeight -1);
+
+   mPerspeDim.x = maxWidth;
+   mPerspeDim.y = maxHeight;
 
    // Lambda Matrix
    Mat lambda = getPerspectiveTransform( mInputQuad, outputQuad );

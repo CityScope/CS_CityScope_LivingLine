@@ -137,6 +137,8 @@ public:
   ofxDatSliderRef mMapMinY;
   ofxDatSliderRef mMapMaxY;
 
+  ofxDatButtonRef mUpdateCoordinate;
+
   ofxDatMatrixRef mBGridSelect;
   ofxDatButtonRef mViewCams;
 

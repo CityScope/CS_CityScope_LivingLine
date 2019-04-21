@@ -99,6 +99,8 @@ public:
 
     void threadTimer(int counter);
 
+    glm::vec2 getPerspDim(){return mPerspeDim;}
+
 private:
     //input stream
     ofVideoGrabber      mCam;
@@ -136,6 +138,7 @@ private:
     cv::Point2f mInputQuad[4];
     cv::Mat     mPerspectiveMat;
     int         cornerIndex;
+    glm::vec2   mPerspeDim;
 
     //crop Mat
     cv::Mat   mCropMat;
@@ -149,11 +152,6 @@ private:
     float mAlpha;
     int  mBeta;
 
-    //maping
-    float mCoorMapMinX;
-    float mCoorMapMaxX;
 
-    float mCoorMapMinY;
-    float mCoorMapMaxY;
 
 };

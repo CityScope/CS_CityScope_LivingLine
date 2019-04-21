@@ -501,11 +501,15 @@ void GridDetector::cleanGrid() {
 
         //calcute error
         glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
+
         float newRot =  rot / (float)itr;
 
         //Coordinate mapping
         float newMapPosX = ofMap(newPos.x, 0, mGridDim.x, mCoordMapMinX, mCoordMapMaxX);
         float newMapPosY = ofMap(newPos.y, 0, mGridDim.y, mCoordMapMinY, mCoordMapMaxY);
+
+        ofLog(OF_LOG_NOTICE) <<pos.x<<" "<<pos.y<<" "<<itr<<" "<<newPos.x<<" "<<newPos.y;
+        ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<newMapPosX<<" "<<newMapPosY;
 
         //save the files
         MarkerArucoRef m = MarkerAruco::create();

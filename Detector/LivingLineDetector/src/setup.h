@@ -294,7 +294,7 @@ void ofApp::setupGUI() {
   mMapMinY->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMinY->ofParam = v.value; });
 
   mMapMaxY = ofxDatSlider::create();
-  mMapMaxY->slider =  new ofxDatGuiSlider(mMapMaxY->ofParam.set("Map Min X", 1.03, -145, 145));
+  mMapMaxY->slider =  new ofxDatGuiSlider(mMapMaxY->ofParam.set("Map Max Y", 1.03, -145, 145));
   mMapMaxY->slider->setWidth(390, .4);
   mMapMaxY->slider->setPosition(sliderStartX, 560);
   mMapMaxY->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMaxY->ofParam = v.value; });

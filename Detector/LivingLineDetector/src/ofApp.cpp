@@ -333,11 +333,6 @@ void ofApp::draw() {
     }
   }
 
-  //draw rotation of the markers
-  //for (auto gridDetector : mGridDetector) {
-    //gridDetector->drawRotation();
-  //}
-
   // draw GUI
   if (mDrawGUI) {
     ofSetColor(255);

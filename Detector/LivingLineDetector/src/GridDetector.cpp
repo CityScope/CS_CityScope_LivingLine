@@ -505,11 +505,11 @@ void GridDetector::cleanGrid() {
         float newRot =  rot / (float)itr;
 
         //Coordinate mapping
-        float newMapPosX = ofMap(newPos.x, 0, mGridDim.x, mCoordMapMinX, mCoordMapMaxX);
-        float newMapPosY = ofMap(newPos.y, 0, mGridDim.y, mCoordMapMinY, mCoordMapMaxY);
+        float newMapPosX = ofMap(newPos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
+        float newMapPosY = ofMap(newPos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
 
         ofLog(OF_LOG_NOTICE) <<pos.x<<" "<<pos.y<<" "<<itr<<" "<<newPos.x<<" "<<newPos.y;
-        ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<newMapPosX<<" "<<newMapPosY;
+        ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<mGridDim.x<<" "<<newMapPosX;
 
         //save the files
         MarkerArucoRef m = MarkerAruco::create();
@@ -522,7 +522,7 @@ void GridDetector::cleanGrid() {
 
     // done activation and disactivation
     mTmpBlocks.clear();
-    ofLog(OF_LOG_NOTICE) << "done";
+    ofLog(OF_LOG_NOTICE) << "done: "<<mId;
   }
 
 }

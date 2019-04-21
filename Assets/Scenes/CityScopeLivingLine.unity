@@ -3978,13 +3978,13 @@ MonoBehaviour:
   radarChart: {fileID: 1798033082}
   barChart: {fileID: 1240393308}
   fixedUnitCapacities:
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
-  - 0
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
+  - 5
   fixedUnitNumbers: 00000000000000000000000000000000000000000000000000000000
   freeUnitCapacityMin: 0.1
   freeUnitCapacityMax: 30

@@ -89,7 +89,7 @@ void ofApp::update() {
         if(mGridImg.at(currentId)->calculatedPersp()){
           mGridImg.at(currentId)->calculatePerspective(input);
 
-          //settiup the the dims 
+          //settiup the the dims
           glm::vec2 persp = mGridImg.at(currentId)->getPerspDim();
           mGridDetector.at(currentId)->setCoordDims(persp);
         }
@@ -686,6 +686,12 @@ void ofApp::keyPressed(int key) {
     //add corners to the perspective
     mActivePerspectivePoints  = !mActivePerspectivePoints;
     ofLog(OF_LOG_NOTICE) << "Perspective Points " << mCurrentInputIdx<<" "<<mActivePerspectivePoints;
+  }
+  //reset perspective
+  if(key == 'o'){
+    mGridImg.at(mCurrentInputIdx)->resetPerspetive();
+    mActivePerspectivePoints = false;
+    ofLog(OF_LOG_NOTICE) << "Reset Perspective" << mCurrentInputIdx<<;
   }
 
   if (key == 'd') {

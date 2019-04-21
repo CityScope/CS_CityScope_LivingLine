@@ -101,6 +101,8 @@ public:
 
     glm::vec2 getPerspDim(){return mPerspeDim;}
 
+    void resetPerspetive();
+
 private:
     //input stream
     ofVideoGrabber      mCam;
@@ -134,11 +136,14 @@ private:
     glm::vec2 mDisp;
 
     // Perspective Transformation
-    bool        mCalculatedPersp;
-    cv::Point2f mInputQuad[4];
+    bool        mCalculatedPersp;  //can calculate perspective
     cv::Mat     mPerspectiveMat;
+
+    //perspective points
+    cv::Point2f mInputQuad[4];
     int         cornerIndex;
     glm::vec2   mPerspeDim;
+    bool        mResetPersp;
 
     //crop Mat
     cv::Mat   mCropMat;

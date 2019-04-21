@@ -18,7 +18,6 @@ void ofApp::setupValues() {
 
   mActivePerspectivePoints = false;
 
-
   //load imputs for #cameras
 
   if(mNumInputs >= 1){
@@ -282,7 +281,7 @@ void ofApp::setupGUI() {
   mMapMinX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMinX->ofParam = v.value; });
 
   mMapMaxX = ofxDatSlider::create();
-  mMapMaxX->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Max X", 1.03, -320, 320));
+  mMapMaxX->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Max X", 1.03, -325, 325));
   mMapMaxX->slider->setWidth(390, .4);
   mMapMaxX->slider->setPosition(sliderStartX, 460);
   mMapMaxX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMaxX->ofParam = v.value; });
@@ -294,7 +293,7 @@ void ofApp::setupGUI() {
   mMapMinY->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMinY->ofParam = v.value; });
 
   mMapMaxY = ofxDatSlider::create();
-  mMapMaxY->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Min X", 1.03, -140, 140));
+  mMapMaxY->slider =  new ofxDatGuiSlider(mAlphaValue->ofParam.set("Map Min X", 1.03, -145, 145));
   mMapMaxY->slider->setWidth(390, .4);
   mMapMaxY->slider->setPosition(sliderStartX, 560);
   mMapMaxY->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMaxY->ofParam = v.value; });

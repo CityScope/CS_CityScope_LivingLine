@@ -216,9 +216,6 @@ void GridImage::drawCropImg() {
 
 //-----------------------------------------------------------------------------
 void GridImage::updateCorners(glm::vec2 corner){
-
-  //update corners Input
-
   //Input Quadilateral or Image plane coordinates
   mInputQuad[cornerIndex] = cv::Point2f(corner.x, corner.y);
   ofLog(OF_LOG_NOTICE)<<"added point "<<cornerIndex<<" "<<corner.x<<", "<<corner.y<<std::endl;
@@ -229,7 +226,6 @@ void GridImage::updateCorners(glm::vec2 corner){
     ofLog(OF_LOG_NOTICE) << "new calculated perspective done";
     mCalculatedPersp = true;
   }
-
 }
 //-----------------------------------------------------------------------------
 void GridImage::calculatePerspective(cv::Mat &inputVideo){
@@ -263,4 +259,9 @@ void GridImage::calculatePerspective(cv::Mat &inputVideo){
 
    // Apply the Perspective Transform just found to the src image
    warpPerspective(inputVideo, mPerspectiveMat, lambda, mPerspectiveMat.size());
+}
+//-----------------------------------------------------------------------------
+void GridImage::resetPerspetive(){
+  mCalculatedPersp = false;
+  cornerIndex      = 0;
 }

@@ -42,7 +42,7 @@ public:
 
   void setRot(float rot){mRot = rot;}
   float getRot(){return mRot;}
-  void addRot(float rot){mRot += mRot;}
+  void addRot(float rot){mRot += rot;}
 
   void calculateRotation(){
 
@@ -52,6 +52,8 @@ public:
     float mapAngle = ofMap(mapRot, -360, 360, 0, 360);
 
     mRot = mapAngle;
+
+    ofLog(OF_LOG_NOTICE) <<" "<< mRot;
      //float maP = mapAngle + 135;
 
   }

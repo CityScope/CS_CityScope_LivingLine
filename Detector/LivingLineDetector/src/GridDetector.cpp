@@ -409,6 +409,8 @@ void GridDetector::cleanGrid() {
       for (auto &block : blocks) {
         int qrId  = block->getMarkerId();
 
+        ofLog(OF_LOG_NOTICE) <<" "<< block->getRot() ;
+
 
           //check if the detection was free unit or a knob
         if ( qrId == 37){
@@ -426,6 +428,8 @@ void GridDetector::cleanGrid() {
           mCurrFree.at(qrId)->addRot( block->getRot() );
           mCurrFree.at(qrId)->setMarkerId(qrId);
           mCurrFree.at(qrId)->incProba();
+
+
         }else if ( qrId == 40){ //free units
           mCurrFree.at(qrId)->addPos( block->getPos() );
           mCurrFree.at(qrId)->addRot( block->getRot() );
@@ -489,6 +493,8 @@ void GridDetector::cleanGrid() {
 
         glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
         float newRot =  rot / (float)itr;
+
+        ofLog(OF_LOG_NOTICE) <<"new 45: "<<newRot<<" "<<mFree->getRot();
 
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(id);

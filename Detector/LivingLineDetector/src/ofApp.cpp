@@ -149,7 +149,7 @@ void ofApp::update() {
       }
 
       // save the positions and id from the detected markers.
-      mGridDetector.at(currentId)->generateMarkers(mArucoDetector.at(currentId)->getTagIds(), mArucoDetector.at(currentId)->getBoard(), mSortMarkers);
+      mGridDetector.at(currentId)->generateMarkers(mArucoDetector.at(currentId)->getTagIds(), mArucoDetector.at(currentId)->getBoard());
 
       //update error check
       mGridDetector.at(currentId)->updateCleaner();
@@ -653,11 +653,6 @@ void ofApp::keyPressed(int key) {
 
         ofLog(OF_LOG_NOTICE) << "Image json write grid";
         ofSaveJson("img.json", writer);
-  }
-
-  if (key == 'v') {
-    mSortMarkers = !mSortMarkers;
-    ofLog(OF_LOG_NOTICE) << "Soft " << mSortMarkers;
   }
 
   //send test json file

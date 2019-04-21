@@ -169,7 +169,6 @@ public:
 
   //grid detector
   std::vector<GridDetectorRef> mGridDetector;
-  bool mSortMarkers;
 
   // send commands
   ofxUDPManager mUDPConnectionTable;

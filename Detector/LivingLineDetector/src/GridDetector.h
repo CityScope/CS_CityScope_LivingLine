@@ -63,7 +63,7 @@ public:
     void setupGridJsonPos(std::string filePos);
     void setupBlocks();
 
-    void generateMarkers(std::vector<int> & ids, std::vector<QRBlockRef> & blocks, bool sort = false );
+    void generateMarkers(std::vector<int> & ids, std::vector<QRBlockRef> & blocks);
     void clasification();
     void updateBlockTypes();
 
@@ -102,6 +102,8 @@ public:
     std::vector<MarkerArucoRef> getCompiledMarkers(){
       return mBlocksSend;
     }
+
+    void calculateRotations();
 
 private:
 

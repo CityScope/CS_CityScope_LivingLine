@@ -119,7 +119,7 @@ void GridDetector::setupGridJsonPos(std::string filePos) {
 
 //-----------------------------------------------------------------------------
 void GridDetector::generateMarkers(std::vector<int> &ids,
-                                   std::vector<QRBlockRef> &blocks, bool sort) {
+                                   std::vector<QRBlockRef> &blocks) {
 
   //copy identified ids
   mTagsIds = ids;
@@ -127,14 +127,8 @@ void GridDetector::generateMarkers(std::vector<int> &ids,
   //copy positions of the qr blokcs
   mCurrBlock = blocks;
 
-  // clasification of ids and blocks
-  if (sort) {
-    std::sort(mCurrBlock.begin(), mCurrBlock.end(),
-              [](const QRBlockRef &lhs, const QRBlockRef &rhs) -> bool {
-                return lhs->getPos().x < rhs->getPos().x;
-              });
-    ofLog(OF_LOG_NOTICE) << "sorted";
-  }
+  //calculate rotation
+  calculateRotations();
 
   mNumMarkers = mCurrBlock.size();
 
@@ -289,23 +283,10 @@ void GridDetector::drawMarkers() {
 }
 
 //-----------------------------------------------------------------------------
-void GridDetector::drawRotation(){
+void GridDetector::calculateRotations(){
   //draw rotation of the marker
   for (auto & detectedMk : mCurrBlock) {
     detectedMk->calculateRotation();
-    glm::vec2 corner = detectedMk->getFirstCorner();
-    glm::vec2 pos = detectedMk->getPos();
-
-    ofSetColor(255);
-    ofDrawLine(corner, pos);
-
-    float angle = detectedMk->getRot();
-
-    float px = cos(angle * TWO_PI) * 20 + pos.x;
-    float py = sin(angle * TWO_PI) * 20 + pos.y;
-
-    ofDrawLine(pos.x, pos.y, px, py);
-    ofLog(OF_LOG_NOTICE) << "angle: "<<angle<<std::endl;
   }
 }
 
@@ -428,7 +409,6 @@ void GridDetector::cleanGrid() {
       for (auto &block : blocks) {
         int qrId  = block->getMarkerId();
 
-        block->calculateRotation();
 
           //check if the detection was free unit or a knob
         if ( qrId == 37){

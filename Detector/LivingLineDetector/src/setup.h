@@ -12,7 +12,6 @@ void ofApp::setupValues() {
   mNumInputs        = NUM_CAM_INPUTS;
 
   mDrawGUI          = true;
-  mSortMarkers      = false;
   mRefimentDetector = true;
   mCurrentInputIdx  = 0;
   mTotalMaxMarkers  = 0;

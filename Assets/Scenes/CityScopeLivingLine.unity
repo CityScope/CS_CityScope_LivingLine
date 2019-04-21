@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -250,7 +250,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &50184866
 Transform:
   m_ObjectHideFlags: 0
@@ -983,7 +983,7 @@ PrefabInstance:
     - target: {fileID: 2371948788318410546, guid: 38eb2cd9009474ebbb9d886238a96362,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2371948788318410549, guid: 38eb2cd9009474ebbb9d886238a96362,
         type: 3}
@@ -3067,6 +3067,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Viz Type Knob
+      objectReference: {fileID: 0}
+    - target: {fileID: 7960671319727644748, guid: 75a9c0940e11d4252934ffaea35850a1,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7960671319727644751, guid: 75a9c0940e11d4252934ffaea35850a1,
         type: 3}
@@ -19843,6 +19848,41 @@ PrefabInstance:
       propertyPath: useUDP
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: maxAINum
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: remap
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: perCreateAINum
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: xRemapMin
+      value: 165
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: xRemapMax
+      value: 323
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: yRemapMin
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: yRemapMax
+      value: 72
+      objectReference: {fileID: 0}
     - target: {fileID: 7884737902184110868, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: udpListener
@@ -19902,6 +19942,11 @@ PrefabInstance:
         type: 3}
       propertyPath: data.dataString
       value: UEsDBBQAAAgIAACYn+sGGnthmwIAAHYFAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFtVE1v2zAM/SuBzltgO3bT7LY5abYBbYNmww5zD4pNx0JkydBHk7TIfx8lO7GbFTAg45F85CMpvREmdAO5kWqpWHEvCyBfRsT9k08jQr3tiRomEQ4RYVrWYBTLv4otd74BglawUqp6UWwhldpohEvKNaBJSeOiBUJvI3LoAo7d+erO0Qn/chAGVO8VRtNxGIbx7KZzD5NwPLmN4um0i7uZjZMgSSY+3Iqc07qBYs1eoWeJkmR8IYiDceidBars/ILxxCWXnDPdVUnMsfFNSGmjLWpEh4JRVO3rc/4VsG1lHP8w+LEsNZhOmaLHOVPYvJaVfJOmckw11bu2vhfKrcsTBlHsy2pZ7z9ySLxDqWT9/Zw6QcBULN890WNOtRn0fAjP+8pD36c95Tu64fCnAvEgl0paUaDRKOtCrYZoPqC6iEsryHe9X1vrFWib/6cc9lM+efmHlLN641sft8CaS9/wmYsBhcP5gQX7rdEdE6KuiN8aftHtcL06wx1T2qCpSyhcdRtplXMlC98xJ8aaVCoBHu5qbkBQbo4rpDHXM7yyDdJeWe6ou0Bd8s52vh9XIR7u/YPgyrSS+35YGn7aullJJswaqMqrAZ+u5P4edPVoDWcCekXO8IBNTKUQ7f7pD8LWVpU0H4QZOBirYE4N9bcAa8ItKYah2FAfISznbh29Ckf+F1W479k1uaKYl3uYPEjh78+789ktwtay4v2ak8kk3kwncXBDk00SzG4/06IMgnIGIY3CTR7lxN8CJrDnlK/apnWjwg0SvRaBO39+xkZLRRt/9QpF90v2WsvB+Jko5TpXAOKxZbiIBYVJ8JEoFgVDmWswhgm/e+QtI1zmOyiyC1HmG7s4GEWzniUjDXuRxiEZSf0Ll5ETOf0DUEsDBBQAAAgIAACYn+urJ+2lbAAAAHcAAAAJACQAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0Bq1YqSy0qzszPU7JSMNEz0jPSUVBKL0osyCgGChiCOKWZKSB2tJKxsUmSubGJgVmiaZKpgaWFbmJKmoFBmmWqYaKRYVKyUbJSLFB9SWVBql9ibipET0BiSUZaZl5KZl66nntRZoo7yGil2FoAUEsBAi0AFAAACAgAAJif6wYae2GbAgAAdgUAAAsAJAAAAAAAAAAAAAAAAAAAAGdyYXBoMC5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsBAi0AFAAACAgAAJif66sn7aVsAAAAdwAAAAkAJAAAAAAAAAAAAAAA6AIAAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAVBLBQYAAAAAAgACALgAAACfAwAAAAA=
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325188446542, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7884737900875790319, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}

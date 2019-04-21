@@ -47,6 +47,8 @@ public class App : MonoBehaviour
     public List<PathPoint> exitPathPointList = new List<PathPoint>();
     #endregion
 
+    public const float c_UnitXoffset = 5.5f;
+
     // RZ
     public bool useUDP = true;
     public string jsonData;
@@ -54,7 +56,13 @@ public class App : MonoBehaviour
     public GameObject freeUnitListRoot;
     public GameObject timeKnob;
 
-    public const float c_UnitXoffset = 5.5f;
+    public bool remap = false;
+    public float xRemapMin = 320f;
+    public float xRemapMax = 220f;
+    public float yRemapMin = 140f;
+    public float yRemapMax = 0f;
+    public float camResW = 1280f;
+    public float camResH = 720f;
 
     void Awake()
     {
@@ -285,7 +293,14 @@ public class App : MonoBehaviour
             }
             GameObject go = Instantiate(Resources.Load<GameObject>(sourceName));
             go.transform.parent = freeUnitListRoot.transform;
-            go.transform.localPosition = new Vector3(infoData.x, 0.0f, infoData.y);
+            if (remap)
+            {
+                go.transform.localPosition = new Vector3(Remap(infoData.x, 0f, camResW, xRemapMin, xRemapMax), 0.0f, Remap(infoData.y, 0f, camResH, yRemapMin, yRemapMax));
+            }
+            else
+            {
+                go.transform.localPosition = new Vector3(infoData.x, 0.0f, infoData.y);
+            }
             go.transform.localEulerAngles = new Vector3(0.0f, -infoData.rot, 0.0f);
             go.transform.localScale = Vector3.one;
             freeUnits.Add(go);
@@ -299,7 +314,14 @@ public class App : MonoBehaviour
         {
             if (infoData.type == 10)
             {
-                timeKnob.transform.localPosition = new Vector3(infoData.x, 0.0f, infoData.y);
+                if (remap)
+                {
+                    timeKnob.transform.localPosition = new Vector3(Remap(infoData.x, 0f, camResW, xRemapMin, xRemapMax) - 287.2f - 200f, 0.0f - 152f, Remap(infoData.y, 0f, camResH, yRemapMin, yRemapMax) - 70f);
+                }
+                else
+                {
+                    timeKnob.transform.localPosition = new Vector3(infoData.x - 287.2f - 200f, 0.0f - 152f, infoData.y - 70f);
+                }
                 timeKnob.GetComponent<TimeKnob>().knobValue = 1.0f - infoData.rot / 360.0f;
             }
         }
@@ -336,6 +358,21 @@ public class App : MonoBehaviour
     public void ToggleUseUDP(bool toggleValue)
     {
         useUDP = toggleValue;
+    }
+
+    float Remap(float from, float fromMin, float fromMax, float toMin, float toMax)
+    {
+        var fromAbs = from - fromMin;
+        var fromMaxAbs = fromMax - fromMin;
+
+        var normal = fromAbs / fromMaxAbs;
+
+        var toMaxAbs = toMax - toMin;
+        var toAbs = toMaxAbs * normal;
+
+        var to = toAbs + toMin;
+
+        return to;
     }
 }
 

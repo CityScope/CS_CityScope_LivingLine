@@ -57,6 +57,8 @@ public:
     void setBeta(int beta){mBeta = beta;}
 
     float getGamma(){return mGamma;}
+    float getAlpha(){return mAlpha;}
+    float getBeta(){return mBeta;}
 
     // clean Image
     void adjustGamma(cv::Mat &img);

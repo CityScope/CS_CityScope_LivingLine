@@ -276,7 +276,7 @@ void ofApp::setupGUI() {
 
   //coodinate mapping
   mMapMinX = ofxDatSlider::create();
-  mMapMinX->slider =  new ofxDatGuiSlider(mMapMinX->ofParam.set("Map Min X", 0, -20, 20));
+  mMapMinX->slider =  new ofxDatGuiSlider(mMapMinX->ofParam.set("Map Min X", 0, -325, 325));
   mMapMinX->slider->setWidth(390, .4);
   mMapMinX->slider->setPosition(sliderStartX, 410);
   mMapMinX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMinX->ofParam = v.value; });
@@ -288,7 +288,7 @@ void ofApp::setupGUI() {
   mMapMaxX->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMaxX->ofParam = v.value; });
 
   mMapMinY = ofxDatSlider::create();
-  mMapMinY->slider =  new ofxDatGuiSlider(mMapMinY->ofParam.set("Map Min Y", 1.03, -20, 20));
+  mMapMinY->slider =  new ofxDatGuiSlider(mMapMinY->ofParam.set("Map Min Y", 1.03, -145, 145));
   mMapMinY->slider->setWidth(390, .4);
   mMapMinY->slider->setPosition(sliderStartX, 510);
   mMapMinY->slider->onSliderEvent([&](ofxDatGuiSliderEvent v) { mMapMinY->ofParam = v.value; });

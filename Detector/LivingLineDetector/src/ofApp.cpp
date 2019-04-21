@@ -76,7 +76,6 @@ void ofApp::update() {
     cv::Mat copyCrop;
     ofPixels pixs = pixelsImg.at(currentId);
     if (pixs.getHeight() > 0) {
-      //pixs.rotate90(2);
       cv::Mat input = ofxCv::toCv(pixs);;//.clone();
 
       //crop
@@ -88,13 +87,19 @@ void ofApp::update() {
         //perspective transformation
         if(mGridImg.at(currentId)->isCalculatedPersp()){
           mGridImg.at(currentId)->calculatePerspective(input);
-
-          //settiup the the dims
-          glm::vec2 persp = mGridImg.at(currentId)->getPerspDim();
-          mGridDetector.at(currentId)->setCoordDim(persp);
         }
         cv::Mat copMat = mGridImg.at(currentId)->getPersMat();
         copMat.copyTo(copyCrop);
+      }
+
+      //update mapping values
+      if(mUpdateCoordinate->isActive()){
+        float minX = mMapMinX->getValue();
+        float maxX = mMapMaxX->getValue();
+        float minY = mMapMinY->getValue();
+        float maxY = mMapMaxY->getValue();
+        //save coordinate system
+        mGridDetector.at(mCurrentInputIdx)->setMapCoord(minX, maxX, minY, maxY);
       }
 
       //color correction
@@ -104,9 +109,7 @@ void ofApp::update() {
 
       // calculate Gamma
       mGridImg.at(currentId)->adjustGamma(copyCrop);
-
       copyCrop.copyTo(imageCopy);
-      // copyCrop.copyTo(vidMat);
     } else {
       if(mDebugMode->isActive()) ofLog(OF_LOG_NOTICE) << "error size ";
     }
@@ -116,14 +119,21 @@ void ofApp::update() {
     for (auto &pixs : pixelsImg) {
       cv::Mat copyCrop;
       if (pixs.getHeight() > 0) {
-        //pixs.rotate90(2);
         cv::Mat input = ofxCv::toCv(pixs);
 
         //crop img
-        mGridImg.at(i)->cropImg(input);
-        cv::Mat copMat = mGridImg.at(i)->getCropMat();
-        copMat.copyTo(copyCrop);
-
+        if( !mCamPerspective->isActive() ){
+          mGridImg.at(currentId)->cropImg(input);
+          cv::Mat copMat = mGridImg.at(i)->getCropMat();
+          copMat.copyTo(copyCrop);
+        }else{
+          //perspective transformation
+          if(mGridImg.at(i)->isCalculatedPersp()){
+            mGridImg.at(i)->calculatePerspective(input);
+          }
+          cv::Mat copMat = mGridImg.at(i)->getPersMat();
+          copMat.copyTo(copyCrop);
+        }
 
         mGridImg.at(i)->adjustGamma(copyCrop);
         imageCopys.push_back(copyCrop);
@@ -176,7 +186,6 @@ void ofApp::update() {
           // get the marker image output
           mInputDetectImg = mArucoDetector.at(i)->getOfImg();
           //vidMat = mArucoDetector.at(i)->getMatImg();
-
           mGridImg.at(i)->updateDetectImg(mInputDetectImg);
         }
 
@@ -491,15 +500,6 @@ void ofApp::sendUDPJson(){
   ofJson writer;
 
   {
-    if(mUpdateCoordinate->isActive()){
-      float minX = mMapMinX->getValue();
-      float maxX = mMapMaxX->getValue();
-      float minY = mMapMinY->getValue();
-      float maxY = mMapMaxY->getValue();
-
-      //save coordinate system
-      mGridDetector.at(mCurrentInputIdx)->setMapCoord(minX, maxX, minY, maxY);
-    }
 
     ofJson jsonFixed;
     std::string inputStr("fixed_units");
@@ -654,28 +654,28 @@ void ofApp::keyPressed(int key) {
 
   if(key == OF_KEY_UP){
     if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
-      mPerspInc = glm::vec2(0.2, 0.0);
+      mPerspInc = glm::vec2(0.0, 0.2);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
   }
   if(key == OF_KEY_DOWN){
     if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
-      mPerspInc = glm::vec2(-0.2, 0.0);
+      mPerspInc = glm::vec2(0.0, -0.2);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
   }
   if(key == OF_KEY_RIGHT){
     if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
-      mPerspInc = glm::vec2(0.0, 0.2);
+      mPerspInc = glm::vec2(0.2, 0.0);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
   }
   if(key == OF_KEY_LEFT){
     if( mCamPerspective->isActive() && mGridImg.at(mCurrentInputIdx)->isCalculatedPersp() ){
-      mPerspInc = glm::vec2(0.0, -0.2);
+      mPerspInc = glm::vec2(-0.2, 0.0);
       mGridImg.at(mCurrentInputIdx)->addInputPersp(mPerspInc, mPerspectiveIndex);
       mCurretPerspInc = mGridImg.at(mCurrentInputIdx)->getInputPersp(mPerspectiveIndex);
     }
@@ -702,15 +702,25 @@ void ofApp::keyPressed(int key) {
       for (auto &gridImage : mGridImg) {
         ofJson pt;
         std::string inputImg("cam_" + to_string(i));
-        pt[inputImg]["x1"] = gridImage->getCropUp().x;
-        pt[inputImg]["y1"] = gridImage->getCropUp().y;
-        pt[inputImg]["x2"] = gridImage->getCropDown().x;
-        pt[inputImg]["y2"] = gridImage->getCropDown().y;
-        pt[inputImg]["disX"] = gridImage->getCropDisp().x;
-        pt[inputImg]["disY"] = gridImage->getCropDisp().y;
-        pt[inputImg]["camId"] = gridImage->getCamId();
-        pt[inputImg]["gamma"] = gridImage->getGamma();
 
+        //cam id
+        pt[inputImg]["camId"] = gridImage->getCamId();
+
+        //cut
+        pt[inputImg]["x1"]    = gridImage->getCropUp().x;
+        pt[inputImg]["y1"]    = gridImage->getCropUp().y;
+        pt[inputImg]["x2"]    = gridImage->getCropDown().x;
+        pt[inputImg]["y2"]    = gridImage->getCropDown().y;
+        pt[inputImg]["disX"]  = gridImage->getCropDisp().x;
+        pt[inputImg]["disY"]  = gridImage->getCropDisp().y;
+
+
+        //img processing values
+        pt[inputImg]["gamma"] = gridImage->getGamma();
+        pt[inputImg]["alpha"] = gridImage->getAlpha();
+        pt[inputImg]["beta"]  = gridImage->getBeta();
+
+        //save perspective
         pt[inputImg]["px0"] = gridImage->getInputPersp(0).x;
         pt[inputImg]["py0"] = gridImage->getInputPersp(0).y;
 
@@ -722,6 +732,12 @@ void ofApp::keyPressed(int key) {
 
         pt[inputImg]["px3"] = gridImage->getInputPersp(3).x;
         pt[inputImg]["py3"] = gridImage->getInputPersp(3).y;
+
+        //coordinate
+        pt[inputImg]["mapMinX"] = mGridDetector.at(i)->getCoordMapMinX();
+        pt[inputImg]["mapMaxX"] = mGridDetector.at(i)->getCoordMapMaxX();
+        pt[inputImg]["mapMinY"] = mGridDetector.at(i)->getCoordMapMinY();
+        pt[inputImg]["mapMaxY"] = mGridDetector.at(i)->getCoordMapMaxY();
 
         writer.push_back(pt);
         i++;
@@ -747,6 +763,7 @@ void ofApp::keyPressed(int key) {
           mGridImg.at(j)->resetPerspetive();
           mGridImg.at(j)->calculatedPersp();
 
+          //perspective
           glm::vec2 inputQuad0 = glm::vec2(cam[inputImg]["px0"], cam[inputImg]["py0"]);
           glm::vec2 inputQuad1 = glm::vec2(cam[inputImg]["px1"], cam[inputImg]["py1"]);
           glm::vec2 inputQuad2 = glm::vec2(cam[inputImg]["px2"], cam[inputImg]["py2"]);
@@ -756,6 +773,18 @@ void ofApp::keyPressed(int key) {
           mGridImg.at(j)->setInputPersp(inputQuad1, 1);
           mGridImg.at(j)->setInputPersp(inputQuad2, 2);
           mGridImg.at(j)->setInputPersp(inputQuad3, 3);
+
+          //coordinate
+          float minX = cam[inputImg]["mapMinX"];
+          float maxX = cam[inputImg]["mapMaxX"];
+          float minY = cam[inputImg]["mapMinY"];
+          float maxY = cam[inputImg]["mapMaxY"];
+          mGridDetector.at(j)->setMapCoord(minX, maxX, minY, maxY);
+
+          //read beta alpha gama
+          mGridImg.at(j)->setGamma(cam[inputImg]["gamma"]);
+          mGridImg.at(j)->setAlpha(cam[inputImg]["alpha"]);
+          mGridImg.at(j)->setBeta(cam[inputImg]["beta"]);
 
           j++;
         }

@@ -860,13 +860,12 @@ void ofApp::keyPressed(int key) {
           mAlphaValue->ofParam = alpha;
           mBetaValue->ofParam  = beta;
         }
-
         j++;
       }
     }
   }
 
-  if(key == '5'){
+  if(key == '6'){
     ofLog(OF_LOG_NOTICE)<<"Loading all Cam files";
     ofFile file("img.json");
     if (file.exists()) {

@@ -16,7 +16,21 @@ public class UrbanAnalytics : MonoBehaviour
     public float freeUnitCapacityMin = 0.1f;
     public float freeUnitCapacityMax = 30.0f;
 
-    public float[,] weightMatrix = new float[9, 10] {  // row: 9 metrics; col: 10 types; Chart: https://docs.google.com/spreadsheets/d/1Px9YKB4KISgxatSMCHH4DWIWQqlYVx67bZ3H0zxhjQc/edit?usp=sharing
+    public float[,] weightMatrix = new float[9, 10] {  // row: 9 metrics; col: 10 types; Chart: https://docs.google.com/spreadsheets/d/1Px9YKB4KISgxatSMCHH4DWIWQqlYVx67bZ3H0zxhjQc/edit?usp=sharing (tab: trial_for Unity)
+        {50f, 20f, 10f, 8f, 2f, 10f, 5f, 15f, 4f, 5f},
+        {10f, 20f, 5f, 0f, 0f, 20f, 10f, 20f, 10f, 10f},
+        {20f, 30f, 10f, 5f, 5f, 25f, 10f, 8f, 2f, 10f},
+        {0.9f, 0.95f, 0.4f, 0.3f, 0.2f, 0.9f, 0.6f, 0.6f, 0.3f, 0.4f},
+        {0.5f, 0.5f, 0.3f, 0.2f, 0.2f, 0.6f, 0.4f, 0.3f, 0.2f, 0.3f},
+        {0.4f, 0.65f, 0.5f, 0.5f, 0.2f, 0.7f, 0.4f, 0.3f, 0.4f, 0.7f},
+        {0.4f, 0.6f, 0.4f, 0.3f, 0.2f, 0.7f, 0.3f, 0.4f, 0.5f, 0.6f},
+        {1000f, 750f, 100f, 28f, 10f, 400f, 100f, 150f, 45f, 50f},
+        {190f, 400f, 45f, 20f, 20f, 45f, 40f, 30f, 5f, 45}
+    };
+
+    // RZ: BK Weiting 190401 original
+    // https://docs.google.com/spreadsheets/d/1Px9YKB4KISgxatSMCHH4DWIWQqlYVx67bZ3H0zxhjQc/edit?usp=sharing (tab: RZ: for Unity)
+    /*  
         {15f, 10f, 10f, 8f, 2f, 10f, 5f, 10f, 4f, 5f},
         {5f, 15f, 5f, 0f, 0f, 20f, 10f, 15f, 10f, 10f},
         {20f, 15f, 10f, 5f, 0f, 10f, 10f, 8f, 2f, 10f},
@@ -26,7 +40,7 @@ public class UrbanAnalytics : MonoBehaviour
         {0.5f, 0.63f, 0.43f, 0.69f, 0.27f, 0.74f, 0.81f, 0.46f, 0.58f, 0.73f},
         {95f, 150f, 52f, 28f, 1f, 217f, 52f, 150f, 45f, 52f},
         {45f, 105f, 45f, 10f, 5f, 45f, 45f, 28f, 5f, 45}
-    };
+    */
     public float[] metricsMax = new float[9] { 100f, 100f, 100f, 10f, 10f, 10f, 10f, 1000f, 1000f };
     public float[] metricsMin = new float[9] { 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f, 0f };
     [Range(0.001f, 2.0f)]
@@ -60,12 +74,6 @@ public class UrbanAnalytics : MonoBehaviour
         // "knobs": [{"type": 10, "x": 276.52, "y": 10.55, "rot": 274.2}, 
         // {"type": 11, "x": 290.22, "y": 106.35, "rot": 161.43}, 
         // {"type": 12, "x": 318.57, "y": 112.41, "rot": 122.77}]}
-
-        // initiate fixed unit capacity list
-        for (int i = 0; i < 7; i++)
-        {
-            fixedUnitCapacities[i] = 1.0f;
-        }
 
         // print weight matrix
         int rowLength = weightMatrix.GetLength(0);  // 9 (metrics)

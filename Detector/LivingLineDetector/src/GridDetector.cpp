@@ -503,15 +503,17 @@ void GridDetector::cleanGrid() {
         if(id != 40 || id != 41 || id != 49 || id != 37 || id != 38 || id != 45){
           float newMapPosX = ofMap(pos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
           float newMapPosY = ofMap(pos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
+
+          float newMapPosXD =  floorf(newMapPosX * 100) / 100;
+          float newMapPosYD =  floorf(newMapPosY * 100) / 100;
           //save the files
           MarkerArucoRef m = MarkerAruco::create();
           m->setMarkerId(id);
-          m->setPos(glm::vec2(newMapPosX, newMapPosY));
+          m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
           m->setRot(rot);
           mBlocksSend.push_back(m);
       }
     }
-
 
     for (auto & mFree : mCurrFree) {
       int itr = mFree->getInc();
@@ -529,13 +531,16 @@ void GridDetector::cleanGrid() {
         float newMapPosX = ofMap(newPos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
         float newMapPosY = ofMap(newPos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
 
+        float newMapPosXD =  floorf(newMapPosX * 100) / 100;
+        float newMapPosYD =  floorf(newMapPosY * 100) / 100;
+
         //ofLog(OF_LOG_NOTICE) <<pos.x<<" "<<pos.y<<" "<<itr<<" "<<newPos.x<<" "<<newPos.y;
         //ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<mGridDim.x<<" "<<newMapPosX;
 
         //save the files
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(id);
-        m->setPos(glm::vec2(newMapPosX, newMapPosY));
+        m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
         m->setRot(newRot);
         mBlocksSend.push_back(m);
       }

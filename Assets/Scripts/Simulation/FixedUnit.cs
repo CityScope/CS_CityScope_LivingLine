@@ -11,33 +11,33 @@ public class FixedUnit : MonoBehaviour
 
     void Start()
     {
-        
+
     }
 
     public bool Show(UnitInfoData infoData)
     {
-        if(infoData==null)
+        if (infoData == null)
         {
-            if(showUnitGo!=null)
+            if (showUnitGo != null)
             {
                 showUnitGo.SetActive(false);
             }
             return false;
         }
 
-        if(Mathf.Abs( infoData.x+ App.c_UnitXoffset - this.transform.position.x)>3.5|| Mathf.Abs(infoData.y - this.transform.position.z) > 3.5)
+        if (Mathf.Abs(infoData.x + App.c_UnitXoffset - this.transform.position.x) > 3.5 || Mathf.Abs(infoData.y - this.transform.position.z) > 3.5)
         {
             return false;
         }
 
-        if(lastShowType == infoData.type&&showUnitGo)
+        if (lastShowType == infoData.type && showUnitGo)
         {
             showUnitGo.SetActive(true);
             return true;
         }
 
         string sourceName = null;
-        switch(infoData.type)
+        switch (infoData.type)
         {
             case 0:
                 sourceName = "Future Education Lab";
@@ -61,8 +61,8 @@ public class FixedUnit : MonoBehaviour
                 sourceName = "Community Center";
                 break;
         }
-        
-        if(showUnitGo)
+
+        if (showUnitGo)
         {
             Destroy(showUnitGo);
         }
@@ -87,9 +87,9 @@ public class FixedUnit : MonoBehaviour
         //    SingletonTMono<App>.Instance.CreateAI(this.transform.position);
         //}
         List<GameObject> goList = SingletonTMono<App>.Instance.GetNearListAI(this.transform.position);
-        foreach(GameObject go in goList)
+        foreach (GameObject go in goList)
         {
-            BehaviorDesigner.Runtime.BehaviorTree  tree = go.GetComponent<BehaviorDesigner.Runtime.BehaviorTree>();
+            BehaviorDesigner.Runtime.BehaviorTree tree = go.GetComponent<BehaviorDesigner.Runtime.BehaviorTree>();
             SharedTransform st = new SharedTransform();
             st.Value = this.transform;
             tree.SetVariable("EventTarget", st);
@@ -98,6 +98,9 @@ public class FixedUnit : MonoBehaviour
             sb.Value = true;
             tree.SetVariable("EventTargetFlag", sb);
         }
+
+        for (int i = 0; i < SingletonTMono<App>.Instance.addUnitCreateAINum; i++)
+            SingletonTMono<App>.Instance.CreateAI();
 
     }
 

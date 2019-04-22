@@ -36,6 +36,7 @@ public class App : MonoBehaviour
     public int maxAINum;
     public int perCreateAINum;
     public float createAITimer = 100;
+    public int addUnitCreateAINum = 10;
 
     public float influenceAIDistance;
     public float influenceAINum;
@@ -264,11 +265,6 @@ public class App : MonoBehaviour
                     bShowUnit = true;
                     break;
                 }
-            }
-
-            if(bShowUnit)
-            {
-
             }
         }
     }

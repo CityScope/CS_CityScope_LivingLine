@@ -35,6 +35,11 @@ public class App : MonoBehaviour
     public GameObject pathPointRoot;
     public int maxAINum;
     public int perCreateAINum;
+    public float createAITimer = 100;
+    public int addUnitCreateAINum = 10;
+
+    public float influenceAIDistance;
+    public float influenceAINum;
 
     #region PointList
     private List<GameObject> aiList = new List<GameObject>();
@@ -67,6 +72,8 @@ public class App : MonoBehaviour
     public float xOffsetSidePanel = -487.2f;
     public float yOffsetSidePanel = -152f;
     public float zOffsetSidePanel = -70f;
+
+    private Dictionary<string, GameObject> aiPrefabDic = new Dictionary<string, GameObject>();
 
     void Awake()
     {
@@ -101,7 +108,7 @@ public class App : MonoBehaviour
     void Start()
     {
         Invoke("CreateAITimer", 2);
-        InvokeRepeating("CreateAITimer", 20,20);
+        InvokeRepeating("CreateAITimer", createAITimer, createAITimer);
 
         // if use udp
         if (useUDP)
@@ -202,10 +209,23 @@ public class App : MonoBehaviour
         {
             index = 4;
         }
+        string aiPath = "Characters/AI_P" + index;
+        GameObject prefab = null;
+        if(aiPrefabDic.ContainsKey(aiPath))
+        {
+            prefab = aiPrefabDic[aiPath];
+        }else
+        {
+            prefab = Resources.Load<GameObject>(aiPath);
+            aiPrefabDic[aiPath] = prefab;
+        }
+        
         GameObject aiGo = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Characters/AI_P" + index));
         aiGo.transform.position = astarPath.GetNearest(pos).position;
         aiList.Add(aiGo);
     }
+
+    
 
     public void RemoveAI(GameObject aiGo)
     {
@@ -259,13 +279,10 @@ public class App : MonoBehaviour
                     break;
                 }
             }
-
-            if(bShowUnit)
-            {
-
-            }
         }
     }
+
+    Dictionary<int, GameObject> freeUnitDic = new Dictionary<int, GameObject>(); 
 
     // RZ TODO: need to be optimized, now deleting and re-instantiate every frame
     void UpdateFreeUnits(JsonData jsonData)
@@ -387,6 +404,21 @@ public class App : MonoBehaviour
         var to = toAbs + toMin;
 
         return to;
+    }
+
+    public List<GameObject> GetNearListAI(Vector3 pos)
+    {
+        List<GameObject> goList = new List<GameObject>();
+
+        foreach(GameObject go in this.aiList)
+        {
+            if(Vector3.Distance( go.transform.position,pos)<= influenceAIDistance&&goList.Count<influenceAINum)
+            {
+                goList.Add(go);
+            }
+        }
+
+        return goList;
     }
 }
 

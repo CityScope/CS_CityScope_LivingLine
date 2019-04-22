@@ -15,6 +15,7 @@ public class UIheadInitAction : Action
     {
 
         base.OnAwake();
+        return;
         GameObject go = Tool.GetChildInDepth(HeadPointName, this.gameObject);
         if (go == null)
         {
@@ -32,6 +33,9 @@ public class UIheadInitAction : Action
         headPrefab.SetActive(true);
         UIFollowObj uiFollow = go.AddComponent<UIFollowObj>();
         uiFollow.SetParam(headPrefab.GetComponent<RectTransform>());
+        SharedGameObject sharedGO = new SharedGameObject();
+        sharedGO.Value = headPrefab;
+        this.Owner.SetVariable("headUI", sharedGO);
 
     }
 

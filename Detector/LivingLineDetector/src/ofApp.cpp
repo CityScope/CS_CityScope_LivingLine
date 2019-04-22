@@ -804,7 +804,7 @@ void ofApp::keyPressed(int key) {
     }
   }
 
-  if(key == 5){
+  if(key == '5'){
     ofLog(OF_LOG_NOTICE)<<"Loading Cam files";
     ofFile file("img.json");
     if (file.exists()) {

@@ -811,7 +811,7 @@ void ofApp::keyPressed(int key) {
       int j = 0;
       for (auto & cam : camjs) {
         if(j == 0){
-          continue;
+
         }
 
         if(j == 1){
@@ -860,11 +860,69 @@ void ofApp::keyPressed(int key) {
           mAlphaValue->ofParam = alpha;
           mBetaValue->ofParam  = beta;
         }
-        
+
         j++;
       }
     }
   }
+
+  if(key == '5'){
+    ofLog(OF_LOG_NOTICE)<<"Loading all Cam files";
+    ofFile file("img.json");
+    if (file.exists()) {
+      ofJson camjs;
+      file >> camjs;
+      int j = 0;
+      for (auto & cam : camjs) {
+        std::string inputImg("cam_" + to_string(j));
+        int camId =  cam[inputImg]["camId"];
+        ofLog(OF_LOG_NOTICE)<<"Loading: " << j << ": CamId: " << camId<<" "<<std::endl;
+
+        mGridImg.at(j)->resetPerspetive();
+        mGridImg.at(j)->calculatedPersp();
+
+        //perspective
+        glm::vec2 inputQuad0 = glm::vec2(cam[inputImg]["px0"], cam[inputImg]["py0"]);
+        glm::vec2 inputQuad1 = glm::vec2(cam[inputImg]["px1"], cam[inputImg]["py1"]);
+        glm::vec2 inputQuad2 = glm::vec2(cam[inputImg]["px2"], cam[inputImg]["py2"]);
+        glm::vec2 inputQuad3 = glm::vec2(cam[inputImg]["px3"], cam[inputImg]["py3"]);
+
+        mGridImg.at(j)->setInputPersp(inputQuad0, 0);
+        mGridImg.at(j)->setInputPersp(inputQuad1, 1);
+        mGridImg.at(j)->setInputPersp(inputQuad2, 2);
+        mGridImg.at(j)->setInputPersp(inputQuad3, 3);
+
+        //coordinate
+        float minX = cam[inputImg]["mapMinX"];
+        float maxX = cam[inputImg]["mapMaxX"];
+        float minY = cam[inputImg]["mapMinY"];
+        float maxY = cam[inputImg]["mapMaxY"];
+        mGridDetector.at(j)->setMapCoord(minX, maxX, minY, maxY);
+
+        //update GUI
+        mMapMinX->ofParam = minX;
+        mMapMaxX->ofParam = maxX;
+        mMapMinY->ofParam = minY;
+        mMapMaxY->ofParam = maxY;
+
+        //read beta alpha gama
+        float gamma = cam[inputImg]["gamma"];
+        float alpha = cam[inputImg]["alpha"];
+        float beta  = cam[inputImg]["beta"];
+
+        //beta alpha
+        mGridImg.at(j)->setGamma(gamma);
+        mGridImg.at(j)->setAlpha(alpha);
+        mGridImg.at(j)->setBeta(beta);
+
+        mGammaValue->ofParam = gamma;
+        mAlphaValue->ofParam = alpha;
+        mBetaValue->ofParam  = beta;
+        j++;
+      }
+    }
+  }
+
 
   //send test json file
   if(key == 'j'){

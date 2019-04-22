@@ -422,7 +422,7 @@ void GridDetector::cleanGrid() {
       for (auto &block : blocks) {
         int qrId  = block->getMarkerId();
 
-        ofLog(OF_LOG_NOTICE) <<" "<< block->getRot() ;
+      //  ofLog(OF_LOG_NOTICE) <<" "<< block->getRot() ;
 
           //check if the detection was free unit or a knob
         if ( qrId == 37){
@@ -458,9 +458,6 @@ void GridDetector::cleanGrid() {
         }
       }
     } //done calculating probabilty
-
-
-    // ofLog(OF_LOG_NOTICE) << "Update";
 
     //check the markers that have been detected
     int i = 0;

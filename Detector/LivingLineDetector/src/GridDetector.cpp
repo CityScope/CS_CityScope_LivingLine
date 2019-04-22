@@ -209,7 +209,7 @@ void GridDetector::drawDetectedGrid(float posx, float posy, float size,
   int j = 0;
   float squareSize = size;
   float squareSpace = space;
-  for (auto &block : mCurrBlock) {
+  for (auto & block : mCurrBlock) {
     if (block->getType() == -1) {
       ofSetColor(255, 255, 0);
     } else {

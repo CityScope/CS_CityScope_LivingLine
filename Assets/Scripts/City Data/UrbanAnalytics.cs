@@ -16,6 +16,14 @@ public class UrbanAnalytics : MonoBehaviour
     public float freeUnitCapacityMin = 0.1f;
     public float freeUnitCapacityMax = 30.0f;
 
+    public float[] timeFactors = new float[6]; // 6 bars
+    public TimeKnob timeKnob;
+    public float timeFactor;
+
+    public Heatmap heatmap;
+    public float intensityFactor;
+    public float rangeFactor;
+
     public float[,] weightMatrix = new float[9, 10] {  // row: 9 metrics; col: 10 types; Chart: https://docs.google.com/spreadsheets/d/1Px9YKB4KISgxatSMCHH4DWIWQqlYVx67bZ3H0zxhjQc/edit?usp=sharing (tab: trial_for Unity)
         {50f, 20f, 10f, 8f, 2f, 10f, 5f, 15f, 4f, 5f},
         {10f, 20f, 5f, 0f, 0f, 20f, 10f, 20f, 10f, 10f},
@@ -176,6 +184,14 @@ public class UrbanAnalytics : MonoBehaviour
         }
         Debug.Log("matrics(normalized): " + print);
 
+        // update timeFactor
+        timeFactor = LerpTimeFactor(timeKnob.knobValue);
+
+        // computer time factored metrics;
+        for (int i = 0; i < metrics.Length; i++)
+        {
+            metrics[i] = metrics[i]  * timeFactor;
+        }
 
         // update radar chart
         radarChart.metrics = metrics;
@@ -184,6 +200,20 @@ public class UrbanAnalytics : MonoBehaviour
     void UpdateBarChart(JsonData jsonData)
     {
 
+        // update timeFactor
+        timeFactor = LerpTimeFactor(timeKnob.knobValue);
+        
+        metrics = new float[timeFactors.Length];
+
+        // if density
+        float dimensionMetric = radarChart.dimensionMetrics[0] / timeFactor;
+        for(int i = 0; i < metrics.Length; i++)
+        {
+            metrics[i] = dimensionMetric * timeFactors[i];
+        }
+
+        // update bar chart
+        barChart.metrics = metrics;
     }
 
     void UpdateHeatmap(JsonData jsonData)
@@ -195,5 +225,19 @@ public class UrbanAnalytics : MonoBehaviour
     {
         float capacity = (1f - rot / 360f) * (freeUnitCapacityMax - freeUnitCapacityMin) + freeUnitCapacityMin;
         return capacity;
+    }
+
+    float LerpTimeFactor(float timeKnobValue)
+    {
+        int numFactors = timeFactors.Length;
+        int numSessions = numFactors - 1;
+        float sessionSize = 1f / numSessions;
+        int currentSession = (int)Mathf.Floor(timeKnobValue / sessionSize);
+        float sessionStart = sessionSize * currentSession;
+        float sessionEnd = sessionSize * (currentSession + 1);
+        float valueStart = timeFactors[currentSession];
+        float valueEnd = timeFactors[currentSession + 1];
+        float timeFactor = valueStart + (valueEnd - valueStart) / sessionSize * (timeKnobValue - sessionStart);
+        return timeFactor;
     }
 }

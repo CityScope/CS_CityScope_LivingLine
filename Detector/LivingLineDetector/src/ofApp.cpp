@@ -776,10 +776,25 @@ void ofApp::keyPressed(int key) {
           float maxY = cam[inputImg]["mapMaxY"];
           mGridDetector.at(j)->setMapCoord(minX, maxX, minY, maxY);
 
+          //update GUI
+          mMapMinX->ofParam = minX;
+          mMapMaxX->ofParam = maxX;
+          mMapMinY->ofParam = minY;
+          mMapMaxY->ofParam = maxY;
+
           //read beta alpha gama
-          mGridImg.at(j)->setGamma(cam[inputImg]["gamma"]);
-          mGridImg.at(j)->setAlpha(cam[inputImg]["alpha"]);
-          mGridImg.at(j)->setBeta(cam[inputImg]["beta"]);
+          float gamma = cam[inputImg]["gamma"];
+          float alpha = cam[inputImg]["alpha"];
+          float beta  = cam[inputImg]["beta"];
+
+          //beta alpha
+          mGridImg.at(j)->setGamma(gamma);
+          mGridImg.at(j)->setAlpha(alpha);
+          mGridImg.at(j)->setBeta(beta);
+
+          mGammaValue->ofParam = gamma;
+          mAlphaValue->ofParam = alpha;
+          mBetaValue->ofParam  = beta;
 
           j++;
         }

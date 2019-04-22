@@ -18,8 +18,8 @@ TagManager:
   - PostProcessing
   - HeatMap
   - Obstract
-  - 
-  - 
+  - TopProjection
+  - LowerProjection
   - 
   - 
   - 

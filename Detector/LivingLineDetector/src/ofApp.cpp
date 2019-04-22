@@ -79,18 +79,12 @@ void ofApp::update() {
       cv::Mat input = ofxCv::toCv(pixs);;//.clone();
 
       //crop
-      if( !mCamPerspective->isActive() ){
-        mGridImg.at(currentId)->cropImg(input);
-        cv::Mat copMat = mGridImg.at(currentId)->getCropMat();
-        copMat.copyTo(copyCrop);
-      }else{
-        //perspective transformation
         if(mGridImg.at(currentId)->isCalculatedPersp()){
           mGridImg.at(currentId)->calculatePerspective(input);
         }
         cv::Mat copMat = mGridImg.at(currentId)->getPersMat();
         copMat.copyTo(copyCrop);
-      }
+      
 
       //update mapping values
       if(mUpdateCoordinate->isActive()){

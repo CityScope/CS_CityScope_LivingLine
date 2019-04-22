@@ -113,6 +113,8 @@ public:
     float getCoordMapMaxY(){return mCoordMapMaxY;}
     void setCoordDim(glm::vec2 dims){mCoordDim = dims;}
 
+    float prd( float x, int decDigits);
+
 private:
 
     //tags

@@ -509,7 +509,7 @@ void GridDetector::cleanGrid() {
           //save the files
           MarkerArucoRef m = MarkerAruco::create();
           m->setMarkerId(id);
-          m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
+          m->setPos(glm::vec2(prd(newMapPosXD, 2), prd(newMapPosYD, 2)));
           m->setRot(rot);
           mBlocksSend.push_back(m);
       }
@@ -540,7 +540,7 @@ void GridDetector::cleanGrid() {
         //save the files
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(id);
-        m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
+        m->setPos(glm::vec2(prd(newMapPosXD, 2), prd(newMapPosYD,2)));
         m->setRot(newRot);
         mBlocksSend.push_back(m);
       }
@@ -551,4 +551,13 @@ void GridDetector::cleanGrid() {
     ofLog(OF_LOG_NOTICE) << "done: "<<mId;
   }
 
+}
+
+
+float GridDetector::prd(float x, const int decDigits) {
+    std::stringstream ss;
+    ss << fixed;
+    ss.precision(decDigits); // set # places after decimal
+    ss << x;
+    return std::stof(ss.str());
 }

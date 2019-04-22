@@ -420,6 +420,7 @@ void ofApp::updateGUI() {
   mCamCalibration->update();
   mCamPerspective->update();
   mSendUDP->update();
+  mDebugMode->update();
 
   mBDebugVideo->update();
   mBDebugGrid->update();
@@ -454,6 +455,7 @@ void ofApp::drawGUI() {
   mCamCalibration->draw();
   mCamPerspective->draw();
   mSendUDP->draw();
+  mDebugMode->draw();
 
   mBDebugVideo->draw();
   mBDebugGrid->draw();
@@ -709,7 +711,6 @@ void ofApp::keyPressed(int key) {
         pt[inputImg]["disX"]  = gridImage->getCropDisp().x;
         pt[inputImg]["disY"]  = gridImage->getCropDisp().y;
 
-
         //img processing values
         pt[inputImg]["gamma"] = gridImage->getGamma();
         pt[inputImg]["alpha"] = gridImage->getAlpha();
@@ -718,13 +719,10 @@ void ofApp::keyPressed(int key) {
         //save perspective
         pt[inputImg]["px0"] = gridImage->getInputPersp(0).x;
         pt[inputImg]["py0"] = gridImage->getInputPersp(0).y;
-
         pt[inputImg]["px1"] = gridImage->getInputPersp(1).x;
         pt[inputImg]["py1"] = gridImage->getInputPersp(1).y;
-
         pt[inputImg]["px2"] = gridImage->getInputPersp(2).x;
         pt[inputImg]["py2"] = gridImage->getInputPersp(2).y;
-
         pt[inputImg]["px3"] = gridImage->getInputPersp(3).x;
         pt[inputImg]["py3"] = gridImage->getInputPersp(3).y;
 

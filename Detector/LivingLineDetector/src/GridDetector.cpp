@@ -508,8 +508,8 @@ void GridDetector::cleanGrid() {
         float newMapPosX = ofMap(newPos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
         float newMapPosY = ofMap(newPos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
 
-        ofLog(OF_LOG_NOTICE) <<pos.x<<" "<<pos.y<<" "<<itr<<" "<<newPos.x<<" "<<newPos.y;
-        ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<mGridDim.x<<" "<<newMapPosX;
+        //ofLog(OF_LOG_NOTICE) <<pos.x<<" "<<pos.y<<" "<<itr<<" "<<newPos.x<<" "<<newPos.y;
+        //ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<mGridDim.x<<" "<<newMapPosX;
 
         //save the files
         MarkerArucoRef m = MarkerAruco::create();

@@ -187,7 +187,7 @@ void ofApp::setupGUI() {
 
   mDebugMode = ofxDatButton::create();
   mDebugMode->setActivation(false);
-  mDebugMode->button = new ofxDatGuiToggle("Debug");
+  mDebugMode->button = new ofxDatGuiToggle("Debug Mode");
   mDebugMode->button->setPosition(10, 460);
   mDebugMode->button->setWidth(110, .4);
   mDebugMode->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {

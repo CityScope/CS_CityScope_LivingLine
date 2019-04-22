@@ -808,9 +808,11 @@ void ofApp::keyPressed(int key) {
     if (file.exists()) {
       ofJson camjs;
       file >> camjs;
-      int j = 1;
+      int j = 9;
       for (auto & cam : camjs) {
-        if(j < mNumInputs){
+        if(j == 0)
+          continue;
+        if(j == 1){
           std::string inputImg("cam_" + to_string(j));
           int camId =  cam[inputImg]["camId"];
           ofLog(OF_LOG_NOTICE)<<"Loading: " << j << ": CamId: " << camId<<" "<<std::endl;

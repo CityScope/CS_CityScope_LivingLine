@@ -813,7 +813,7 @@ void ofApp::keyPressed(int key) {
         if(j == 0){
           continue;
         }
-        
+
         if(j == 1){
           std::string inputImg("cam_" + to_string(j));
           int camId =  cam[inputImg]["camId"];
@@ -859,11 +859,9 @@ void ofApp::keyPressed(int key) {
           mGammaValue->ofParam = gamma;
           mAlphaValue->ofParam = alpha;
           mBetaValue->ofParam  = beta;
-
-          j++;
-          if(j == 2)
-            break;
         }
+        
+        j++;
       }
     }
   }

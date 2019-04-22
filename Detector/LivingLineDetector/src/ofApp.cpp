@@ -503,38 +503,38 @@ void ofApp::sendUDPJson(){
         int id =mb->getMarkerId();
         //not fixed or knobs
         if(id == 3){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = float(round(mb->getPos().x));
+          json["y"] = float(round(mb->getPos().y));
           json["type"] = 0;
           fixed.push_back(json);
         }else if(id == 10){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = float(round(mb->getPos().x));
+          json["y"] = float(round(mb->getPos().y));
           json["type"] = 1;
           fixed.push_back(json);
         }else if(id  == 13){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = float(round(mb->getPos().x));
+          json["y"] = float(round(mb->getPos().y));
           json["type"] = 6;
           fixed.push_back(json);
         }else if(id  == 17){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = float(round(mb->getPos().x));
+          json["y"] = float(round(mb->getPos().y));
           json["type"] = 3;
           fixed.push_back(json);
         }else if(id  == 22){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = float(round(mb->getPos().x));
+          json["y"] = float(round(mb->getPos().y));
           json["type"] = 2;
           fixed.push_back(json);
         }else if(id  == 30){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = float(round(mb->getPos().x));
+          json["y"] = float(round(mb->getPos().y));
           json["type"] = 5;
         fixed.push_back(json);
         }else if(id  == 34){
-          json["x"] = round(mb->getPos().x);
-          json["y"] = round(mb->getPos().y);
+          json["x"] = float(round(mb->getPos().x));
+          json["y"] = float(round(mb->getPos().y));
           json["type"] = 4;
           fixed.push_back(json);
         }
@@ -554,22 +554,22 @@ void ofApp::sendUDPJson(){
         ofJson json;
         int id =mb->getMarkerId();
         if( id == 40){
-          json["x"]    = round(mb->getPos().x);
-          json["y"]    = round(mb->getPos().y);
-          json["rot"]  = mb->getRot();
-          json["type"] = 7;
+          json["x"]    = float(round(mb->getPos().x));
+          json["y"]    = float(round(mb->getPos().y));
+          json["rot"]  = float(mb->getRot());
+          json["type"] = int(7);
           free.push_back(json);
         }else if(id == 41){
-          json["x"]    = round(mb->getPos().x);
-          json["y"]    = round(mb->getPos().y);
-          json["rot"]  = mb->getRot();
-          json["type"] = 8;
+          json["x"]    = float(round(mb->getPos().x));
+          json["y"]    = float(round(mb->getPos().y));
+          json["rot"]  = float(mb->getRot());
+          json["type"] = int(8);
           free.push_back(json);
         }else if(id == 49){
-          json["x"]    = round(mb->getPos().x);
-          json["y"]    = round(mb->getPos().y);
-          json["rot"]  = mb->getRot();
-          json["type"] = 9;
+          json["x"]    = float(round(mb->getPos().x));
+          json["y"]    = float(round(mb->getPos().y));
+          json["rot"]  = float(mb->getRot());
+          json["type"] = int(9);
           free.push_back(json);
         }
       }
@@ -588,21 +588,21 @@ void ofApp::sendUDPJson(){
         ofJson json;
         int id =mb->getMarkerId();
         if( id == 37){
-          json["x"]    = round(mb->getPos().x);
-          json["y"]    = round(mb->getPos().y);
-          json["rot"]  = mb->getRot();
+          json["x"]    = float(round(mb->getPos().x));
+          json["y"]    = float(round(mb->getPos().y));
+          json["rot"]  = float(mb->getRot());
           json["type"] = 10;
           knob.push_back(json);
         }else if(id == 38){
-          json["x"]    = round(mb->getPos().x);
-          json["y"]    = round(mb->getPos().y);
-          json["rot"]  = mb->getRot();
+          json["x"]    = float(round(mb->getPos().x));
+          json["y"]    = float(round(mb->getPos().y));
+          json["rot"]  = float(mb->getRot());
           json["type"] = 11;
           knob.push_back(json);
         }else if(id == 45){
-          json["x"]    = round(mb->getPos().x);
-          json["y"]    = round(mb->getPos().y);
-          json["rot"]  = mb->getRot();
+          json["x"]    = float(round(mb->getPos().x));
+          json["y"]    = float(round(mb->getPos().y));
+          json["rot"]  = float(mb->getRot());
           json["type"] = 12;
           knob.push_back(json);
         }
@@ -622,7 +622,7 @@ void ofApp::sendUDPJson(){
 
 float ofApp::round(float var){
     float value = (int)(var * 100 + 0.5);
-    return (float)value / 100;
+    return (float)value / 100.0;
 }
 
 //--------------------------------------------------------------

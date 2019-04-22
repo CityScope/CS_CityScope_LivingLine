@@ -457,13 +457,15 @@ void GridDetector::cleanGrid() {
           mCurrFree.at(qrId)->incProba();
         }
       }
-    } //done calculating probabilty
+    }
+
+     //done calculating probabilty
 
     //check the markers that have been detected
     /*
     int i = 0;
     int indeX = 0;
-    mBlocksSend.clear();
+
     for (auto &mk : mMarkers) {
       float proba = mk->getProba(mWindowIterMax);
       if (proba >= 0.5){//1.0 / (float)mWindowIterMax) {
@@ -492,7 +494,7 @@ void GridDetector::cleanGrid() {
     */
 
     //mCurrBlock
-
+    mBlocksSend.clear();
     for (auto & rawBlock : mCurrBlock) {
         glm::vec2 pos =  rawBlock->getPos();
         float rot = rawBlock->getRot();

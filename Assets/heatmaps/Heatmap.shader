@@ -49,7 +49,7 @@
 
 		// Converts (0-1) according to the heat texture
 		h = saturate(h);
-		half4 color = tex2D(_HeatTex, fixed2(h, 0.5));
+		half4 color = tex2D(_HeatTex, fixed2(h*0.98+0.01, 0.5));
 		return color;
 		}
 			ENDCG

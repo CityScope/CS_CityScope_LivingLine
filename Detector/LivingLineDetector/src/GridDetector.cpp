@@ -494,19 +494,20 @@ void GridDetector::cleanGrid() {
     //mCurrBlock
 
     for (auto & rawBlock : mCurrBlock) {
-      glm::vec2 pos =  rawBlock->getPos();
-      float rot = rawBlock->getRot();
-      int id =  rawBlock->getMarkerId();
+        glm::vec2 pos =  rawBlock->getPos();
+        float rot = rawBlock->getRot();
+        int id =  rawBlock->getMarkerId();
 
-      float newMapPosX = ofMap(pos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
-      float newMapPosY = ofMap(pos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
-
-      //save the files
-      MarkerArucoRef m = MarkerAruco::create();
-      m->setMarkerId(id);
-      m->setPos(glm::vec2(newMapPosX, newMapPosY));
-      m->setRot(rot);
-      mBlocksSend.push_back(m);
+        if(id != 40 || id != 41 || id != 49 || id != 37 || id != 38 || id != 45){
+          float newMapPosX = ofMap(pos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
+          float newMapPosY = ofMap(pos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
+          //save the files
+          MarkerArucoRef m = MarkerAruco::create();
+          m->setMarkerId(id);
+          m->setPos(glm::vec2(newMapPosX, newMapPosY));
+          m->setRot(rot);
+          mBlocksSend.push_back(m);
+      }
     }
 
 

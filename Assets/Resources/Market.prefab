@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3382302192652351156}
   - component: {fileID: 3382302192652351114}
   - component: {fileID: 3382302192652351157}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -89,7 +89,7 @@ GameObject:
   - component: {fileID: 3382302193077796798}
   - component: {fileID: 3382302193077796793}
   - component: {fileID: 3382302193077796792}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -176,7 +176,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3382302193085802761}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3382302193157763163}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -238,7 +238,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3382302193447704689}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   - component: {fileID: 3382302194125256411}
   - component: {fileID: 3382302194125256409}
   - component: {fileID: 3382302194125256408}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -346,7 +346,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4283314817408862909}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Market
   m_TagString: Untagged
   m_Icon: {fileID: 0}

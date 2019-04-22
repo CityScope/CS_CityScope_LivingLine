@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7401678722277634923}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 7401678722502847936}
   - component: {fileID: 7401678722502847938}
   - component: {fileID: 7401678722502847939}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3883410171655929654}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Future Art Lab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7401678723570680215}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 7401678723900282975}
   - component: {fileID: 7401678723900282972}
   - component: {fileID: 7401678723900282973}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -271,7 +271,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7401678723914850552}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 7401678723969101767}
   - component: {fileID: 7401678723969101761}
   - component: {fileID: 7401678723969101766}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}

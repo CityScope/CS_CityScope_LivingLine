@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3581883655698251586}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 3581883655769786098}
   - component: {fileID: 3581883655769786108}
   - component: {fileID: 3581883655769786109}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6435106877744856844}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Co-working Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -153,7 +153,7 @@ GameObject:
   - component: {fileID: 3581883656729011468}
   - component: {fileID: 3581883656729011469}
   - component: {fileID: 3581883656729011458}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -242,7 +242,7 @@ GameObject:
   - component: {fileID: 3581883656765976121}
   - component: {fileID: 3581883656765976123}
   - component: {fileID: 3581883656765976120}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -317,7 +317,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3581883656842250590}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: AR
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -348,7 +348,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3581883657040512411}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}

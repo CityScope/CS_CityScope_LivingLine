@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 632689711566805854}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Art Installation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5390335565013906563}
   - component: {fileID: 715300052187730817}
   - component: {fileID: 3894708392472434699}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 96589201768581410}
   - component: {fileID: 8892314034807000604}
   - component: {fileID: 8336723562526289316}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -196,7 +196,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6285770319093490307}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -227,7 +227,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8221745715589530164}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 7562985361004750820}
   - component: {fileID: 7562985361003947970}
   - component: {fileID: 7562985361002980610}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Group54
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7562985361004750822}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Art Installation
   m_TagString: Untagged
   m_Icon: {fileID: 0}

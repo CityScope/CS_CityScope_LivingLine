@@ -356,7 +356,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551490275658310596}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!1 &2032832283410929683
 GameObject:
   m_ObjectHideFlags: 0
@@ -722,9 +722,10 @@ MonoBehaviour:
   astarPath: {fileID: 2310178325188446542}
   aiRoot: {fileID: 2310178324359727785}
   pathPointRoot: {fileID: 4716921532825089282}
-  maxAINum: 200
-  perCreateAINum: 1
-  createAITimer: 2
+  maxAINum: 100
+  perCreateAINum: 2
+  createAITimer: 5
+  addUnitCreateAINum: 10
   influenceAIDistance: 150
   influenceAINum: 100
   allPathPointList: []
@@ -744,6 +745,10 @@ MonoBehaviour:
   yRemapMax: 72
   camResW: 1280
   camResH: 720
+  moveKnobsToSidePanel: 0
+  xOffsetSidePanel: -487.2
+  yOffsetSidePanel: -152
+  zOffsetSidePanel: -70
 --- !u!1 &2735420579047758335
 GameObject:
   m_ObjectHideFlags: 0

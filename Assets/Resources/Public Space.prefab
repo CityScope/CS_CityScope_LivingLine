@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3578347682362365368}
   - component: {fileID: 1299749689172995602}
   - component: {fileID: 5695113555210893078}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5718969540841444746}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Surface
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117,7 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3670567626991704322}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Public Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -150,7 +150,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 941527650324523686}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Box
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 3285196830508440082}
   - component: {fileID: 254557889820203217}
   - component: {fileID: 4785444868364526549}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Object_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -260,7 +260,7 @@ GameObject:
   - component: {fileID: 6393292762715105617}
   - component: {fileID: 4628949255655471081}
   - component: {fileID: 3946689263832509521}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Group55
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -335,7 +335,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8664140668772847070}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Public Space
   m_TagString: Untagged
   m_Icon: {fileID: 0}

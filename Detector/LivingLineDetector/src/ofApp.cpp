@@ -808,10 +808,12 @@ void ofApp::keyPressed(int key) {
     if (file.exists()) {
       ofJson camjs;
       file >> camjs;
-      int j = 9;
+      int j = 0;
       for (auto & cam : camjs) {
-        if(j == 0)
+        if(j == 0){
           continue;
+        }
+        
         if(j == 1){
           std::string inputImg("cam_" + to_string(j));
           int camId =  cam[inputImg]["camId"];

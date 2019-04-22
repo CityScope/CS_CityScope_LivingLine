@@ -141,17 +141,13 @@ void GridImage::adjustGamma(cv::Mat &img) {
 
     imgGamma.copyTo(img);
   }
-
-
 }
 
 //-----------------------------------------------------------------------------
 void GridImage::resetCrop() {
-
   mCornerUp = glm::vec2(100, 100);
   mCornerDown = glm::vec2(300, 300);
   mDisp = glm::vec2(5, 5);
-
 }
 
 //-----------------------------------------------------------------------------
@@ -229,8 +225,6 @@ void GridImage::updateCorners(glm::vec2 corner){
 }
 //-----------------------------------------------------------------------------
 void GridImage::calculatePerspective(cv::Mat &inputVideo){
-    //mCropMat
-
    // Output Quadilateral or World plane coordinates
    ofPoint tl(mInputQuad[0].x, mInputQuad[0].y);
    ofPoint tr(mInputQuad[1].x, mInputQuad[1].y);
@@ -256,7 +250,6 @@ void GridImage::calculatePerspective(cv::Mat &inputVideo){
 
    // Lambda Matrix
    Mat lambda = getPerspectiveTransform( mInputQuad, outputQuad );
-
    cv::Size matSize(maxWidth, maxHeight);
 
    // Apply the Perspective Transform just found to the src image
@@ -266,12 +259,13 @@ void GridImage::calculatePerspective(cv::Mat &inputVideo){
 void GridImage::setInputPersp(glm::vec2 pos, int index){
   mInputQuad[index] = cv::Point2f(pos.x, pos.y);
 }
-
+//-----------------------------------------------------------------------------
 void GridImage::addInputPersp(glm::vec2 point, int index){
   mInputQuad[index] += cv::Point2f(point.x, point.y);
   ofLog(OF_LOG_NOTICE)<<"set point "<<index<<" "<<mInputQuad[index].x<<" "<<mInputQuad[index].y;
 }
 
+//-----------------------------------------------------------------------------
 glm::vec2 GridImage::getInputPersp(int index){
   return glm::vec2(mInputQuad[index].x, mInputQuad[index].y);
 }

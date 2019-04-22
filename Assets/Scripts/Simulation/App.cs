@@ -59,6 +59,8 @@ public class App : MonoBehaviour
 
     public const float c_UnitXoffset = 5.5f;
 
+    private Dictionary<string, GameObject> aiPrefabDic = new Dictionary<string, GameObject>();
+
     void Awake()
     {
         LoadJson();
@@ -193,10 +195,23 @@ public class App : MonoBehaviour
         {
             index = 4;
         }
+        string aiPath = "Characters/AI_P" + index;
+        GameObject prefab = null;
+        if(aiPrefabDic.ContainsKey(aiPath))
+        {
+            prefab = aiPrefabDic[aiPath];
+        }else
+        {
+            prefab = Resources.Load<GameObject>(aiPath);
+            aiPrefabDic[aiPath] = prefab;
+        }
+        
         GameObject aiGo = GameObject.Instantiate<GameObject>(Resources.Load<GameObject>("Characters/AI_P" + index));
         aiGo.transform.position = astarPath.GetNearest(pos).position;
         aiList.Add(aiGo);
     }
+
+    
 
     public void RemoveAI(GameObject aiGo)
     {

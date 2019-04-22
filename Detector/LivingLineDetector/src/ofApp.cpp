@@ -320,7 +320,7 @@ void ofApp::draw() {
         i++;
       }
     }
-  }
+  }//grid debug
 
   // draw full input view
   // 3 cam 3 views

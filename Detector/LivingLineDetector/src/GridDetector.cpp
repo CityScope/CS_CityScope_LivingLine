@@ -460,6 +460,7 @@ void GridDetector::cleanGrid() {
     } //done calculating probabilty
 
     //check the markers that have been detected
+    /*
     int i = 0;
     int indeX = 0;
     mBlocksSend.clear();
@@ -488,6 +489,26 @@ void GridDetector::cleanGrid() {
 
       int newId = mk->getMarkerId();
     }
+    */
+
+    //mCurrBlock
+
+    for (auto & rawBlock : mCurrBlock) {
+      glm::vec2 pos =  rawBlock->getPos();
+      float rot = rawBlock->getRot();
+      int id =  rawBlock->getMarkerId();
+
+      float newMapPosX = ofMap(pos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
+      float newMapPosY = ofMap(pos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
+
+      //save the files
+      MarkerArucoRef m = MarkerAruco::create();
+      m->setMarkerId(id);
+      m->setPos(glm::vec2(newMapPosX, newMapPosY));
+      m->setRot(rot);
+      mBlocksSend.push_back(m);
+    }
+
 
     for (auto & mFree : mCurrFree) {
       int itr = mFree->getInc();

@@ -501,11 +501,11 @@ void GridDetector::cleanGrid() {
         int id =  rawBlock->getMarkerId();
 
         if(id != 40 || id != 41 || id != 49 || id != 37 || id != 38 || id != 45){
-          float newMapPosX = ofMap(pos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
-          float newMapPosY = ofMap(pos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
+          float newMapPosX = float(ofMap(pos.x, 0.0f, 1280.0f, mCoordMapMinX, mCoordMapMaxX));
+          float newMapPosY = float(ofMap(pos.y, 0.0f, 720.0f, mCoordMapMinY, mCoordMapMaxY));
 
-          float newMapPosXD =  floorf(newMapPosX * 100) / 100;
-          float newMapPosYD =  floorf(newMapPosY * 100) / 100;
+          float newMapPosXD =  ceilf(newMapPosX * 100.0f) / 100.0f;
+          float newMapPosYD =  ceilf(newMapPosY * 100.0f) / 100.0f;
           //save the files
           MarkerArucoRef m = MarkerAruco::create();
           m->setMarkerId(id);
@@ -528,11 +528,11 @@ void GridDetector::cleanGrid() {
         float newRot =  rot / (float)itr;
 
         //Coordinate mapping
-        float newMapPosX = ofMap(newPos.x, 0, 1280.0, mCoordMapMinX, mCoordMapMaxX);
-        float newMapPosY = ofMap(newPos.y, 0, 720.0, mCoordMapMinY, mCoordMapMaxY);
+        float newMapPosX = float(ofMap(newPos.x, 0.0f, 1280.0f, mCoordMapMinX, mCoordMapMaxX));
+        float newMapPosY = float(ofMap(newPos.y, 0.0f, 720.0f, mCoordMapMinY, mCoordMapMaxY));
 
-        float newMapPosXD =  floorf(newMapPosX * 100) / 100;
-        float newMapPosYD =  floorf(newMapPosY * 100) / 100;
+        float newMapPosXD =  ceilf(newMapPosX * 100.0f) / 100.0f;
+        float newMapPosYD =  ceilf(newMapPosY * 100.0f) / 100.0f;
 
         //ofLog(OF_LOG_NOTICE) <<pos.x<<" "<<pos.y<<" "<<itr<<" "<<newPos.x<<" "<<newPos.y;
         //ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<mGridDim.x<<" "<<newMapPosX;

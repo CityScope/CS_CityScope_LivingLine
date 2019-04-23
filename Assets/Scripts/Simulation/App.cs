@@ -51,7 +51,7 @@ public class App : MonoBehaviour
     public List<PathPoint> exitPathPointList = new List<PathPoint>();
     #endregion
 
-    public const float c_UnitXoffset = 5.5f;
+    public const float c_UnitXoffset = 0f;  //5.5f;
 
     // RZ
     public bool useUDP = true;
@@ -95,8 +95,12 @@ public class App : MonoBehaviour
             go.transform.position = new Vector3(data.x[i]+ c_UnitXoffset, 152, data.y[i]);
             go.transform.localEulerAngles = new Vector3(0,90,0);
             go.transform.localScale = Vector3.one;
+            // RZ TODO: might have memory leak
+            FixedUnit goFixedUnit = go.AddComponent<FixedUnit>();
+            goFixedUnit.boxMorphKeyPtsMain = boxMorphKeyPtsMain;
             unitPointList.Add(go);
-            fixedUnits.Add(go.AddComponent<FixedUnit>());
+            fixedUnits.Add(goFixedUnit);
+            //fixedUnits.Add(go.AddComponent<FixedUnit>());
         }
 
         allPathPointList = new List<PathPoint>(this.pathPointRoot.GetComponentsInChildren<PathPoint>());
@@ -327,6 +331,7 @@ public class App : MonoBehaviour
             }
             go.transform.localEulerAngles = new Vector3(0.0f, -infoData.rot, 0.0f);
             go.transform.localScale = Vector3.one;
+            // RZ TODO: might have memory leak
             // follow main box morph
             go.GetComponent<ManuallyAddBoxMorphGO>().boxMorphKeyPts = boxMorphKeyPtsMain;
             freeUnits.Add(go);

@@ -9,6 +9,8 @@ public class FixedUnit : MonoBehaviour
     public GameObject showUnitGo;
     public int lastShowType = -1;
 
+    public BoxMorphKeyPts boxMorphKeyPtsMain;
+
     void Start()
     {
 
@@ -71,6 +73,9 @@ public class FixedUnit : MonoBehaviour
         go.transform.localPosition = Vector3.zero;
         go.transform.localEulerAngles = Vector3.zero;
         go.transform.localScale = Vector3.one;
+        // RZ TODO: might have memory leak
+        // follow main box morph
+        go.GetComponent<ManuallyAddBoxMorphGO>().boxMorphKeyPts = boxMorphKeyPtsMain;
         showUnitGo = go;
 
         lastShowType = infoData.type;

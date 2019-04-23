@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1993500343574165579}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pointer Short Inactive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 6206056092824762225}
   - component: {fileID: 6206056092821337937}
   - component: {fileID: 6206056092822336913}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Pointer Short Inactive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 223552183322045879}
   - component: {fileID: 194539546394830151}
   - component: {fileID: 2293912701519039210}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Quad
   m_TagString: Untagged
   m_Icon: {fileID: 0}

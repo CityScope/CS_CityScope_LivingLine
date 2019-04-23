@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boxMorphKeyPts: {fileID: 0}
+  alwaysUpdateMorph: 0
 --- !u!1 &2411264191620499113
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +217,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6285770319093490307
 Transform:
   m_ObjectHideFlags: 0
@@ -355,7 +356,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7562985361004750822
 Transform:
   m_ObjectHideFlags: 0

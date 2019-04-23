@@ -9,6 +9,7 @@ public class BoxMorphGO : MonoBehaviour {
 
     public BoxMorphKeyPts boxMorphKeyPts;
     public bool calibrating = false;
+    public bool alwaysUpdateMorph = false;
 
     private MeshFilter meshFilter;
     private Mesh mesh;
@@ -49,7 +50,7 @@ public class BoxMorphGO : MonoBehaviour {
         calibrating = boxMorphKeyPts.calibrating;
 
         // if calibrating, apply box morph once per frame
-        if (calibrating)
+        if (calibrating || alwaysUpdateMorph)
         {
             ApplyBoxMorph(meshTransform, mesh, meshBK, boxMorphKeyPts);
         }

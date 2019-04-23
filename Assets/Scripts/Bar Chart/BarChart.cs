@@ -63,7 +63,7 @@ public class BarChart : MonoBehaviour
         // decide color by vizType
         foreach (MeshRenderer mr in meshRenderers)
         {
-            if (mr.material.name.Contains("Line"))
+            if (mr.sharedMaterial.name.Contains("Line"))
             {
                 if(mr.sharedMaterial != vizProfileMaterials[vizType])
                      mr.sharedMaterial = vizProfileMaterials[vizType];

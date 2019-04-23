@@ -6,10 +6,10 @@ public class ManuallyAddBoxMorphGO : MonoBehaviour
 {
 
     public BoxMorphKeyPts boxMorphKeyPts;
+    public bool alwaysUpdateMorph = false;
 
     private BoxMorphGO boxMorphGO;
-
-    // Use this for initialization
+    
     void Start () {
 
         // find all meshfilter component
@@ -20,6 +20,7 @@ public class ManuallyAddBoxMorphGO : MonoBehaviour
             {
                 boxMorphGO = Child.gameObject.AddComponent<BoxMorphGO>();
                 boxMorphGO.boxMorphKeyPts = boxMorphKeyPts;
+                boxMorphGO.alwaysUpdateMorph = alwaysUpdateMorph;
             }
         }
 

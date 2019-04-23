@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6767,9 +6767,10 @@ MonoBehaviour:
   heatmap: {fileID: 1129667593}
   heatmapRangeFactorFixedUnit: 30
   heatmapRangeFactorFreeUnit: 100
-  heatmapIntensityFactorFixedUnit: 0.2
+  heatmapIntensityFactorFixedUnit: 0.75
   heatmapIntensityFactorFreeUnit: 1
-  metricsFactor: 1.75
+  metricsFactor: 4
+  barMetricsFactor: 0.25
   metricsMax:
   - 15500
   - 9812
@@ -22286,6 +22287,26 @@ PrefabInstance:
       propertyPath: boxMorphKeyPtsMain
       value: 
       objectReference: {fileID: 1881236532}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: maxAINum
+      value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: createAITimer
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: perCreateAINum
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: addUnitCreateAINum
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2310178324359727785, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: m_LocalPosition.x

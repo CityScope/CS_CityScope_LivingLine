@@ -26,8 +26,9 @@ public class UrbanAnalytics : MonoBehaviour
     public float heatmapIntensityFactorFixedUnit = 0.5f;
     public float heatmapIntensityFactorFreeUnit = 1.0f;
 
-    [Range(0.001f, 2.0f)]
+    [Range(0.001f, 10.0f)]
     public float metricsFactor = 1.0f;
+    public float barMetricsFactor = 0.5f;
     public float[,] weightMatrix = new float[9, 10] {  // row: 9 metrics; col: 10 types; Chart: https://docs.google.com/spreadsheets/d/1Px9YKB4KISgxatSMCHH4DWIWQqlYVx67bZ3H0zxhjQc/edit?usp=sharing (tab: trial_for Unity)
         {50f, 20f, 10f, 8f, 2f, 10f, 5f, 15f, 4f, 5f},
         {10f, 20f, 5f, 0f, 0f, 20f, 10f, 20f, 10f, 10f},
@@ -210,7 +211,7 @@ public class UrbanAnalytics : MonoBehaviour
         float dimensionMetric = radarChart.dimensionMetrics[0] / timeFactor;
         for(int i = 0; i < metrics.Length; i++)
         {
-            metrics[i] = dimensionMetric * timeFactors[i] * metricsFactor;
+            metrics[i] = dimensionMetric * timeFactors[i] * metricsFactor * barMetricsFactor;
         }
 
         // update bar chart

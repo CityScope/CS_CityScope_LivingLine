@@ -117,6 +117,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7067966470124721557}
+  - component: {fileID: 3095645301430808600}
   m_Layer: 11
   m_Name: Facility
   m_TagString: Untagged
@@ -141,6 +142,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3095645301430808600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6607727718790872887}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96eb62a8bd0f60441a83114f80ee62c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boxMorphKeyPts: {fileID: 0}
 --- !u!1 &6687165626879778359
 GameObject:
   m_ObjectHideFlags: 0

@@ -73,6 +73,8 @@ public class App : MonoBehaviour
     public float yOffsetSidePanel = -152f;
     public float zOffsetSidePanel = -70f;
 
+    public BoxMorphKeyPts boxMorphKeyPtsMain;
+
     private Dictionary<string, GameObject> aiPrefabDic = new Dictionary<string, GameObject>();
 
     void Awake()
@@ -325,6 +327,8 @@ public class App : MonoBehaviour
             }
             go.transform.localEulerAngles = new Vector3(0.0f, -infoData.rot, 0.0f);
             go.transform.localScale = Vector3.one;
+            // follow main box morph
+            go.GetComponent<ManuallyAddBoxMorphGO>().boxMorphKeyPts = boxMorphKeyPtsMain;
             freeUnits.Add(go);
         }
     }

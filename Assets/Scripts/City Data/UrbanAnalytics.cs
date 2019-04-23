@@ -21,8 +21,10 @@ public class UrbanAnalytics : MonoBehaviour
     public float timeFactor;
 
     public Heatmap heatmap;
-    public float intensityFactor;
-    public float rangeFactor;
+    public float heatmapRangeFactorFixedUnit = 25f;
+    public float heatmapRangeFactorFreeUnit = 50f;
+    public float heatmapIntensityFactorFixedUnit = 0.5f;
+    public float heatmapIntensityFactorFreeUnit = 1.0f;
 
     [Range(0.001f, 2.0f)]
     public float metricsFactor = 1.0f;
@@ -217,7 +219,36 @@ public class UrbanAnalytics : MonoBehaviour
 
     void UpdateHeatmap(JsonData jsonData)
     {
-
+        List<Vector4> tmpVector4List = new List<Vector4>();
+        foreach (UnitInfoData unitInfo in jsonData.fixed_units)
+        {
+            // heatmap's posx posy radius and intensity
+            Vector4 tmpVector4 = new Vector4(unitInfo.x, unitInfo.y, heatmapRangeFactorFixedUnit, heatmapIntensityFactorFixedUnit * timeFactor);
+            tmpVector4List.Add(tmpVector4);
+        }
+        foreach (UnitInfoData unitInfo in jsonData.free_units)
+        {
+            // heatmap's posx posy radius and intensity
+            Vector4 tmpVector4 = new Vector4(unitInfo.x, unitInfo.y, heatmapRangeFactorFreeUnit, heatmapIntensityFactorFreeUnit * timeFactor);
+            tmpVector4List.Add(tmpVector4);
+        }
+        for (int i = 0; i < heatmap.count; i++)
+        {
+            if (i < tmpVector4List.Count)
+            {
+                heatmap.positions[i].x = tmpVector4List[i].x;
+                heatmap.positions[i].z = tmpVector4List[i].y;
+                heatmap.radiuses[i] = tmpVector4List[i].z;
+                heatmap.intensities[i] = tmpVector4List[i].w;
+            }
+            else
+            {
+                heatmap.positions[i].x = 0f;
+                heatmap.positions[i].z = 0f;
+                heatmap.radiuses[i] = 0f;
+                heatmap.intensities[i] = 0f;
+            }
+        }
     }
 
     float FreeUnitRot2Capacity(float rot)

@@ -28,9 +28,15 @@ public class Heatmap : MonoBehaviour
 
         for (int i = 0; i < positions.Length; i++)
         {
-            positions[i] = new Vector4(Random.Range(xPosMin, xPosMax), 0f, Random.Range(yPosMin, yPosMax),0f);
-            radiuses[i] = Random.Range(0f, 100f);
-            intensities[i] = Random.Range(-0.25f, 1f);
+            // original
+            //positions[i] = new Vector4(Random.Range(xPosMin, xPosMax), 0f, Random.Range(yPosMin, yPosMax),0f);
+            //radiuses[i] = Random.Range(0f, 100f);
+            //intensities[i] = Random.Range(-0.25f, 1f);
+
+            // RZ
+            positions[i] = new Vector4(0f, 0f, 0f,0f);
+            radiuses[i] = 0f;
+            intensities[i] = 0f;
         }
     }
 
@@ -39,7 +45,12 @@ public class Heatmap : MonoBehaviour
         material.SetInt("_Points_Length", positions.Length);
         for (int i = 0; i < positions.Length; i++)
         {
-            positions[i] += new Vector4(Random.Range(-noise, noise), Random.Range(-noise, noise),0) * Time.deltaTime ;
+            // original
+            //positions[i] += new Vector4(Random.Range(-noise, noise), Random.Range(-noise, noise),0) * Time.deltaTime ;
+            //properties[i] = new Vector4(radiuses[i], intensities[i], 0, 0);
+
+            // RZ
+            //positions[i] += new Vector4(Random.Range(-noise, noise), Random.Range(-noise, noise),0) * Time.deltaTime ;
             properties[i] = new Vector4(radiuses[i], intensities[i], 0, 0);
         }
 

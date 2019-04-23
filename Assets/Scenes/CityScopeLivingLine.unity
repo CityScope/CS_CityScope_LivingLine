@@ -22304,26 +22304,6 @@ PrefabInstance:
       propertyPath: boxMorphKeyPtsMain
       value: 
       objectReference: {fileID: 1881236532}
-    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: addUnitCreateAINum
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: maxAINum
-      value: 2000
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: perCreateAINum
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: createAITimer
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 2310178324359727785, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: m_LocalPosition.x

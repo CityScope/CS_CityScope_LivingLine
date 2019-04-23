@@ -722,10 +722,10 @@ MonoBehaviour:
   astarPath: {fileID: 2310178325188446542}
   aiRoot: {fileID: 2310178324359727785}
   pathPointRoot: {fileID: 4716921532825089282}
-  maxAINum: 200
+  maxAINum: 300
   perCreateAINum: 5
-  createAITimer: 10
-  addUnitCreateAINum: 5
+  createAITimer: 2
+  addUnitCreateAINum: 10
   influenceAIDistance: 200
   influenceAINum: 100
   allPathPointList: []

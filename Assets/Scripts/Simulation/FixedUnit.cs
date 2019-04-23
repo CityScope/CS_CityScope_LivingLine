@@ -87,10 +87,6 @@ public class FixedUnit : MonoBehaviour
     private void UpdateAI()
     {
 
-        //for(int i=0;i<10;i++)
-        //{
-        //    SingletonTMono<App>.Instance.CreateAI(this.transform.position);
-        //}
         List<GameObject> goList = SingletonTMono<App>.Instance.GetNearListAI(this.transform.position);
         foreach (GameObject go in goList)
         {
@@ -103,9 +99,12 @@ public class FixedUnit : MonoBehaviour
             sb.Value = true;
             tree.SetVariable("EventTargetFlag", sb);
         }
-
+        
         for (int i = 0; i < SingletonTMono<App>.Instance.addUnitCreateAINum; i++)
-            SingletonTMono<App>.Instance.CreateAI();
+        {
+            SingletonTMono<App>.Instance.CreateAI(this.transform.position);
+            //SingletonTMono<App>.Instance.CreateAI();
+        }
 
     }
 

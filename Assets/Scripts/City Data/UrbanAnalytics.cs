@@ -68,7 +68,7 @@ public class UrbanAnalytics : MonoBehaviour
         {
             if (udpListener._encodedUDP == "")
             {
-                Debug.LogWarning("UDP recieved null");
+                //Debug.LogWarning("UDP recieved null");
             }
             else
             {
@@ -109,7 +109,7 @@ public class UrbanAnalytics : MonoBehaviour
         {
             if (udpListener._encodedUDP == "")
             {
-                Debug.LogWarning("UDP recieved null");
+                //Debug.LogWarning("UDP recieved null");
             }
             else
             {
@@ -175,7 +175,7 @@ public class UrbanAnalytics : MonoBehaviour
             }
             print += metrics[i] + ", ";
         }
-        Debug.Log("matrics(raw): " + print);
+        //Debug.Log("matrics(raw): " + print);
 
         // computer normalized metrics;
         print = "";
@@ -184,7 +184,7 @@ public class UrbanAnalytics : MonoBehaviour
             metrics[i] = (metrics[i] - metricsMin[i]) / (metricsMax[i] - metricsMin[i]) * metricsFactor;
             print += metrics[i] + ", ";
         }
-        Debug.Log("matrics(normalized): " + print);
+        //Debug.Log("matrics(normalized): " + print);
 
         // update timeFactor
         timeFactor = LerpTimeFactor(timeKnob.knobValue);

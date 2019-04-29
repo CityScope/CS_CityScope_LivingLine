@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3354,7 +3354,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &498157170
 Transform:
   m_ObjectHideFlags: 0
@@ -6608,7 +6608,7 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!4 &978221600
 Transform:
   m_ObjectHideFlags: 0
@@ -6770,7 +6770,7 @@ MonoBehaviour:
   heatmapIntensityFactorFixedUnit: 0.75
   heatmapIntensityFactorFreeUnit: 1
   metricsFactor: 4
-  barMetricsFactor: 0.25
+  barMetricsFactor: 0.5
   metricsMax:
   - 15500
   - 9812
@@ -8496,7 +8496,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279283487}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &1279283490
 Camera:
   m_ObjectHideFlags: 0
@@ -18780,6 +18780,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lower Projectors_BoxMorph
       objectReference: {fileID: 0}
+    - target: {fileID: 6127718548357595674, guid: 8f4bec675707fea4bb6b60777b54200c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6127718548357595675, guid: 8f4bec675707fea4bb6b60777b54200c,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -22290,22 +22295,22 @@ PrefabInstance:
     - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: maxAINum
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
-        type: 3}
-      propertyPath: createAITimer
-      value: 20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: perCreateAINum
-      value: 10
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: createAITimer
+      value: 9999
       objectReference: {fileID: 0}
     - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: addUnitCreateAINum
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2310178324359727785, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}

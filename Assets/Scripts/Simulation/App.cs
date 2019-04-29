@@ -145,7 +145,7 @@ public class App : MonoBehaviour
         {
             if (udpListener._encodedUDP == "")
             {
-                Debug.LogWarning("UDP recieved null");
+                //Debug.LogWarning("UDP recieved null");
             }
             else
             {

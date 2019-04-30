@@ -103,7 +103,7 @@ void ofApp::setupConnection() {
 void ofApp::setupGUI() {
 
   mBDebugVideo = ofxDatButton::create();
-  mBDebugVideo->button = new ofxDatGuiToggle("Debug View", true);
+  mBDebugVideo->button = new ofxDatGuiToggle("Debug View", false);
   mBDebugVideo->button->setPosition(10, 10);
   mBDebugVideo->button->setWidth(110, .4);
   mBDebugVideo->button->onButtonEvent([&](ofxDatGuiButtonEvent v) {
@@ -357,23 +357,58 @@ void ofApp::setupCam() {
       file >> camjs;
       int j = 0;
       for (auto & cam : camjs) {
-        if(j < mNumInputs){
-          std::string inputImg("cam_" + to_string(j));
-          int camId =  cam[inputImg]["camId"];
+        if(j < mNumInputs) {
+          std::string inputImg( "cam_" + std::to_string(j) );
+
+          int camId = cam[inputImg]["camId"];
           ofLog(OF_LOG_NOTICE)<<"Loading: " << j << ": CamId: " << camId<<" "<<std::endl;
 
+          mGridImg.at(j)->setupCam(camId, CAM_FRAMERATE);
 
           mGridImg.at(j)->setCropUp(glm::vec2(cam[inputImg]["x1"], cam[inputImg]["y1"]));
           mGridImg.at(j)->setCropDown(glm::vec2(cam[inputImg]["x2"], cam[inputImg]["y2"]));
           mGridImg.at(j)->setCropDisp(glm::vec2(cam[inputImg]["disX"], cam[inputImg]["disY"]));
 
-          float gm = float(cam[inputImg]["gamma"]);
-          mGridImg.at(j)->setGamma(gm);
+          //perspective
+          glm::vec2 inputQuad0 = glm::vec2(cam[inputImg]["px0"], cam[inputImg]["py0"]);
+          glm::vec2 inputQuad1 = glm::vec2(cam[inputImg]["px1"], cam[inputImg]["py1"]);
+          glm::vec2 inputQuad2 = glm::vec2(cam[inputImg]["px2"], cam[inputImg]["py2"]);
+          glm::vec2 inputQuad3 = glm::vec2(cam[inputImg]["px3"], cam[inputImg]["py3"]);
 
-          ofLog(OF_LOG_NOTICE) << "Loading cam devices:";
-          mGridImg.at(j)->setupCam(camId, CAM_FRAMERATE);
+          mGridImg.at(j)->setInputPersp(inputQuad0, 0);
+          mGridImg.at(j)->setInputPersp(inputQuad1, 1);
+          mGridImg.at(j)->setInputPersp(inputQuad2, 2);
+          mGridImg.at(j)->setInputPersp(inputQuad3, 3);
 
-          ofLog(OF_LOG_NOTICE) << "Gamma: " << gm;
+          mGridImg.at(j)->resetPerspetive();
+          mGridImg.at(j)->calculatedPersp();
+
+          //coordinate
+          float minX = cam[inputImg]["mapMinX"];
+          float maxX = cam[inputImg]["mapMaxX"];
+          float minY = cam[inputImg]["mapMinY"];
+          float maxY = cam[inputImg]["mapMaxY"];
+          mGridDetector.at(j)->setMapCoord(minX, maxX, minY, maxY);
+
+          //update GUI
+          mMapMinX->ofParam = minX;
+          mMapMaxX->ofParam = maxX;
+          mMapMinY->ofParam = minY;
+          mMapMaxY->ofParam = maxY;
+
+          //read beta alpha gama
+          float gamma = cam[inputImg]["gamma"];
+          float alpha = cam[inputImg]["alpha"];
+          float beta  = cam[inputImg]["beta"];
+
+          //beta alpha
+          mGridImg.at(j)->setGamma(gamma);
+          mGridImg.at(j)->setAlpha(alpha);
+          mGridImg.at(j)->setBeta(beta);
+
+          mGammaValue->ofParam = gamma;
+          mAlphaValue->ofParam = alpha;
+          mBetaValue->ofParam  = beta;
           j++;
         }
       }

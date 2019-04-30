@@ -27,6 +27,12 @@ void ofApp::setup() {
   setupConnection();
   setupGUI();
 
+  //initial setup for final implementation
+  mBFullCamView->mActive = true;
+  mBFullGrid->mActive = true;
+  mSendUDP->mActive = true;
+  mCamPerspective->mActive  = true;
+
   ofLog(OF_LOG_NOTICE) << "finished setup";
 }
 

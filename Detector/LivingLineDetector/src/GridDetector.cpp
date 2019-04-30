@@ -524,23 +524,19 @@ void GridDetector::cleanGrid() {
 
         //calcute error
         glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
-
         float newRot =  rot / (float)itr;
 
         //Coordinate mapping
         float newMapPosX = float(ofMap(newPos.x, 0.0f, 1280.0f, mCoordMapMinX, mCoordMapMaxX));
         float newMapPosY = float(ofMap(newPos.y, 0.0f, 720.0f, mCoordMapMinY, mCoordMapMaxY));
 
-        float newMapPosXD =  ceilf(newMapPosX * 100.0f) / 100.0f;
-        float newMapPosYD =  ceilf(newMapPosY * 100.0f) / 100.0f;
-
-        //ofLog(OF_LOG_NOTICE) <<pos.x<<" "<<pos.y<<" "<<itr<<" "<<newPos.x<<" "<<newPos.y;
-        //ofLog(OF_LOG_NOTICE) <<mCoordMapMinX<<" "<<mCoordMapMaxX<<" "<<mGridDim.x<<" "<<newMapPosX;
+        float newMapPosXD =  prd(ceilf(newMapPosX * 100.0f) / 100.0f, 2);
+        float newMapPosYD =  prd(ceilf(newMapPosY * 100.0f) / 100.0f, 2);
 
         //save the files
         MarkerArucoRef m = MarkerAruco::create();
         m->setMarkerId(id);
-        m->setPos(glm::vec2(prd(newMapPosXD, 2), prd(newMapPosYD,2)));
+        m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
         m->setRot(newRot);
         mBlocksSend.push_back(m);
       }
@@ -554,7 +550,7 @@ void GridDetector::cleanGrid() {
 }
 
 
-float GridDetector::prd(float x, const int decDigits) {
+float GridDetector::prd(float x,  int decDigits) {
     std::stringstream ss;
     ss << fixed;
     ss.precision(decDigits); // set # places after decimal

@@ -23,9 +23,11 @@ void ofApp::setup() {
   setupGridDetector();
   setupDetection();
   setupCalibration();
-  setupCam(); //dont load the cameras at the begining
-  setupConnection();
   setupGUI();
+  setupConnection();
+  setupCam(); //dont load the cameras at the begining
+
+
 
   //initial setup for final implementation
   mBFullCamView->mActive = true;

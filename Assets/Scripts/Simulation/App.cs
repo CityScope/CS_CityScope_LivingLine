@@ -137,6 +137,11 @@ public class App : MonoBehaviour
         // "knobs": [{"type": 10, "x": 276.52, "y": 10.55, "rot": 274.2}, 
         // {"type": 11, "x": 290.22, "y": 106.35, "rot": 161.43}, 
         // {"type": 12, "x": 318.57, "y": 112.41, "rot": 122.77}]}
+
+
+        // initiate free units
+        InitiateFreeUnits();
+
     }
 
     void Update()
@@ -290,24 +295,14 @@ public class App : MonoBehaviour
 
     Dictionary<int, GameObject> freeUnitDic = new Dictionary<int, GameObject>(); 
 
-    // RZ TODO: need to be optimized, now deleting and re-instantiate every frame
-    void UpdateFreeUnits(JsonData jsonData)
+    void InitiateFreeUnits()
     {
-        // clean up last frame GOs
-        if (freeUnits.Count > 0)
-        {
-            foreach (GameObject go in freeUnits)
-            {
-                Destroy(go);
-            }
-        }
-        freeUnits = new List<GameObject>();
-
-        // add new GOs according to json via udp
-        foreach (UnitInfoData infoData in jsonData.free_units)
+        // RZ TODO: update to support 9 free units with 9 unique aruco tags
+        // initiate 3(to be updated to 9) GO for 3 type of free units
+        for (int i = 7; i <= 9; i++)
         {
             string sourceName = null;
-            switch (infoData.type)
+            switch (i)
             {
                 case 7:
                     sourceName = "Public Space";
@@ -321,6 +316,45 @@ public class App : MonoBehaviour
             }
             GameObject go = Instantiate(Resources.Load<GameObject>(sourceName));
             go.transform.parent = freeUnitListRoot.transform;
+            go.transform.localPosition = new Vector3(0.0f, 0.0f, 0.0f);
+            go.transform.localEulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
+            go.transform.localScale = Vector3.one;
+            // RZ TODO: might have memory leak
+            // follow main box morph
+            go.GetComponent<ManuallyAddBoxMorphGO>().boxMorphKeyPts = boxMorphKeyPtsMain;
+            go.GetComponent<ManuallyAddBoxMorphGO>().alwaysUpdateMorph = true;
+            go.SetActive(false);
+            freeUnits.Add(go);
+        }
+    }
+    
+    void UpdateFreeUnits(JsonData jsonData)
+    {
+        // RZ TODO: update to support 9 free units with 9 unique aruco tags
+        // switch off all free units first
+        foreach (GameObject go in freeUnits)
+        {
+            go.SetActive(false);
+        }
+
+        // switch on the free units according to udp data and update position
+        foreach (UnitInfoData infoData in jsonData.free_units)
+        {
+            GameObject go = null;
+            switch (infoData.type)
+            {
+                case 7:
+                    go = freeUnits[0];
+                    break;
+                case 8:
+                    go = freeUnits[1];
+                    break;
+                case 9:
+                    go = freeUnits[2];
+                    break;
+            }
+            go.SetActive(true);
+            // update position
             if (remap)
             {
                 go.transform.localPosition = new Vector3(Remap(infoData.x, 0f, camResW, xRemapMin, xRemapMax), 0.0f, Remap(infoData.y, 0f, camResH, yRemapMin, yRemapMax));
@@ -331,10 +365,6 @@ public class App : MonoBehaviour
             }
             go.transform.localEulerAngles = new Vector3(0.0f, -infoData.rot, 0.0f);
             go.transform.localScale = Vector3.one;
-            // RZ TODO: might have memory leak
-            // follow main box morph
-            go.GetComponent<ManuallyAddBoxMorphGO>().boxMorphKeyPts = boxMorphKeyPtsMain;
-            freeUnits.Add(go);
         }
     }
 

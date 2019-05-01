@@ -38,13 +38,13 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 11
-  m_GIWorkflowMode: 0
+  m_GIWorkflowMode: 1
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -8414,7 +8414,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6901549234991531234}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 87189817defbb490991d6361da604061, type: 3}
   m_Name: 
@@ -11629,7 +11629,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 6901549234991531234}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 70d48beea7a194946bbff194c257c8ea, type: 3}
   m_Name: 
@@ -13853,7 +13853,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2077967050
 Transform:
   m_ObjectHideFlags: 0
@@ -22272,6 +22272,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIRoot
       objectReference: {fileID: 0}
+    - target: {fileID: 2310178324359727784, guid: 11cb84842869a384a9d30669f645964b,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2310178325466211923, guid: 11cb84842869a384a9d30669f645964b,
         type: 3}
       propertyPath: udpListener
@@ -25450,11 +25455,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1852320749753276079, guid: 0fac8e9b68612f04c8d77effcda6a989,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 7184104032480065722, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -25560,27 +25560,37 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7184104032140243896, guid: 0fac8e9b68612f04c8d77effcda6a989,
+    - target: {fileID: 7184104030603159243, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1405857035926874387, guid: 0fac8e9b68612f04c8d77effcda6a989,
+    - target: {fileID: 7184104032480065725, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -85
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1405857035926874387, guid: 0fac8e9b68612f04c8d77effcda6a989,
+    - target: {fileID: 7184104032480065724, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -276.8
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1405857035926874387, guid: 0fac8e9b68612f04c8d77effcda6a989,
+    - target: {fileID: 7184104032480065727, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7184104030603159243, guid: 0fac8e9b68612f04c8d77effcda6a989,
+    - target: {fileID: 7184104032480065713, guid: 0fac8e9b68612f04c8d77effcda6a989,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 648242844844894501, guid: 0fac8e9b68612f04c8d77effcda6a989,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7184104032172261942, guid: 0fac8e9b68612f04c8d77effcda6a989,
         type: 3}
       propertyPath: m_IsActive
       value: 1

@@ -44,8 +44,7 @@ public class BoxMorphGO : MonoBehaviour {
         ApplyBoxMorph(meshTransform, mesh, meshBK, boxMorphKeyPts);
     }
 
-    // Update is called once per frame
-    void Update() {
+    void LateUpdate() {
         // get calibration status from boxMorphKeyPts
         calibrating = boxMorphKeyPts.calibrating;
 

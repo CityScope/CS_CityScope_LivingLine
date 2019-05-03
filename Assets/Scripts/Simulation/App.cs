@@ -76,6 +76,10 @@ public class App : MonoBehaviour
     public BoxMorphKeyPts boxMorphKeyPtsMain;
 
     private Dictionary<string, GameObject> aiPrefabDic = new Dictionary<string, GameObject>();
+    
+    private float timeSinceLastCalled;
+    public float gcDelay = 1f;
+
 
     void Awake()
     {
@@ -159,6 +163,17 @@ public class App : MonoBehaviour
                 UpdateData();
             }
         }
+        
+        /*
+        // periodic GC
+        timeSinceLastCalled += Time.deltaTime;
+        if (timeSinceLastCalled > gcDelay)
+        {
+            System.GC.Collect();
+            Resources.UnloadUnusedAssets();
+            timeSinceLastCalled = 0f;
+        }
+        */
     }
 
     void LoadJson()

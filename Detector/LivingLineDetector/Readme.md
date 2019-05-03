@@ -10,12 +10,19 @@ IP:   127.0.0.1
 
   - '3' - Save data
   - '6' - load data
-  - 'p' activate prestive points, order:
-
+  - 'p' activate perspective points, clockwise order:
+      - Top Left corner
+      - Top Right corner
+      - Lower Right corner
+      - Lower Left corner
+  - 'o' reset perspective points
 
 ### GUI explanation
 
-### Calibation Process
+### Calibration Process
+
+
+![alt text](http://url/to/img.png)
+perspective.png
 
 ### Final execution
-

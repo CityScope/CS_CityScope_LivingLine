@@ -572,8 +572,8 @@ void GridDetector::sendRawData(){
   //send data from the free and knob units
   int unitCout = 0;
   for (auto & mFree : mCurrRawFree) {
-    if(abs(mFree->getPos().x - mPrevBlock.at(unitCout)->getPos().x) > 2.5 ||
-       abs(mFree->getPos().y - mPrevBlock.at(unitCout)->getPos().y) > 2.5 ){
+    if(abs(mFree->getPos().x - mPrevBlock.at(unitCout)->getPos().x) > 5.5 ||
+       abs(mFree->getPos().y - mPrevBlock.at(unitCout)->getPos().y) > 5.5 ){
       int itr = mFree->getInc();
       if(itr >= 1){
         glm::vec2 pos =  mFree->getPos();

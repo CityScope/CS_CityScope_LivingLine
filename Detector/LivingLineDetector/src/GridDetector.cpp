@@ -79,7 +79,7 @@ void GridDetector::setupCleaner() {
 
   // cleaner
   mWindowCounter = 0;
-  mWindowIterMax = 3; ///
+  mWindowIterMax = 5; ///
   mCleanDone = false;
 
   for (int i = 0; i < mMaxMarkers; i++) {
@@ -373,6 +373,19 @@ void GridDetector::calibrateGrid() {
   // draw grid
 }
 
+std::vector<MarkerArucoRef> GridDetector::getCompiledMarkers(){
+  return mBlocksSend;
+}
+
+std::vector<MarkerArucoRef> GridDetector::getCompiledFreeMarkers(){
+  return mBlocksFreeSend;
+}
+
+std::vector<MarkerArucoRef> GridDetector::getCompiledFixedMarkers(){
+  return mBlocksFixedSend;
+}
+
+
 //-----------------------------------------------------------------------------
 void GridDetector::updateCleaner() {
   // update clenaer variables
@@ -402,11 +415,14 @@ void GridDetector::cleanGrid() {
     }
 
     //clean free memory
-    mCurrFree.clear();
+    std::vector<QRBlockRef> mCurrFree;
     for(int i = 0; i < MAX_MARKERS; i++){
       QRBlockRef free =  QRBlock::create();
       mCurrFree.push_back(free);
     }
+
+    //mCurrBlock
+    mBlocksFixedSend.clear();
 
     // ofLog(OF_LOG_NOTICE) << "calculate freq";
     // calculate the frequency of ocurance
@@ -431,57 +447,7 @@ void GridDetector::cleanGrid() {
       }
     } //done calculating probabilty
 
-
-    //free units
-    for (auto &blocks : mTmpBlocks) {
-      for (auto &block : blocks) {
-        int qrId  = block->getMarkerId();
-
-      //  ofLog(OF_LOG_NOTICE) <<" "<< block->getRot() ;
-
-          //check if the detection was free unit or a knob
-        if ( qrId == 37){
-          mCurrFree.at(qrId)->addPos( block->getPos() );
-          mCurrFree.at(qrId)->addRot( block->getRot() );
-          mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree.at(qrId)->incProba();
-        }else if( qrId == 38){
-          mCurrFree.at(qrId)->addPos( block->getPos() );
-          mCurrFree.at(qrId)->addRot( block->getRot() );
-          mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree.at(qrId)->incProba();
-        }else if( qrId == 45 ){
-          mCurrFree.at(qrId)->addPos( block->getPos() );
-          mCurrFree.at(qrId)->addRot( block->getRot() );
-          mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree.at(qrId)->incProba();
-        }else if ( qrId == 40){ //free units
-          mCurrFree.at(qrId)->addPos( block->getPos() );
-          mCurrFree.at(qrId)->addRot( block->getRot() );
-          mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree.at(qrId)->incProba();
-        }else if( qrId == 41){
-          mCurrFree.at(qrId)->addPos( block->getPos() );
-          mCurrFree.at(qrId)->addRot( block->getRot() );
-          mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree.at(qrId)->incProba();
-        }else if( qrId == 49 ){
-          mCurrFree.at(qrId)->addPos( block->getPos() );
-          mCurrFree.at(qrId)->addRot( block->getRot() );
-          mCurrFree.at(qrId)->setMarkerId(qrId);
-          mCurrFree.at(qrId)->incProba();
-        }
-      }
-    }
-
-
-
-
-
-     //done calculating probabilty
-
     //check the markers that have been detected
-
     int i = 0;
     int indeX = 0;
 
@@ -499,7 +465,7 @@ void GridDetector::cleanGrid() {
         m->setMarkerId(mIdsCounter[i]);
         m->setPos(pos);
 
-        mBlocksSend.push_back(m);
+        //mBlocksSend.push_back(m);
 
       } else {
         mk->enableOff();
@@ -511,8 +477,7 @@ void GridDetector::cleanGrid() {
       int newId = mk->getMarkerId();
     }
 
-    //mCurrBlock
-    mBlocksSend.clear();
+
     for (auto & rawBlock : mCurrBlock) {
         glm::vec2 pos =  rawBlock->getPos();
         float rot = rawBlock->getRot();
@@ -529,34 +494,7 @@ void GridDetector::cleanGrid() {
           m->setMarkerId(id);
           m->setPos(glm::vec2(prd(newMapPosXD, 2), prd(newMapPosYD, 2)));
           m->setRot(rot);
-          mBlocksSend.push_back(m);
-      }
-    }
-
-    for (auto & mFree : mCurrFree) {
-      int itr = mFree->getInc();
-      if(itr >= 1){
-        glm::vec2 pos =  mFree->getPos();
-        float rot = mFree->getRot();
-        int id =  mFree->getMarkerId();
-
-        //calcute error
-        glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
-        float newRot =  rot / (float)itr;
-
-        //Coordinate mapping
-        float newMapPosX = float(ofMap(newPos.x, 0.0f, 1280.0f, mCoordMapMinX, mCoordMapMaxX));
-        float newMapPosY = float(ofMap(newPos.y, 0.0f, 720.0f, mCoordMapMinY, mCoordMapMaxY));
-
-        float newMapPosXD =  prd(ceilf(newMapPosX * 100.0f) / 100.0f, 2);
-        float newMapPosYD =  prd(ceilf(newMapPosY * 100.0f) / 100.0f, 2);
-
-        //save the files
-        MarkerArucoRef m = MarkerAruco::create();
-        m->setMarkerId(id);
-        m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
-        m->setRot(newRot);
-        mBlocksSend.push_back(m);
+          mBlocksFixedSend.push_back(m);
       }
     }
 
@@ -565,9 +503,97 @@ void GridDetector::cleanGrid() {
     ofLog(OF_LOG_NOTICE) << "done: "<<mId;
   }
 
+  //send it right away
+
+
+
+}
+
+///--------------------------------------------------------------------------------
+void GridDetector::cleanRawMarkers(){
+
+}
+///--------------------------------------------------------------------------------
+void GridDetector::sendRawData(){
+  //clean free memory
+  std::vector<QRBlockRef> mCurrRawFree;
+
+  mCurrRawFree.clear();
+  for(int i = 0; i < MAX_MARKERS; i++){
+    QRBlockRef free =  QRBlock::create();
+    mCurrRawFree.push_back(free);
+  }
+  mBlocksFreeSend.clear();
+  //check if the detection was free unit or a knob
+  for (auto &blocks : mTmpBlocks) {
+    for (auto &block : blocks) {
+      int qrId  = block->getMarkerId();
+      if ( qrId == 37){
+        mCurrRawFree.at(qrId)->addPos( block->getPos() );
+        mCurrRawFree.at(qrId)->addRot( block->getRot() );
+        mCurrRawFree.at(qrId)->setMarkerId(qrId);
+        mCurrRawFree.at(qrId)->incProba();
+      }else if( qrId == 38){
+        mCurrRawFree.at(qrId)->addPos( block->getPos() );
+        mCurrRawFree.at(qrId)->addRot( block->getRot() );
+        mCurrRawFree.at(qrId)->setMarkerId(qrId);
+        mCurrRawFree.at(qrId)->incProba();
+      }else if( qrId == 45 ){
+        mCurrRawFree.at(qrId)->addPos( block->getPos() );
+        mCurrRawFree.at(qrId)->addRot( block->getRot() );
+        mCurrRawFree.at(qrId)->setMarkerId(qrId);
+        mCurrRawFree.at(qrId)->incProba();
+      }else if ( qrId == 40){ //free units
+        mCurrRawFree.at(qrId)->addPos( block->getPos() );
+        mCurrRawFree.at(qrId)->addRot( block->getRot() );
+        mCurrRawFree.at(qrId)->setMarkerId(qrId);
+        mCurrRawFree.at(qrId)->incProba();
+      }else if( qrId == 41){
+        mCurrRawFree.at(qrId)->addPos( block->getPos() );
+        mCurrRawFree.at(qrId)->addRot( block->getRot() );
+        mCurrRawFree.at(qrId)->setMarkerId(qrId);
+        mCurrRawFree.at(qrId)->incProba();
+      }else if( qrId == 49 ){
+        mCurrRawFree.at(qrId)->addPos( block->getPos() );
+        mCurrRawFree.at(qrId)->addRot( block->getRot() );
+        mCurrRawFree.at(qrId)->setMarkerId(qrId);
+        mCurrRawFree.at(qrId)->incProba();
+      }
+    }
+  }
+
+  //send data from the free and knob units
+  for (auto & mFree : mCurrRawFree) {
+    int itr = mFree->getInc();
+    if(itr >= 1){
+      glm::vec2 pos =  mFree->getPos();
+      float rot = mFree->getRot();
+      int id =  mFree->getMarkerId();
+
+      //calcute error
+      glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
+      float newRot =  rot / (float)itr;
+
+      //Coordinate mapping
+      float newMapPosX = float(ofMap(newPos.x, 0.0f, 1280.0f, mCoordMapMinX, mCoordMapMaxX));
+      float newMapPosY = float(ofMap(newPos.y, 0.0f, 720.0f, mCoordMapMinY, mCoordMapMaxY));
+
+      float newMapPosXD =  prd(ceilf(newMapPosX * 100.0f) / 100.0f, 2);
+      float newMapPosYD =  prd(ceilf(newMapPosY * 100.0f) / 100.0f, 2);
+
+      //save the files
+      MarkerArucoRef m = MarkerAruco::create();
+      m->setMarkerId(id);
+      m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
+      m->setRot(newRot);
+      mBlocksFreeSend.push_back(m);
+    }
+  }
+
 }
 
 
+///--------------------------------------------------------------------------------
 float GridDetector::prd(float x,  int decDigits) {
     std::stringstream ss;
     ss << fixed;

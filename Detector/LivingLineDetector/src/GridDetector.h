@@ -85,6 +85,8 @@ public:
     void cleanGrid();
     bool isDoneCleaner(){return mCleanDone;}
 
+    void sendRawData();
+
     void setGridPos(glm::vec2 mousePos);
 
     //save json files
@@ -100,9 +102,11 @@ public:
 
     void drawRotation();
 
-    std::vector<MarkerArucoRef> getCompiledMarkers(){
-      return mBlocksSend;
-    }
+    std::vector<MarkerArucoRef> getCompiledMarkers();
+    std::vector<MarkerArucoRef> getCompiledFreeMarkers();
+    std::vector<MarkerArucoRef> getCompiledFixedMarkers();
+
+    void cleanRawMarkers();
 
     void calculateRotations();
 
@@ -184,12 +188,12 @@ private:
     std::vector<MarkerArucoRef> mMarkers;
 
     std::vector<MarkerArucoRef> mBlocksSend;
+    std::vector<MarkerArucoRef> mBlocksFreeSend;
+    std::vector<MarkerArucoRef> mBlocksFixedSend;
 
     //obtain the QRCode from the block
     std::vector<QRBlockRef> mCurrBlock;
 
-    //free units blocks
-    std::vector<QRBlockRef> mCurrFree;
 
     //temporal vector that we clean the current blocks
     std::vector<std::vector<QRBlockRef>> mTmpBlocks;

@@ -45,11 +45,14 @@ void ofApp::cleanDetection() {
   if (mBSingleGrid->isActive()) {
     mGridDetector.at(mCurrentInputIdx)->cleanGrid();
 
+    mGridDetector.at(mCurrentInputIdx)->sendRawData();
+
     mGridDetector.at(mCurrentInputIdx)->resetCleaner();
   } else if (mBFullGrid->isActive()) {
 
     for (auto &gridDetector : mGridDetector) {
       gridDetector->cleanGrid();
+      gridDetector->sendRawData();
     }
 
     for (auto &gridDetector : mGridDetector) {
@@ -495,7 +498,7 @@ void ofApp::sendUDPJson(){
     //fill the fixed units with the real values
     std::vector<ofJson> fixed;
     for (auto &gridDetector : mGridDetector) {
-      auto markers = gridDetector->getCompiledMarkers();
+      auto markers = gridDetector->getCompiledFixedMarkers();
       for(auto & mb : markers){
         ofJson json;
         int id =mb->getMarkerId();
@@ -547,7 +550,7 @@ void ofApp::sendUDPJson(){
     std::string inputStr("free_units");
     std::vector<ofJson> free;
     for (auto &gridDetector : mGridDetector) {
-      auto markers = gridDetector->getCompiledMarkers();
+      auto markers = gridDetector->getCompiledFreeMarkers();
       for(auto & mb : markers){
         ofJson json;
         int id =mb->getMarkerId();
@@ -581,7 +584,7 @@ void ofApp::sendUDPJson(){
     std::string inputStr("knobs");
     std::vector<ofJson> knob;
     for (auto &gridDetector : mGridDetector) {
-      auto markers = gridDetector->getCompiledMarkers();
+      auto markers = gridDetector->getCompiledFreeMarkers();
       for(auto & mb : markers){
         ofJson json;
         int id =mb->getMarkerId();

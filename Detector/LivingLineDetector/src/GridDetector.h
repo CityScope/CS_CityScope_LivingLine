@@ -6,7 +6,6 @@ March, 2019
 Living Line
 
 */
-
 #pragma once
 
 #include "ofMain.h"
@@ -33,6 +32,8 @@ Living Line
 
 //based on the numbers of Markers
 #define MAX_MARKERS   50
+
+#define RAD_CLEAN 5
 
 class GridDetector;
 typedef std::shared_ptr<GridDetector> GridDetectorRef;
@@ -115,7 +116,12 @@ public:
 
     float prd( float x, int decDigits);
 
+    void enableSort(){mSort != mSort;}
+
 private:
+
+    //sort
+    bool mSort;
 
     //tags
     std::string mUDPMsgIds;

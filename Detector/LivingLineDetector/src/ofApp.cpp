@@ -122,19 +122,11 @@ void ofApp::update() {
       if (pixs.getHeight() > 0) {
         cv::Mat input = ofxCv::toCv(pixs);
 
-        //crop img
-        if( !mCamPerspective->isActive() ){
-          mGridImg.at(currentId)->cropImg(input);
-          cv::Mat copMat = mGridImg.at(i)->getCropMat();
-          copMat.copyTo(copyCrop);
-        }else{
-          //perspective transformation
-          if(mGridImg.at(i)->isCalculatedPersp()){
-            mGridImg.at(i)->calculatePerspective(input);
-          }
-          cv::Mat copMat = mGridImg.at(i)->getPersMat();
-          copMat.copyTo(copyCrop);
+        if(mGridImg.at(i)->isCalculatedPersp()){
+          mGridImg.at(i)->calculatePerspective(input);
         }
+        cv::Mat copMat = mGridImg.at(i)->getPersMat();
+        copMat.copyTo(copyCrop);
 
         mGridImg.at(i)->adjustGamma(copyCrop);
         imageCopys.push_back(copyCrop);
@@ -220,11 +212,9 @@ void ofApp::draw() {
   //draw video streaming information
   if (mBDebugVideo->isActive()) {
     ofSetColor(255);
-    mInputDetectImg.draw(0, 0, 1280, 720);
+    //mInputDetectImg.draw(0, 0, 1280, 720);
 
-    if (mBEnableCrop->isActive()) {
-      mGridImg.at(mCurrentInputIdx)->drawImage(0, 0);
-    } else {
+    mGridImg.at(mCurrentInputIdx)->getImg().draw(0, 0);
 
       int i = 0;
       for (auto &gridImage : mGridImg) {
@@ -236,7 +226,6 @@ void ofApp::draw() {
         gridImage->drawImage(ofGetWidth() - 426, 240 * i, 426, 240);
         i++;
       }
-    }
   }
 
   //draw video steam as a grid
@@ -290,7 +279,7 @@ void ofApp::draw() {
     //draw full grid or a single cma view
     ofSetColor(255);
     if (mBSingleGrid->isActive()) {
-      mFboSingle.draw(0, 0);
+      mFboSingle.draw(0, 0, CAM_WIDTH, CAM_HEIGHT);
     } else if (mBFullGrid->isActive()) {
       int i = 0;
       int j = 0;
@@ -390,7 +379,8 @@ void ofApp::drawInfoScreen() {
 void ofApp::offScreenRenderGrid() {
   if (mBSingleGrid->isActive()) {
     mFboSingle.begin();
-    mInputDetectImg.draw(0, 0);
+    mGridImg.at(mCurrentInputIdx)->getImg().draw(0, 0);
+
     mGridDetector.at(mCurrentInputIdx)->drawMarkers();
     mFboSingle.end();
   }
@@ -952,7 +942,9 @@ void ofApp::keyPressed(int key) {
     ofLog(OF_LOG_NOTICE) << "Refiment " << mRefimentDetector;
   }
 
-  if (key == 'c') {
+  if (key == 's') {
+    mGridDetector.at(mCurrentInputIdx)->enableSort();
+    ofLog(OF_LOG_NOTICE) << "Sort " << mCurrentInputIdx;
   }
 
   if (key == 'n') {
@@ -987,12 +979,10 @@ void ofApp::keyReleased(int key) {}
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y) {
-
   if(mActivePerspectivePoints){
     mMousePos.x = x;
     mMousePos.y = y;
   }
-
 }
 
 //--------------------------------------------------------------
@@ -1000,24 +990,6 @@ void ofApp::mouseDragged(int x, int y, int button) {
   if (mDebug) {
     mGridDetector.at(mCurrentInputIdx)->setGridPos(glm::vec2(x, y));
   }
-
-  //crop input camera information
-  if (mBEnableCrop->isActive()) {
-    {
-      float distUp = ofDist(mGridImg.at(mCurrentInputIdx)->getCropUp().x,  mGridImg.at(mCurrentInputIdx)->getCropUp().y, x, y);
-      if (distUp >= 0.0 && distUp <= 35) {
-        mGridImg.at(mCurrentInputIdx)->setCropUp(glm::vec2(x, y));
-      }
-
-      float distDown =
-          ofDist(mGridImg.at(mCurrentInputIdx)->getCropDown().x, mGridImg.at(mCurrentInputIdx)->getCropDown().y, x, y);
-      if (distDown >= 0.0 && distDown <= 35) {
-        mGridImg.at(mCurrentInputIdx)->setCropDown(glm::vec2(x, y));
-      }
-    }
-  }
-
-
 }
 
 //--------------------------------------------------------------

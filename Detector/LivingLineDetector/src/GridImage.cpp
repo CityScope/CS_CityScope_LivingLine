@@ -224,7 +224,7 @@ void GridImage::updateCorners(glm::vec2 corner){
   }
 }
 //-----------------------------------------------------------------------------
-void GridImage::calculatePerspective(cv::Mat &inputVideo){
+void GridImage::calculatePerspective(cv::Mat & inputVideo){
    // Output Quadilateral or World plane coordinates
    ofPoint tl(mInputQuad[0].x, mInputQuad[0].y);
    ofPoint tr(mInputQuad[1].x, mInputQuad[1].y);

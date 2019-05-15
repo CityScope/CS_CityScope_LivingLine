@@ -16,6 +16,8 @@ GridDetector::GridDetector(glm::vec2 dim) {
   mCoordMapMaxX = 0;
   mCoordMapMinY = 0;
   mCoordMapMaxY = 0;
+
+  mSort = false;
 }
 //-----------------------------------------------------------------------------
 void GridDetector::generateGridPos() {
@@ -137,8 +139,21 @@ void GridDetector::generateMarkers(std::vector<int> &ids,
   //copy identified ids
   mTagsIds = ids;
 
+
+  //sort information
+  // clasification of ids and blocks
+if (mSort) {
+  std::sort(blocks.begin(), blocks.end(),
+            [](const QRBlockRef &lhs, const QRBlockRef &rhs) -> bool {
+              return lhs->getPos().x < rhs->getPos().x;
+            });
+  ofLog(OF_LOG_NOTICE) << "sorted";
+}
+
+
   //copy positions of the qr blokcs
   mCurrBlock = blocks;
+
 
   //calculate rotation
   calculateRotations();
@@ -459,10 +474,14 @@ void GridDetector::cleanGrid() {
       }
     }
 
+
+
+
+
      //done calculating probabilty
 
     //check the markers that have been detected
-    /*
+
     int i = 0;
     int indeX = 0;
 
@@ -491,7 +510,6 @@ void GridDetector::cleanGrid() {
 
       int newId = mk->getMarkerId();
     }
-    */
 
     //mCurrBlock
     mBlocksSend.clear();

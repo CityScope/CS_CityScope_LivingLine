@@ -1,5 +1,3 @@
-
-
 Seding JSON
 
 Port: 32000
@@ -19,8 +17,10 @@ IP:   127.0.0.1
 
 ### GUI explanation
 
+
 ### Calibration Process
 
+Example process:
 
 ![Perspective Cam](https://github.com/CityScope/CS_CityScope_LivingLine/blob/detector/Detector/LivingLineDetector/perspective.png)
 

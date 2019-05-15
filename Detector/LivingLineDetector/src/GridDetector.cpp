@@ -18,6 +18,13 @@ GridDetector::GridDetector(glm::vec2 dim) {
   mCoordMapMaxY = 0;
 
   mSort = false;
+
+  //previos block
+  for(int i = 0; i < MAX_MARKERS; i++){
+    QRBlockRef free =  QRBlock::create();
+    mPrevBlock.push_back(free);
+  }
+
 }
 //-----------------------------------------------------------------------------
 void GridDetector::generateGridPos() {
@@ -563,31 +570,40 @@ void GridDetector::sendRawData(){
   }
 
   //send data from the free and knob units
+  int unitCout = 0;
   for (auto & mFree : mCurrRawFree) {
-    int itr = mFree->getInc();
-    if(itr >= 1){
-      glm::vec2 pos =  mFree->getPos();
-      float rot = mFree->getRot();
-      int id =  mFree->getMarkerId();
+    if(abs(mFree->getPos().x - mPrevBlock.at(unitCout)->getPos().x) > 0.5 ||
+       abs(mFree->getPos().y - mPrevBlock.at(unitCout)->getPos().y) > 0.5 ){
+      int itr = mFree->getInc();
+      if(itr >= 1){
+        glm::vec2 pos =  mFree->getPos();
+        float rot = mFree->getRot();
+        int id =  mFree->getMarkerId();
 
-      //calcute error
-      glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
-      float newRot =  rot / (float)itr;
+        //calcute error
+        glm::vec2 newPos = glm::vec2(pos.x/(float)itr, pos.y/(float)itr);
+        float newRot =  rot / (float)itr;
 
-      //Coordinate mapping
-      float newMapPosX = float(ofMap(newPos.x, 0.0f, 1280.0f, mCoordMapMinX, mCoordMapMaxX));
-      float newMapPosY = float(ofMap(newPos.y, 0.0f, 720.0f, mCoordMapMinY, mCoordMapMaxY));
+        //Coordinate mapping
+        float newMapPosX = float(ofMap(newPos.x, 0.0f, 1280.0f, mCoordMapMinX, mCoordMapMaxX));
+        float newMapPosY = float(ofMap(newPos.y, 0.0f, 720.0f, mCoordMapMinY, mCoordMapMaxY));
 
-      float newMapPosXD =  prd(ceilf(newMapPosX * 100.0f) / 100.0f, 2);
-      float newMapPosYD =  prd(ceilf(newMapPosY * 100.0f) / 100.0f, 2);
+        float newMapPosXD =  prd(ceilf(newMapPosX * 100.0f) / 100.0f, 2);
+        float newMapPosYD =  prd(ceilf(newMapPosY * 100.0f) / 100.0f, 2);
 
-      //save the files
-      MarkerArucoRef m = MarkerAruco::create();
-      m->setMarkerId(id);
-      m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
-      m->setRot(newRot);
-      mBlocksFreeSend.push_back(m);
+        //save the files
+        MarkerArucoRef m = MarkerAruco::create();
+        m->setMarkerId(id);
+        m->setPos(glm::vec2(newMapPosXD, newMapPosYD));
+        m->setRot(newRot);
+        mBlocksFreeSend.push_back(m);
+      }
     }
+
+    //save previos position
+    mPrevBlock.at(unitCout) = mFree;
+
+    unitCout++;
   }
 
 }

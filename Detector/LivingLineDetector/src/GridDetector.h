@@ -194,6 +194,9 @@ private:
     //obtain the QRCode from the block
     std::vector<QRBlockRef> mCurrBlock;
 
+    //prev block
+    std::vector<QRBlockRef> mPrevBlock;
+
 
     //temporal vector that we clean the current blocks
     std::vector<std::vector<QRBlockRef>> mTmpBlocks;

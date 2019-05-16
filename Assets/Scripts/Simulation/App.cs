@@ -349,7 +349,7 @@ public class App : MonoBehaviour
         // switch off all free units first
         foreach (GameObject go in freeUnits)
         {
-            go.SetActive(false);
+            //go.SetActive(false);  // RZ 190515 disabled temporary for HK Pheonix TV shooting
         }
 
         // switch on the free units according to udp data and update position

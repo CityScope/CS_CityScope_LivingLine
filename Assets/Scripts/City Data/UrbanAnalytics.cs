@@ -60,6 +60,9 @@ public class UrbanAnalytics : MonoBehaviour
 
     public float[] metrics = new float[9];
 
+    // RZ 190515 temp fix for filming
+    public App app;
+
     void Start()
     {
 
@@ -152,12 +155,21 @@ public class UrbanAnalytics : MonoBehaviour
         {
             allUnitTotalCapacities[i] = 0.0f;
         }
+        // RZ 190515 temp fix for filming
+        /*
         foreach (UnitInfoData infoData in jsonData.free_units)
         {
             if (infoData.type >= 7 && infoData.type < 10)
             {
                 allUnitTotalCapacities[infoData.type] += FreeUnitRot2Capacity(infoData.rot);
             }
+        }
+        */
+        int t = 7;
+        foreach (GameObject freeUnitGO in app.freeUnits)
+        {
+            allUnitTotalCapacities[t] += FreeUnitRot2Capacity(-freeUnitGO.transform.localEulerAngles.y);
+            t++;
         }
 
 
@@ -227,10 +239,19 @@ public class UrbanAnalytics : MonoBehaviour
             Vector4 tmpVector4 = new Vector4(unitInfo.x, unitInfo.y, heatmapRangeFactorFixedUnit, heatmapIntensityFactorFixedUnit * timeFactor);
             tmpVector4List.Add(tmpVector4);
         }
+        // RZ 190515 temp fix for filming
+        /*
         foreach (UnitInfoData unitInfo in jsonData.free_units)
         {
             // heatmap's posx posy radius and intensity
             Vector4 tmpVector4 = new Vector4(unitInfo.x, unitInfo.y, heatmapRangeFactorFreeUnit, heatmapIntensityFactorFreeUnit * timeFactor);
+            tmpVector4List.Add(tmpVector4);
+        }
+        */
+        foreach (GameObject freeUnitGO in app.freeUnits)
+        {
+            // heatmap's posx posy radius and intensity
+            Vector4 tmpVector4 = new Vector4(freeUnitGO.transform.localPosition.x, freeUnitGO.transform.localPosition.z, heatmapRangeFactorFreeUnit, heatmapIntensityFactorFreeUnit * timeFactor);
             tmpVector4List.Add(tmpVector4);
         }
         for (int i = 0; i < heatmap.count; i++)

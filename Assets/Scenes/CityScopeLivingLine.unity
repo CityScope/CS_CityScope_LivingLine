@@ -6824,6 +6824,7 @@ MonoBehaviour:
   - 0.24222934
   - 0.33675787
   - 0.48445868
+  app: {fileID: 968561600}
 --- !u!4 &990599770
 Transform:
   m_ObjectHideFlags: 0
@@ -18800,6 +18801,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2970321692160129107, guid: 8f4bec675707fea4bb6b60777b54200c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2970321691677167912, guid: 8f4bec675707fea4bb6b60777b54200c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2970321691677167915, guid: 8f4bec675707fea4bb6b60777b54200c,
         type: 3}
       propertyPath: m_Enabled
@@ -18944,16 +18955,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 93.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2970321691677167912, guid: 8f4bec675707fea4bb6b60777b54200c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2970321692160129107, guid: 8f4bec675707fea4bb6b60777b54200c,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2970321691128781341, guid: 8f4bec675707fea4bb6b60777b54200c,
         type: 3}

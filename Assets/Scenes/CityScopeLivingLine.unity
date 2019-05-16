@@ -2149,7 +2149,7 @@ GameObject:
   - component: {fileID: 369337152}
   - component: {fileID: 369337151}
   - component: {fileID: 369337150}
-  m_Layer: 11
+  m_Layer: 12
   m_Name: Quad Mask Black
   m_TagString: Untagged
   m_Icon: {fileID: 0}

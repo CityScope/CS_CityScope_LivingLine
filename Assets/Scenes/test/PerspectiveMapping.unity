@@ -361,7 +361,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70863336}
-  - component: {fileID: 70863337}
   m_Layer: 0
   m_Name: Perspective Mapping
   m_TagString: Untagged
@@ -385,26 +384,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &70863337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 70863335}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b40e71c097d8a446b713c6c8a12806e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orthPt0: {fileID: 2132211915}
-  orthPt2: {fileID: 1909386073}
-  orthPtA: {fileID: 1339612404}
-  persPt0: {fileID: 114742606}
-  persPt1: {fileID: 2068529576}
-  persPt2: {fileID: 398483170}
-  persPt3: {fileID: 640013419}
-  persPtA: {fileID: 1370678916}
 --- !u!1 &71290967
 GameObject:
   m_ObjectHideFlags: 0
@@ -5778,6 +5757,7 @@ GameObject:
   - component: {fileID: 1339612408}
   - component: {fileID: 1339612407}
   - component: {fileID: 1339612406}
+  - component: {fileID: 1339612410}
   m_Layer: 11
   m_Name: ptA
   m_TagString: Untagged
@@ -5874,6 +5854,26 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339612404}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1339612410
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1339612404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b40e71c097d8a446b713c6c8a12806e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orthPt0: {fileID: 2132211915}
+  orthPt2: {fileID: 1909386073}
+  orthPtA: {fileID: 1339612404}
+  persPt0: {fileID: 114742606}
+  persPt1: {fileID: 2068529576}
+  persPt2: {fileID: 398483170}
+  persPt3: {fileID: 640013419}
+  persPtA: {fileID: 1370678916}
 --- !u!1 &1345360707
 GameObject:
   m_ObjectHideFlags: 0
@@ -7006,7 +7006,8 @@ GameObject:
   - component: {fileID: 1598598975}
   - component: {fileID: 1598598974}
   - component: {fileID: 1598598973}
-  - component: {fileID: 1598598971}
+  - component: {fileID: 1598598978}
+  - component: {fileID: 1598598972}
   m_Layer: 0
   m_Name: Quad
   m_TagString: Untagged
@@ -7014,36 +7015,26 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1598598971
+--- !u!114 &1598598972
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1598598970}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0fcce36b20010274a9ee3088e9cbcc80, type: 3}
+  m_Script: {fileID: 11500000, guid: 03ffc138d8c85b946b9bae82bf2c68c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  useStoredCameraParameters: 1
-  markerType: 0
-  markerTypeDropdown: {fileID: 1762762183}
-  dictionaryId: 1
-  dictionaryIdDropdown: {fileID: 710517903}
-  showRejectedCorners: 0
-  showRejectedCornersToggle: {fileID: 2140682634}
-  applyEstimationPose: 0
-  refineMarkerDetection: 1
-  refineMarkerDetectionToggle: {fileID: 1516040828}
-  markerLength: 0.1
-  arGameObject: {fileID: 0}
-  arCamera: {fileID: 0}
-  shouldMoveARCamera: 0
-  enableLowPassFilter: 1
-  enableLowPassFilterToggle: {fileID: 1365218709}
-  positionLowPass: 0.005
-  rotationLowPass: 2
+  alignment: 1
+  offset: {x: 10, y: 10}
+  boxVisible: 1
+  boxWidth: 200
+  boxHeight: 110
+  padding: {x: 8, y: 5}
+  consoleHeight: 50
+  consoleText: 
 --- !u!114 &1598598973
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7068,7 +7059,7 @@ MonoBehaviour:
   onInitialized:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnWebCamTextureToMatHelperInitialized
         m_Mode: 1
         m_Arguments:
@@ -7084,7 +7075,7 @@ MonoBehaviour:
   onDisposed:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnWebCamTextureToMatHelperDisposed
         m_Mode: 1
         m_Arguments:
@@ -7100,7 +7091,7 @@ MonoBehaviour:
   onErrorOccurred:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnWebCamTextureToMatHelperErrorOccurred
         m_Mode: 0
         m_Arguments:
@@ -7187,6 +7178,32 @@ Transform:
   m_Father: {fileID: 1696941447}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+--- !u!114 &1598598978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1598598970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2442212d8ebdc463e8a682d6f50c76ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  useStoredCameraParameters: 1
+  markerType: 0
+  markerTypeDropdown: {fileID: 1762762183}
+  dictionaryId: 1
+  dictionaryIdDropdown: {fileID: 710517903}
+  showRejectedCorners: 0
+  showRejectedCornersToggle: {fileID: 2140682634}
+  refineMarkerDetection: 1
+  refineMarkerDetectionToggle: {fileID: 1516040828}
+  markerLength: 0.1
+  enableLowPassFilter: 1
+  enableLowPassFilterToggle: {fileID: 1365218709}
+  positionLowPass: 0.005
+  rotationLowPass: 2
 --- !u!1 &1606545757
 GameObject:
   m_ObjectHideFlags: 0

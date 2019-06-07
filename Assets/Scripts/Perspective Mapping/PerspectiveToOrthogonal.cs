@@ -5,16 +5,24 @@ using UnityEngine;
 public class PerspectiveToOrthogonal : MonoBehaviour
 {
     public GameObject orthPt0;
-    public GameObject orthPt1;
     public GameObject orthPt2;
-    public GameObject orthPt3;
     public GameObject orthPtA;
     public GameObject persPt0;
     public GameObject persPt1;
     public GameObject persPt2;
     public GameObject persPt3;
     public GameObject persPtA;
-    
+
+    private Vector3 pt0orth;
+    private Vector3 pt2orth;
+    private Vector3 ptAorth;
+    private Vector3 pt0pers;
+    private Vector3 pt1pers;
+    private Vector3 pt2pers;
+    private Vector3 pt3pers;
+    private Vector3 ptApers;
+    private Vector2 ptRatioA;
+
     void Start()
     {
         orthPtA = transform.gameObject;
@@ -22,21 +30,21 @@ public class PerspectiveToOrthogonal : MonoBehaviour
     
     void Update()
     {
-        // draw 4 edges
-        Debug.DrawLine(persPt0.transform.position, persPt1.transform.position, Color.magenta);
-        Debug.DrawLine(persPt1.transform.position, persPt2.transform.position, Color.magenta);
-        Debug.DrawLine(persPt2.transform.position, persPt3.transform.position, Color.magenta);
-        Debug.DrawLine(persPt3.transform.position, persPt0.transform.position, Color.magenta);
+        pt0orth = orthPt0.transform.position;
+        pt2orth = orthPt2.transform.position;
+        pt0pers = persPt0.transform.position;
+        pt1pers = persPt1.transform.position;
+        pt2pers = persPt2.transform.position;
+        pt3pers = persPt3.transform.position;
+        ptApers = persPtA.transform.position;
 
-        // draw 2 intersections of 4 edges
-        Vector3 pt0132 = FindIntersection(persPt0.transform.position, persPt1.transform.position, persPt3.transform.position, persPt2.transform.position);
-        Debug.DrawLine(persPt0.transform.position, pt0132, Color.magenta);
-        Debug.DrawLine(persPt3.transform.position, pt0132, Color.magenta);
-        Vector3 pt0312 = FindIntersection(persPt0.transform.position, persPt3.transform.position, persPt1.transform.position, persPt2.transform.position);
-        Debug.DrawLine(persPt0.transform.position, pt0312, Color.magenta);
-        Debug.DrawLine(persPt1.transform.position, pt0312, Color.magenta);
+        // calculate x y ratio follow perspective principle
+        ptRatioA = PointPerspectiveToOrthogonal(pt0pers, pt1pers, pt2pers, pt3pers, ptApers, true);
+        Debug.Log(string.Format("ptRatioA({0}, {1})", ptRatioA.x, ptRatioA.y));
 
-        // 
+        // calculate orthPtA
+        ptAorth = PointRatioToOrthognal(pt0orth, pt2orth, ptRatioA);
+        orthPtA.transform.position = ptAorth;
     }
 
     Vector3 FindIntersection(Vector3 s1, Vector3 e1, Vector3 s2, Vector3 e2)
@@ -57,6 +65,69 @@ public class PerspectiveToOrthogonal : MonoBehaviour
 
         //If lines are parallel, the result will be (NaN, NaN).
         return delta == 0 ? new Vector3(float.NaN, float.NaN, float.NaN)
-            : new Vector3((b2 * c1 - b1 * c2) / delta, 0.0f, (a1 * c2 - a2 * c1) / delta);
+            : new Vector3((b2 * c1 - b1 * c2) / delta, (s1.y + e1.y + s2.y + e2.y) / 4.0f, (a1 * c2 - a2 * c1) / delta);
+    }
+
+    Vector2 PointPerspectiveToOrthogonal(Vector3 pt0, Vector3 pt1, Vector3 pt2, Vector3 pt3, Vector3 ptA, bool debugDrawLine = false)
+    {
+
+        // ref to the sketch!
+        // follow perspective principle
+        // returns normalized ratio of x y coordinates in orthogonal system
+
+        // draw 4 edges
+        if (debugDrawLine) Debug.DrawLine(pt0, pt1, Color.magenta);
+        if (debugDrawLine) Debug.DrawLine(pt1, pt2, Color.magenta);
+        if (debugDrawLine) Debug.DrawLine(pt2, pt3, Color.magenta);
+        if (debugDrawLine) Debug.DrawLine(pt3, pt0, Color.magenta);
+
+        // define 2 intersections of 4 edges (2 vanishing points)
+        // vanishing pt alpha
+        Vector3 ptAlpha = FindIntersection(pt0, pt3, pt1, pt2);
+        if (debugDrawLine) Debug.DrawLine(pt0, ptAlpha, Color.magenta);
+        if (debugDrawLine) Debug.DrawLine(pt1, ptAlpha, Color.magenta);
+        // vanishing pt beta
+        Vector3 ptBeta = FindIntersection(pt0, pt1, pt3, pt2);
+        if (debugDrawLine) Debug.DrawLine(pt0, ptBeta, Color.magenta);
+        if (debugDrawLine) Debug.DrawLine(pt3, ptBeta, Color.magenta);
+        // horizon line (line pt alpha beta)
+        if (debugDrawLine) Debug.DrawLine(ptAlpha, ptBeta, Color.magenta);
+
+        // define pt1' and pt3' with horizon line at pt0
+        // find another pt on horizon line at pt0
+        // ptH = pt0 + (ptBeta - ptAlpha)
+        Vector3 ptH = pt0 + (ptBeta - ptAlpha);
+        if (debugDrawLine) Debug.DrawLine(pt0, ptH, Color.white);
+        // intersect horizon line at pt0 with 2 edge to find pt1' and pt3'
+        Vector3 pt1a = FindIntersection(pt0, ptH, pt2, pt1);
+        if (debugDrawLine) Debug.DrawLine(pt0, pt1a, Color.magenta);
+        if (debugDrawLine) Debug.DrawLine(pt1, pt1a, Color.magenta);
+        Vector3 pt3a = FindIntersection(pt0, ptH, pt2, pt3);
+        if (debugDrawLine) Debug.DrawLine(pt0, pt3a, Color.magenta);
+        if (debugDrawLine) Debug.DrawLine(pt3, pt3a, Color.magenta);
+
+        // define xOrth and yOrth by the ratio on horizon line
+        // intersect horizon line at pt0 with line ptAlpha_ptA and line ptBeta_ptA
+        Vector3 ptXa = FindIntersection(pt0, ptH, ptAlpha, ptA);
+        if (debugDrawLine) Debug.DrawLine(ptAlpha, ptXa, Color.blue);
+        Vector3 ptYa = FindIntersection(pt0, ptH, ptBeta, ptA);
+        if (debugDrawLine) Debug.DrawLine(ptBeta, ptYa, Color.blue);
+        // x y ratio
+        float xRatio = (Vector3.Dot((ptXa - pt0), (pt1a - pt0)) / Mathf.Abs(Vector3.Dot((ptXa - pt0), (pt1a - pt0)))) * ((ptXa - pt0).magnitude / (pt1a - pt0).magnitude);
+        float yRatio = (Vector3.Dot((ptYa - pt0), (pt3a - pt0)) / Mathf.Abs(Vector3.Dot((ptYa - pt0), (pt3a - pt0)))) * ((ptYa - pt0).magnitude / (pt3a - pt0).magnitude);
+
+        return new Vector2(xRatio, yRatio);
+    }
+
+    Vector3 PointRatioToOrthognal(Vector3 pt0, Vector3 pt2, Vector2 ptRatioA)
+    {
+        // y is average of 4 input pts
+        float y = (pt0.y + pt2.y) / 2.0f;
+
+        // x, z are linear interperated
+        float x = (pt2.x - pt0.x) * ptRatioA.x + pt0.x;
+        float z = (pt2.z - pt0.z) * ptRatioA.y + pt0.z;
+
+        return new Vector3(x, y, z);
     }
 }

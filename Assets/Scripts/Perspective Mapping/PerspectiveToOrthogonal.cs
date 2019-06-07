@@ -25,7 +25,7 @@ public class PerspectiveToOrthogonal : MonoBehaviour
 
     void Start()
     {
-        orthPtA = transform.gameObject;
+
     }
     
     void Update()
@@ -40,7 +40,7 @@ public class PerspectiveToOrthogonal : MonoBehaviour
 
         // calculate x y ratio follow perspective principle
         ptRatioA = PointPerspectiveToOrthogonal(pt0pers, pt1pers, pt2pers, pt3pers, ptApers, true);
-        Debug.Log(string.Format("ptRatioA({0}, {1})", ptRatioA.x, ptRatioA.y));
+        //Debug.Log(string.Format("ptRatioA({0}, {1})", ptRatioA.x, ptRatioA.y));
 
         // calculate orthPtA
         ptAorth = PointRatioToOrthognal(pt0orth, pt2orth, ptRatioA);

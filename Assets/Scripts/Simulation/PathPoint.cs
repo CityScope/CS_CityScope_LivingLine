@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathPoint : Point
+public class PathPoint : Point_Sim
 {
     public enum PathPointType
     {

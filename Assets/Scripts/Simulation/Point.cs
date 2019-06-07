@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Point : MonoBehaviour
+public class Point_Sim : MonoBehaviour
 {
     public float radius = 1;
     public Color color = Color.yellow;

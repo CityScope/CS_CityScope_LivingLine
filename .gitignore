@@ -50,6 +50,7 @@ sysinfo.txt
 # ryanz
 [Uu]nity[Pp]ackages/
 Assets/OpenCVForUnity*
+Assets/StreamingAssets*
 Assets/Editor*
 
 # will

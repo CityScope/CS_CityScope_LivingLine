@@ -302,7 +302,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnPlayButtonClick
         m_Mode: 1
         m_Arguments:
@@ -361,6 +361,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 70863336}
+  - component: {fileID: 70863337}
   m_Layer: 0
   m_Name: Perspective Mapping
   m_TagString: Untagged
@@ -384,6 +385,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &70863337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70863335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b40e71c097d8a446b713c6c8a12806e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  orthPt0: {fileID: 2132211915}
+  orthPt2: {fileID: 1909386073}
+  orthPtA: {fileID: 1339612404}
+  persPt0: {fileID: 114742606}
+  persPt1: {fileID: 2068529576}
+  persPt2: {fileID: 398483170}
+  persPt3: {fileID: 640013419}
+  persPtA: {fileID: 1370678916}
 --- !u!1 &71290967
 GameObject:
   m_ObjectHideFlags: 0
@@ -1307,7 +1328,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnPauseButtonClick
         m_Mode: 1
         m_Arguments:
@@ -3544,7 +3565,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnDictionaryIdDropdownValueChanged
         m_Mode: 0
         m_Arguments:
@@ -3817,7 +3838,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnChangeCameraButtonClick
         m_Mode: 1
         m_Arguments:
@@ -5757,7 +5778,6 @@ GameObject:
   - component: {fileID: 1339612408}
   - component: {fileID: 1339612407}
   - component: {fileID: 1339612406}
-  - component: {fileID: 1339612410}
   m_Layer: 11
   m_Name: ptA
   m_TagString: Untagged
@@ -5854,26 +5874,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1339612404}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1339612410
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1339612404}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5b40e71c097d8a446b713c6c8a12806e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  orthPt0: {fileID: 2132211915}
-  orthPt2: {fileID: 1909386073}
-  orthPtA: {fileID: 1339612404}
-  persPt0: {fileID: 114742606}
-  persPt1: {fileID: 2068529576}
-  persPt2: {fileID: 398483170}
-  persPt3: {fileID: 640013419}
-  persPtA: {fileID: 1370678916}
 --- !u!1 &1345360707
 GameObject:
   m_ObjectHideFlags: 0
@@ -6192,7 +6192,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnEnableLowPassFilterToggleValueChanged
         m_Mode: 1
         m_Arguments:
@@ -6770,7 +6770,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnRefineMarkerDetectionToggleValueChanged
         m_Mode: 1
         m_Arguments:
@@ -7193,7 +7193,7 @@ MonoBehaviour:
   useStoredCameraParameters: 1
   markerType: 0
   markerTypeDropdown: {fileID: 1762762183}
-  dictionaryId: 1
+  dictionaryId: 2
   dictionaryIdDropdown: {fileID: 710517903}
   showRejectedCorners: 0
   showRejectedCornersToggle: {fileID: 2140682634}
@@ -7612,7 +7612,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnBackButtonClick
         m_Mode: 1
         m_Arguments:
@@ -7909,7 +7909,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnMarkerTypeDropdownValueChanged
         m_Mode: 0
         m_Arguments:
@@ -8708,7 +8708,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnStopButtonClick
         m_Mode: 1
         m_Arguments:
@@ -9383,7 +9383,7 @@ MonoBehaviour:
   onValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1598598978}
         m_MethodName: OnShowRejectedCornersToggleValueChanged
         m_Mode: 1
         m_Arguments:

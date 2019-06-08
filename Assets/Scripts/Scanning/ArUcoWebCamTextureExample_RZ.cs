@@ -25,6 +25,11 @@ namespace OpenCVForUnityExample
     [RequireComponent (typeof(WebCamTextureToMatHelper))]
     public class ArUcoWebCamTextureExample_RZ : MonoBehaviour
     {
+
+        // RZ
+        public List<Vector2> detectedTagPosRatio2D;
+
+
         /// <summary>
         /// Determines if restores the camera parameters when the file exists.
         /// </summary>

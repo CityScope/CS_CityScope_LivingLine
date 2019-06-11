@@ -16,6 +16,7 @@ namespace OpenCVForUnityExample {
 
         public ArUcoWebCamTextureExample_RZ arUcoWebCamTextureExample_RZ;
         public List<Vector2> detectedTagPosRatio2D;
+        public List<float> detectedTagRotDeg;
 
         private Vector3 pt0orth;
         private Vector3 pt2orth;
@@ -43,15 +44,38 @@ namespace OpenCVForUnityExample {
             ptApers = persPtA.transform.position;
 
             // calculate x y ratio follow perspective principle
-            ptRatioA = PointPerspectiveToOrthogonal(pt0pers, pt1pers, pt2pers, pt3pers, ptApers, true);
+            ptRatioA = PointPerspectiveToOrthogonal(pt0pers, pt1pers, pt2pers, pt3pers, ptApers, false);
             //Debug.Log(string.Format("ptRatioA({0}, {1})", ptRatioA.x, ptRatioA.y));
 
             // calculate orthPtA
             ptAorth = PointRatioToOrthognal(pt0orth, pt2orth, ptRatioA);
             orthPtA.transform.position = ptAorth;
 
-            // OpenCVForUnity WebCam ArUco tag position
+            // OpenCVForUnity WebCam ArUco tag position and rotation
             detectedTagPosRatio2D = arUcoWebCamTextureExample_RZ.detectedTagPosRatio2D;
+            detectedTagRotDeg = arUcoWebCamTextureExample_RZ.detectedTagRotDeg;
+
+            // draw all the tags in original/perspective or image and in orthogonal
+            for (int i = 0; i < detectedTagPosRatio2D.Count; i ++)
+            {
+                // original/perspective
+                Vector3 ptSpers = PointRatioToOrthognal(pt0orth, pt2orth, detectedTagPosRatio2D[i]);
+                Vector3 ptEpers = PointRatioToOrthognal(pt0orth, pt2orth, detectedTagPosRatio2D[i] + new Vector2(0.05f, 0f));
+                Vector3 ptRpers = PointRatioToOrthognal(pt0orth, pt2orth, detectedTagPosRatio2D[i] + Rotate(new Vector2(0.05f, 0f), detectedTagRotDeg[i]));
+                Debug.DrawLine(ptSpers, ptEpers, Color.magenta);
+                Debug.DrawLine(ptSpers, ptRpers, Color.magenta);
+                // orthogonal
+                // calculate x y ratio follow perspective principle
+                Vector3 ptRatioS = PointPerspectiveToOrthogonal(pt0pers, pt1pers, pt2pers, pt3pers, ptSpers, false);
+                Vector3 ptRatioE = PointPerspectiveToOrthogonal(pt0pers, pt1pers, pt2pers, pt3pers, ptEpers, false);
+                Vector3 ptRatioR = PointPerspectiveToOrthogonal(pt0pers, pt1pers, pt2pers, pt3pers, ptRpers, false);
+                // calculate orthPts
+                Vector3 ptSorth = PointRatioToOrthognal(pt0orth, pt2orth, ptRatioS);
+                Vector3 ptEorth = PointRatioToOrthognal(pt0orth, pt2orth, ptRatioE);
+                Vector3 ptRorth = PointRatioToOrthognal(pt0orth, pt2orth, ptRatioR);
+                Debug.DrawLine(ptSorth, ptEorth, Color.blue);
+                Debug.DrawLine(ptSorth, ptRorth, Color.blue);
+            }
         }
 
         Vector3 FindIntersection(Vector3 s1, Vector3 e1, Vector3 s2, Vector3 e2)
@@ -136,6 +160,20 @@ namespace OpenCVForUnityExample {
             float z = (pt2.z - pt0.z) * ptRatioA.y + pt0.z;
 
             return new Vector3(x, y, z);
+        }
+
+        Vector2 Rotate(Vector2 v, float degrees)
+        {
+            float sin = Mathf.Sin(degrees * Mathf.Deg2Rad);
+            float cos = Mathf.Cos(degrees * Mathf.Deg2Rad);
+
+            float tx = v.x;
+            float ty = v.y;
+
+            float vtx = (cos * tx) - (sin * ty);
+            float vty = (sin * tx) + (cos * ty);
+            Vector2 vt = new Vector2(vtx, vty);
+            return vt;
         }
     }
 }

@@ -28,7 +28,9 @@ namespace OpenCVForUnityExample
 
         // RZ
         public List<Vector2> detectedTagPosRatio2D;
-
+        public List<float> detectedTagRotDeg;
+        float width;
+        float height;
 
         /// <summary>
         /// Determines if restores the camera parameters when the file exists.
@@ -257,6 +259,7 @@ namespace OpenCVForUnityExample
             
             gameObject.GetComponent<Renderer> ().material.mainTexture = texture;
             
+            // RZ
             //gameObject.transform.localScale = new Vector3 (webCamTextureMat.cols (), webCamTextureMat.rows (), 1);
             Debug.Log ("Screen.width " + Screen.width + " Screen.height " + Screen.height + " Screen.orientation " + Screen.orientation);
 
@@ -266,13 +269,18 @@ namespace OpenCVForUnityExample
                 fpsMonitor.Add ("orientation", Screen.orientation.ToString ());
             }
 
-            
-            float width = webCamTextureMat.width ();
-            float height = webCamTextureMat.height ();
-            
+            // RZ
+            //float width = webCamTextureMat.width ();
+            //float height = webCamTextureMat.height ();
+            width = webCamTextureMat.width();
+            height = webCamTextureMat.height();
+            Debug.Log("width: " + width);
+            Debug.Log("height: " + height);
+
             float imageSizeScale = 1.0f;
             float widthScale = (float)Screen.width / width;
             float heightScale = (float)Screen.height / height;
+            // RZ
             /*
             if (widthScale < heightScale) {
                 Camera.main.orthographicSize = (width * (float)Screen.height / (float)Screen.width) / 2;
@@ -507,6 +515,52 @@ namespace OpenCVForUnityExample
                         } else {
                             // draw markers.
                             Aruco.drawDetectedMarkers (rgbMat, corners, ids, new Scalar (0, 255, 0));
+
+                            // RZ add each tag pos to detected tag pos ratio 2d list
+                            detectedTagPosRatio2D = new List<Vector2>();
+                            detectedTagRotDeg = new List<float>();
+                            // loop all the detected tags
+                            for (int i = 0; i < ids.total(); ++i)
+                            {
+                                //Debug.Log("corners[i]: " + corners[i]);
+
+                                // 4 corners
+                                double[] xy0 = corners[i].get(0, 0);
+                                double[] xy1 = corners[i].get(0, 1);
+                                double[] xy2 = corners[i].get(0, 2);
+                                double[] xy3 = corners[i].get(0, 3);
+                                // x y in format of int pixel
+                                int x0 = (int)xy0[0];
+                                int y0 = (int)xy0[1];
+                                int x1 = (int)xy1[0];
+                                int y1 = (int)xy1[1];
+                                int x2 = (int)xy2[0];
+                                int y2 = (int)xy2[1];
+                                int x3 = (int)xy3[0];
+                                int y3 = (int)xy3[1];
+                                // calculate center of 4 pts (average)
+                                float xc = (x0 + x1 + x2 + x3) / 4f;
+                                float yc = (y0 + y1 + y2 + y3) / 4f;
+                                //Debug.Log("xc: " + xc + "; yc: " + yc);
+
+                                // tag pos ratio
+                                Vector2 xycRatio = new Vector2(xc / width, 1f - yc / height);
+                                //Debug.Log("xycRatio: " + xycRatio);
+                                detectedTagPosRatio2D.Add(xycRatio);
+
+                                // tag rot in degree
+                                // right direction is average of corner 1 and 2
+                                float xr = (x1 + x2) / 2f;
+                                float yr = (y1 + y2) / 2f;
+                                Vector2 xyrRatio = new Vector2(xr / width, 1f - yr / height);
+                                float rot = Vector2.SignedAngle(new Vector2(1f, 0f), xyrRatio - xycRatio);
+                                //Debug.Log("rot: " + rot);
+                                detectedTagRotDeg.Add(rot);
+
+                                // draw lines
+                                //Debug.DrawLine(new Vector3(xycRatio.x,0f,xycRatio.y) * 100f, new Vector3(xyrRatio.x, 0f, xyrRatio.y) * 100f, Color.yellow);
+                            }
+                            //Debug.Log("detectedTagPosRatio2D: " + detectedTagPosRatio2D);
                         }
                     } else {
                         // detect diamond markers.

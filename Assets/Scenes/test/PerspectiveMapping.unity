@@ -405,6 +405,9 @@ MonoBehaviour:
   persPt2: {fileID: 398483170}
   persPt3: {fileID: 640013419}
   persPtA: {fileID: 1370678916}
+  arUcoWebCamTextureExample_RZ: {fileID: 1598598978}
+  detectedTagPosRatio2D: []
+  detectedTagRotDeg: []
 --- !u!1 &71290967
 GameObject:
   m_ObjectHideFlags: 0
@@ -7190,6 +7193,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2442212d8ebdc463e8a682d6f50c76ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  detectedTagPosRatio2D: []
+  detectedTagRotDeg: []
   useStoredCameraParameters: 1
   markerType: 0
   markerTypeDropdown: {fileID: 1762762183}

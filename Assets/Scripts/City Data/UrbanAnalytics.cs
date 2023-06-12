@@ -61,7 +61,7 @@ public class UrbanAnalytics : MonoBehaviour
     public float[] metrics = new float[9];
 
     // RZ 190515 temp fix for filming
-    public App app;
+    // public App app;
 
     void Start()
     {
@@ -166,11 +166,11 @@ public class UrbanAnalytics : MonoBehaviour
         }
         */
         int t = 7;
-        foreach (GameObject freeUnitGO in app.freeUnits)
-        {
-            allUnitTotalCapacities[t] += FreeUnitRot2Capacity(-freeUnitGO.transform.localEulerAngles.y);
-            t++;
-        }
+        // foreach (GameObject freeUnitGO in app.freeUnits)
+        // {
+        //     allUnitTotalCapacities[t] += FreeUnitRot2Capacity(-freeUnitGO.transform.localEulerAngles.y);
+        //     t++;
+        // }
 
 
         // Computing all units' impact on radar chart metrics
@@ -248,12 +248,12 @@ public class UrbanAnalytics : MonoBehaviour
             tmpVector4List.Add(tmpVector4);
         }
         */
-        foreach (GameObject freeUnitGO in app.freeUnits)
-        {
-            // heatmap's posx posy radius and intensity
-            Vector4 tmpVector4 = new Vector4(freeUnitGO.transform.localPosition.x, freeUnitGO.transform.localPosition.z, heatmapRangeFactorFreeUnit, heatmapIntensityFactorFreeUnit * timeFactor);
-            tmpVector4List.Add(tmpVector4);
-        }
+        // foreach (GameObject freeUnitGO in app.freeUnits)
+        // {
+        //     // heatmap's posx posy radius and intensity
+        //     Vector4 tmpVector4 = new Vector4(freeUnitGO.transform.localPosition.x, freeUnitGO.transform.localPosition.z, heatmapRangeFactorFreeUnit, heatmapIntensityFactorFreeUnit * timeFactor);
+        //     tmpVector4List.Add(tmpVector4);
+        // }
         for (int i = 0; i < heatmap.count; i++)
         {
             if (i < tmpVector4List.Count)

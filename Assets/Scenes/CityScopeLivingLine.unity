@@ -4075,7 +4075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8da7b7b5c3fd46b48925426a2beb13ff, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxDisplays: 3
+  maxDisplays: 1
   additionalCameras:
   - {fileID: 975384854}
   - {fileID: 120236177}
